@@ -1,14 +1,11 @@
-'use-client'
 import Superadminlayout from '@/components/layout/Superadminlayout'
 import React from 'react'
-import Payin from './Payin'
-import Payinhistory from './PayinHistory'
+import Settings from './Settings'
 
 export default function page() {
   return (
     <Superadminlayout>
-       <Payin/>
-       <Payinhistory/>
+        <Settings/>
     </Superadminlayout>
   )
 }

@@ -2,9 +2,9 @@
 import { Input } from '@/components/ui/input';
 import loadingStore from '@/zustand/loading';
 import axios, { AxiosError } from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { sendFiat, SendFiat } from '@/validitions/validation';
@@ -25,6 +25,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { useRouter } from 'next/navigation';
+import refreshStore from '@/zustand/refresh';
  
 
 
@@ -51,15 +53,30 @@ const frameworks = [
   },
 ]
 
+interface UserSerach {
+    id: string
+    username: string
+    referralUsername: string
+    status:string
+    createdAt: string
+}
+
 export default function Payin() {
   const { loading, setLoading, clearLoading } = loadingStore();
+  const { refresh, setRefresh} = refreshStore()
   const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+  const [user, setUser] = React.useState("")
+  const router = useRouter()
+  const [users, setUsers] = useState<UserSerach[]>([])
 
   // Initialize React Hook Form with Zod resolver
   const {
     register,
     handleSubmit,
+    control,
+    watch,
+    reset,
+    setValue,
     formState: { errors },
   } = useForm<SendFiat>({
     resolver: zodResolver(sendFiat),
@@ -68,9 +85,10 @@ export default function Payin() {
   // Handle form submission
   const onSubmit = async (data: SendFiat) => {
     setLoading(true);
+    setRefresh('true')
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/payin/adminsendfiatplayer`,
+        `${process.env.NEXT_PUBLIC_API_URL}/payin/superadminsendfiatplayer`,
         {
           playerusername: data.username,
           amount: data.amount,
@@ -84,14 +102,19 @@ export default function Payin() {
       );
 
       toast.success('Fiat sent successfully!');
+      reset()
       clearLoading();
+      setRefresh('false')
+
     } catch (error) {
       setLoading(false);
+      setRefresh('false')
 
       if (axios.isAxiosError(error)) {
         const axiosError = error as AxiosError<{ message: string; data: string }>;
         if (axiosError.response && axiosError.response.status === 401) {
           toast.error(`${axiosError.response.data.data}`);
+          router.push('/')
         }
 
         if (axiosError.response && axiosError.response.status === 400) {
@@ -113,6 +136,33 @@ export default function Payin() {
     }
   };
 
+
+  useEffect(() => {
+    const getList = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/searchplayerlist?playerusername=${user}`,{
+        withCredentials:true
+        })
+
+        setUsers(response.data.data.userlist)
+        
+      } catch (error) {
+
+        if (axios.isAxiosError(error)) {
+          const axiosError = error as AxiosError<{ message: string, data: string }>;
+          if (axiosError.response && axiosError.response.status === 401) {
+            toast.error(`${axiosError.response.data.data}`)
+            router.push('/')  
+            }    
+          } 
+      }
+    }
+    getList()
+},[user])
+
+ // Watch the username value
+ const selectedUsername = watch("username");
+
   return (
     <div className='w-full flex flex-col gap-8 font-light'>
       <h2 className='text-xl font-bold mt-8 text-white'>Payin</h2>
@@ -126,54 +176,62 @@ export default function Payin() {
 
 
             {/* Form with validation */}
-            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-              
+            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
+              <p className=' label'>Username</p>
+              <Controller
+                name="username"
+                control={control}
+                render={({ field }) => (
+                  <Popover open={open} onOpenChange={setOpen}>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        aria-expanded={open}
+                        className="w-full justify-between bg-gray-100"
+                      >
+                        {selectedUsername
+                          ? users.find((item) => item.username === selectedUsername)?.username
+                          : "Select username..."}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-full p-0">
+                      <Command>
+                        <CommandInput placeholder="Search user..." />
+                        <CommandList>
+                          <CommandEmpty>No user found.</CommandEmpty>
+                          <CommandGroup>
+                            {users.map((item) => (
+                              <CommandItem
+                                key={item.id}
+                                value={item.username}
+                                onSelect={(currentValue) => {
+                                  setValue("username", currentValue); // Update the form value
+                                  setOpen(false);
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    selectedUsername === item.username ? "opacity-100" : "opacity-0"
+                                  )}
+                                />
+                                {item.username}
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </CommandList>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                )}
+              />
+              {errors.username && <p className='text-[.6em] text-red-400'>{errors.username.message}</p>}
 
-              <Popover open={open} onOpenChange={setOpen} {...register('username')}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  role="combobox"
-                  aria-expanded={open}
-                  className=" w-full justify-between bg-gray-100"
-                >
-                  {value
-                    ? frameworks.find((framework) => framework.value === value)?.label
-                    : "Username..."}
-                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-full p-0">
-                <Command>
-                  <CommandInput placeholder="Search framework..." />
-                  <CommandList>
-                    <CommandEmpty>No user found.</CommandEmpty>
-                    <CommandGroup>
-                      {frameworks.map((framework) => (
-                        <CommandItem
-                          key={framework.value}
-                          value={framework.value}
-                          onSelect={(currentValue) => {
-                            setValue(currentValue === value ? "" : currentValue)
-                            setOpen(false)
-                          }}
-                        >
-                          <Check
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              value === framework.value ? "opacity-100" : "opacity-0"
-                            )}
-                          />
-                          {framework.label}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-              </Popover>
 
               <div>
+                <p className=' label'>Amount</p>
                 <Input
                 defaultValue={0}
                   type='number'
@@ -189,7 +247,7 @@ export default function Payin() {
               
 
 
-              <button type='submit' className='primary-btn' disabled={loading}>
+              <button type='submit' className='primary-btn mt-4' disabled={loading}>
                 {loading ? 'Sending...' : 'Send'}
               </button>
             </form>

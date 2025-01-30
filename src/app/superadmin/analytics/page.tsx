@@ -1,22 +1,75 @@
+'use client'
 import Card from '@/components/common/Card'
 import Superadminlayout from '@/components/layout/Superadminlayout'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Chart from './Chart'
 import LongChart from './LongChart'
+import { useRouter } from 'next/navigation'
+import loadingtableStore from '@/zustand/tableloading'
+import rateStore from '@/zustand/rate'
+import axios, { AxiosError } from 'axios'
+import toast from 'react-hot-toast'
+
+interface AdminWallets {
+  commission: number,
+  products: number,
+  commissioned: number,
+  registered: number,
+  payin: number,
+  payoutgame: number,
+  payoutcommission: number,
+  payout: number,
+  adminfeewallet: number
+}
 
 export default function page() {
+  const router = useRouter()
+  const {loading, setLoading, clearLoading} = loadingtableStore()
+  const {rate, setRate, clearRate} = rateStore()
+  const [wallets, setWallets] = useState<AdminWallets>()
+  const [totalsales, setTotalsales] = useState(0)
+
+
+  useEffect(() => {
+    setLoading(true)
+    const getList = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/staffuser/getsadashboard`,{
+        withCredentials:true
+        })
+
+        setLoading(false)
+        setWallets(response.data.data)
+
+        setTotalsales(response.data.data.commission + response.data.data.payin)
+      } catch (error) {
+        setLoading(false)
+
+        if (axios.isAxiosError(error)) {
+          const axiosError = error as AxiosError<{ message: string, data: string }>;
+          if (axiosError.response && axiosError.response.status === 401) {
+            toast.error(`${axiosError.response.data.data}`)
+            router.push('/')  
+            }    
+          } 
+      }
+    }
+    getList()
+},[])
+
+
   return (
     <Superadminlayout>
         <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 mt-12 gap-4'>
-          <Card name={'Total Sales'} amount={0} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
-          <Card name={'Company Commission'} amount={0} color={'bg-teal-400'} subcolor={'bg-teal-300'}/>
-          <Card name={'User Top Up'} amount={0} color={'bg-emerald-400'} subcolor={'bg-emerald-300'}/>
-          <Card name={'Total Payout'} amount={0} color={'bg-purple-400'} subcolor={'bg-purple-300'}/>
-          <Card name={'Payout Game'} amount={0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
-          <Card name={'Payout Commission'} amount={0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
-          <Card name={'Total Company Profit'} amount={0} color={'bg-blue-400'} subcolor={'bg-blue-300'}/>
-          <Card name={'Game Profit'} amount={0} color={'bg-green-400'} subcolor={'bg-green-300'}/>
-          <Card name={'User Account'} amount={0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
+          <Card name={'Total Sales'} amount={totalsales} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
+          <Card name={'Company Commission'} amount={wallets?.commission || 0} color={'bg-teal-400'} subcolor={'bg-teal-300'}/>
+          <Card name={'User Top Up'} amount={wallets?.payin || 0} color={'bg-emerald-400'} subcolor={'bg-emerald-300'}/>
+          <Card name={'Total Payout'} amount={wallets?.payout || 0} color={'bg-purple-400'} subcolor={'bg-purple-300'}/>
+          <Card name={'Payout Game'} amount={wallets?.payoutgame || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
+          <Card name={'Payout Commission'} amount={wallets?.payoutcommission || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
+          <Card name={'Total Company Profit'} amount={totalsales - (wallets?.payout || 0)} color={'bg-blue-400'} subcolor={'bg-blue-300'}/>
+          <Card name={'Game Profit'} amount={wallets?.products || 0} color={'bg-green-400'} subcolor={'bg-green-300'}/>
+          <Card name={'User Account'} amount={wallets?.registered || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
 
         </div>
         <LongChart/>
