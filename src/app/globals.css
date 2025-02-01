@@ -87,6 +87,10 @@ body {
   @apply bg-dark ~text-xs/sm text-white py-2 rounded-md font-medium
 }
 
+.danger-btn{
+  @apply bg-red-600 ~text-xs/sm text-white py-2 px-4 rounded-md font-medium
+}
+
 .secondary-btn{
   @apply bg-slate-200 ~text-xs/sm py-2 rounded-md font-medium
 }
@@ -137,5 +141,90 @@ body {
 
 .error {
   @apply text-[.6rem] text-red-500
+}
+
+
+/* Visual styles */
+.accordion {
+  color: var(--theme);
+  overflow: hidden;
+}
+
+.tab__label,
+.tab__close {
+  display: flex;
+  color: rgb(0, 0, 0);
+  background: var(--theme);
+  cursor: pointer;
+}
+
+.tab__label {
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 0;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  
+}
+
+.tab__label::after {
+  content: "\276F";
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  transform: rotate(90deg);
+  transition: all 0.35s;
+}
+
+.tab input:checked+.tab__label::after {
+  transform: rotate(270deg);
+}
+
+.tab__content p {
+  margin: 0;
+  padding: 1rem;
+}
+
+.tab__close {
+  justify-content: flex-end;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+.accordion--radio {
+  --theme: var(--secondary);
+}
+
+/* Arrow animation */
+.tab input:not(:checked)+.tab__label:hover::after {
+  animation: bounce 0.5s infinite;
+}
+
+@keyframes bounce {
+  25% {
+      transform: rotate(90deg) translate(0.25rem);
+  }
+
+  75% {
+      transform: rotate(90deg) translate(-0.25rem);
+  }
+}
+
+/* Core styles/functionality */
+.tab input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.tab__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.35s;
+  background-color: rgb(255, 255, 255);
+}
+
+.tab input:checked~.tab__content {
+  max-height: 20rem;
 }
 

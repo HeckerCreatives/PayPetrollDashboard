@@ -1,0 +1,16 @@
+'use client'
+import Superadminlayout from '@/components/layout/Superadminlayout'
+import React from 'react'
+import Topcommission from './HistoryComission'
+
+export default function page() {
+  return (
+    <Superadminlayout>
+      <div className=' w-full'>
+        <h2 className='text-xl font-bold mt-8 text-white'>Top Commission</h2>
+
+        </div>
+        <Topcommission/>
+    </Superadminlayout>
+  )
+}

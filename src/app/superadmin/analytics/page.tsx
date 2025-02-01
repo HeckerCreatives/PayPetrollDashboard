@@ -9,6 +9,7 @@ import loadingtableStore from '@/zustand/tableloading'
 import rateStore from '@/zustand/rate'
 import axios, { AxiosError } from 'axios'
 import toast from 'react-hot-toast'
+import { Users, Wallet } from 'lucide-react'
 
 interface AdminWallets {
   commission: number,
@@ -69,7 +70,30 @@ export default function page() {
           <Card name={'Payout Commission'} amount={wallets?.payoutcommission || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
           <Card name={'Total Company Profit'} amount={totalsales - (wallets?.payout || 0)} color={'bg-blue-400'} subcolor={'bg-blue-300'}/>
           <Card name={'Game Profit'} amount={wallets?.products || 0} color={'bg-green-400'} subcolor={'bg-green-300'}/>
-          <Card name={'User Account'} amount={wallets?.registered || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
+
+          <div className={`flex items-center justify-center w-full ~w-[375px]/300px h-full  font-normal shadow-sm rounded-xl bg-rose-400`}>
+            <div className=' w-full flex flex-col gap-2 text-sm p-4'>
+                <p className=' '>User Account</p>
+                {loading === true ? (
+                <h2 className=' ~text-sm/lg font-semibold mt-2'>---</h2>
+                ):(
+
+                    <div className=' flex flex-col  mt-2'>
+                        <h2 className=' ~text-xl/2xl font-semibold'>{(wallets?.registered || 0).toLocaleString()}</h2>
+                    </div>
+
+                )}
+                <p className=' text-zinc-700 text-[.7rem]'>Total users</p>
+
+            </div>
+
+            <div className=' w-fit px-6 h-full flex items-center justify-center'>
+                <div className={` ~w-12/16 aspect-square rounded-full flex items-center justify-center bg-rose-300`}>
+                    <Users size={25}/>
+                </div>
+
+            </div>
+        </div>
 
         </div>
         <LongChart/>

@@ -49,7 +49,7 @@ export function LoginForm({
         setLoading(false)
       } else if (response.data.data.auth === 'admin') {
         toast.success('Successfully logged in')
-        router.push('/admin/dashboard')
+        router.push('/admin/analytics')
         setLoading(false)
       } else {
         toast.error(response.data.data)
@@ -144,20 +144,20 @@ export function LoginForm({
                   </Button>
                 
               </div>
-              <div className="text-center text-sm">
+              {/* <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
                 <a href="/auth/signup" className="underline underline-offset-4">
                   Sign up
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </CardContent>
       </Card>
-      <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
+      {/* <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
         By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
         and <a href="#">Privacy Policy</a>.
-      </div>
+      </div> */}
     </div>
   )
 }

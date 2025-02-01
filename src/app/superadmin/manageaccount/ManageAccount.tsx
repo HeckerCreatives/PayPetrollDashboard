@@ -1,6 +1,8 @@
 import React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import AdminTable from './AdminTable'
+import PlayerTable from './UserTable'
+import PlayerCount from './PlayerCount'
 
 
 export default function ManageAccount() {
@@ -16,7 +18,10 @@ export default function ManageAccount() {
         <TabsContent value="Admin" className=' w-full'>
             <AdminTable/>
         </TabsContent>
-        <TabsContent value="User">Change your password here.</TabsContent>
+        <TabsContent value="User">
+          <PlayerCount/>
+          <PlayerTable/>
+        </TabsContent>
         </Tabs>
 
 

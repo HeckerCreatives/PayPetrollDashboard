@@ -134,7 +134,7 @@ export default function Superadminlayout({
 
             <div className=' hidden  lg:flex items-center bg-gray-100 rounded-full shadow-sm'>
                 {superadmin.map((item, index) => (
-                    <a key={index} href={item.path} className={` flex items-center gap-2 px-4 py-3 text-[.8rem] rounded-full font-medium ${path.includes(item.path) ? 'bg-[#75C09F] text-white' : 'text-black'}`}>{item.icon}{item.name}</a>
+                    <a key={index} href={item.path} className={` flex items-center gap-1 px-4 py-3 text-[.7rem] rounded-full font-medium ${path.includes(item.path) ? 'bg-[#75C09F] text-white' : 'text-black'}`}>{item.icon}{item.name}</a>
                 ))}
 
             </div>
@@ -143,12 +143,12 @@ export default function Superadminlayout({
 
               <DropdownMenu>
                   <DropdownMenuTrigger className=' focus:ring-0'>
-                      <div className=" flex items-center  gap-3 text-xs text-zinc-400 bg-gray-100 p-1 rounded-full shadow-sm">
+                      <div className=" flex items-center  gap-3 text-xs text-zinc-400 bg-gray-100 p-1 rounded-full shadow-sm focus:ring-0">
                           
                           <div className=" w-7 aspect-square rounded-full bg-white flex items-center justify-center">
-                            {avatar !== '' && (
-                            <img src={avatar} width={120} height={120} />
-                            )}
+                            
+                            <img src='/event.png' width={120} height={120} />
+                         
                           </div>
                           <div className=" flex flex-col">
                             <ChevronDown size={15}/>
@@ -156,7 +156,7 @@ export default function Superadminlayout({
                       </div>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent >
-                      <DropdownMenuLabel className=' text-xs'>My Account</DropdownMenuLabel>
+                      <DropdownMenuLabel className=' text-xs'>Superadmin</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem className=' text-xs flex items-center gap-2'><button onClick={logout} className=' flex items-center gap-2'>Log out <LogIn size={12}/></button></DropdownMenuItem>
                   

@@ -137,6 +137,7 @@ export function RegisterForm() {
                   <Input
                     id="username"
                     type="text"
+                    maxLength={20}
                     placeholder="e.g user123"
                     {...register('username')}
                   />
@@ -150,6 +151,7 @@ export function RegisterForm() {
                   <div className="relative">
                     <Input
                       id="password"
+                      maxLength={20}
                       type={showPassword ? "text" : "password"}
                       {...register('password')}
                     />
@@ -171,6 +173,8 @@ export function RegisterForm() {
                   <div className="relative">
                     <Input
                       id="confirm"
+                      maxLength={20}
+
                       type={showConfirmPassword ? "text" : "password"}
                       {...register('confirm')}
                     />
@@ -224,10 +228,10 @@ export function RegisterForm() {
           </form>
         </CardContent>
       </Card>
-      <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary">
+      {/* <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary">
         By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
         and <a href="#">Privacy Policy</a>.
-      </div>
+      </div> */}
     </div>
   )
 }

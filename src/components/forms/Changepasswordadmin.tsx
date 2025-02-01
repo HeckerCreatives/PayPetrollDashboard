@@ -87,7 +87,7 @@ export default function Changepasswordadmin() {
     };
 
     return (
-        <div className='w-full h-fit flex flex-col gap-4 bg-white shadow-sm p-6 rounded-md'>
+        <div className='w-full max-w-[350px] h-fit flex flex-col gap-4 bg-white shadow-sm p-6 rounded-md'>
             <h2 className='text-lg font-semibold'>Change password</h2>
 
             <form onSubmit={handleSubmit(changePassword)} className='flex flex-col gap-1'>
@@ -127,7 +127,7 @@ export default function Changepasswordadmin() {
                 </div>
                 {errors.confirm && <p className='text-[.6em] text-red-500'>{errors.confirm.message}</p>}
 
-                <button disabled={loading} className='bg-dark ~text-xs/sm text-white py-3 rounded-md font-medium mt-4 flex items-center justify-center gap-2'>
+                <button disabled={loading} className='primary-btn mt-4'>
                     {loading === true && (
                         <span className='loader'></span>
                     )}

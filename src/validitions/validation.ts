@@ -51,9 +51,45 @@ export const sendFiat = z.object({
     amount: z.number().min(500, 'Amount must be at least 500').max(999_000_000),
 })
 
+export const conversionRate = z.object({
+    amount: z.number().min(1, 'Amount must be at least 1').max(999_000_000),
+})
+
+export const complanSchema = z.object({
+    profit: z.number().min(1, 'Profit must be at least 1'),
+    duration: z.number().min(1, 'Enter a duration'),
+    min: z.number().min(1, 'Enter a min amount'),
+    max: z.number().min(1, 'Enter a max amount'),
+})
+
+
+export const createAdmin = z.object({
+    username: z.string().nonempty('Username is empty'),
+    password: z.string().max(20).nonempty('Password is empty'),
+    confirm: z.string().max(20).nonempty('Confirm your password').optional(),
+    // referral: z.string()
+})
+ .refine((data) => data.password === data.confirm , {
+      message:"Passwords don't match",
+      path: ['confirm'],
+    })
+
+    export const socialsSchema = z.object({
+        type: z.string().nonempty('Select a type'),
+        link: z.string()
+            .refine((value) => value.startsWith('https://'), {
+                message: "Link must start with 'https://'", 
+            }),
+    });
+    
+
       
 export type PaymentForm = z.infer<typeof paymentFormSchema>;
 export type Register = z.infer<typeof registeruser>;
 export type UserAccount = z.infer<typeof accountSchema>;
 export type UserChangePassword = z.infer<typeof userchangepassword>;
 export type SendFiat = z.infer<typeof sendFiat>;
+export type SaveConversionRate = z.infer<typeof conversionRate>;
+export type SaveComplan = z.infer<typeof complanSchema>;
+export type CreateAdminAccount = z.infer<typeof createAdmin>;
+export type AddSocialMedia = z.infer<typeof socialsSchema>;

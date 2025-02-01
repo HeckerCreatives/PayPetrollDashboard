@@ -27,6 +27,8 @@ export default function Dashboard() {
     const { loading, setLoading, clearLoading } = loadingStore()
     const [referral, setReferral] = useState('')
     const [unclaimed, setUnclaimed] = useState(0)
+    const [status, setStatus] = useState(false)
+    const [event, setEvent] = useState('On')
     
 
 
@@ -97,6 +99,50 @@ export default function Dashboard() {
       getWallets()
   },[])
 
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/analytics/getreferrallinkstatus`,{
+        withCredentials:true
+        })
+
+        setStatus(response.data.data.status)
+        
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          const axiosError = error as AxiosError<{ message: string, data: string }>;
+          if (axiosError.response && axiosError.response.status === 401) {
+            toast.error(`${axiosError.response.data.data}`)
+            router.push('/')  
+            }    
+          } 
+      }
+    }
+    getData()
+  },[])
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/maintenance/geteventmainte?maintenancetype=eventgame`,{
+        withCredentials:true
+        })
+
+        setEvent(response.data.data.value === '0' ? 'Off' : 'On')
+        
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          const axiosError = error as AxiosError<{ message: string, data: string }>;
+          if (axiosError.response && axiosError.response.status === 401) {
+            toast.error(`${axiosError.response.data.data}`)
+            router.push('/')  
+            }    
+          } 
+      }
+    }
+    getData()
+},[])
+
     //get referral
     useEffect(() => {
       const getReferral = async () => {
@@ -139,7 +185,9 @@ export default function Dashboard() {
                     <div className=' flex flex-col'>
                         <p>Referral</p>
                         {/* <h2 className=' ~text-4xl/5xl font-medium'>99</h2> */}
+                        {status === true && (
                         <button onClick={copyReferral} className=' primary-btn w-fit px-4 mt-2'><Copy size={15}/>Copy</button>
+                        )}
                     </div>
 
                     <p className=' text-zinc-500 w-[30%]'>Invites your your friends.</p>
@@ -151,7 +199,7 @@ export default function Dashboard() {
 
                     <div className=' flex flex-col'>
                         <p>Events</p>
-                        <h2 className=' ~text-3xl/5xl font-medium'>On</h2>
+                        <h2 className=' ~text-3xl/5xl font-medium'>{event}</h2>
                     </div>
 
                     <p className=' text-zinc-500 w-[30%]'>Join the events to get rewards.</p>

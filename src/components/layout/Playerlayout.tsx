@@ -162,14 +162,14 @@ export default function Playerlayout({
 
             <div className=' hidden  lg:flex items-center bg-gray-100 rounded-full shadow-sm'>
                 {user.map((item, index) => (
-                    <a key={index} href={item.path} className={` flex items-center gap-2 px-4 py-3 text-[.8rem] rounded-full font-medium ${path.includes(item.path) ? 'bg-[#75C09F] text-white' : 'text-black'}`}>{item.icon}{item.name}</a>
+                    <a key={index} href={item.path} className={` flex items-center gap-2 px-4 py-3 text-[.7rem] rounded-full font-medium ${path.includes(item.path) ? 'bg-[#75C09F] text-white' : 'text-black'}`}>{item.icon}{item.name}</a>
                 ))}
 
             </div>
 
             <div className=' flex items-center gap-2'>
 
-              <button onClick={copyReferral} className=' text-xs px-3 py-2 font-thin rounded-full bg-gray-100 flex items-center gap-2 shadow-sm'><Copy size={18}/>Referral</button>
+              {/* <button onClick={copyReferral} className=' text-xs px-3 py-2 font-thin rounded-full bg-gray-100 flex items-center gap-2 shadow-sm'><Copy size={18}/>Referral</button> */}
               <DropdownMenu>
                   <DropdownMenuTrigger className=' focus:ring-0'>
                       <div className=" flex items-center  gap-3 text-xs text-zinc-400 bg-gray-100 p-1 rounded-full shadow-sm">
