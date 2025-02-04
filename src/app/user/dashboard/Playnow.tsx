@@ -50,8 +50,7 @@ export default function Playnow() {
         if (axios.isAxiosError(error)) {
           const axiosError = error as AxiosError<{ message: string, data: string }>;
           if (axiosError.response && axiosError.response.status === 401) {
-            toast.error(`${axiosError.response.data.data}`)
-            router.push('/')  
+            
             }    
           } 
       }
@@ -73,8 +72,7 @@ useEffect(() => {
       if (axios.isAxiosError(error)) {
         const axiosError = error as AxiosError<{ message: string, data: string }>;
         if (axiosError.response && axiosError.response.status === 401) {
-          toast.error(`${axiosError.response.data.data}`)
-          router.push('/')  
+           
           }    
         } 
     }

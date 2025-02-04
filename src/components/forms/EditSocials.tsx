@@ -72,9 +72,9 @@ const edit = async (data: AddSocialMedia) => {
         });
 
         const response = await toast.promise(request, {
-            loading: `Creating social media...`,
-            success: `Created successfully. `,
-            error: `Error while creating social.`,
+            loading: `Updating social media...`,
+            success: `Updated successfully. `,
+            error: `Error while updating social media.`,
         });
         if (response.data.message === 'success') {
             setRefresh('false');

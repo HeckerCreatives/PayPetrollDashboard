@@ -132,7 +132,7 @@ export function RegisterForm() {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-6">
               <div className="grid gap-3">
-                <div className="grid">
+                <div className="grid gap-1">
                   <Label htmlFor="username">Username</Label>
                   <Input
                     id="username"
@@ -144,7 +144,7 @@ export function RegisterForm() {
                   {errors.username && <p className='text-[.6em] text-red-400'>{errors.username.message}</p>}
                 </div>
 
-                <div className="grid">
+                <div className="grid gap-1">
                   <div className="flex items-center">
                     <Label htmlFor="password">Password</Label>
                   </div>
@@ -166,7 +166,7 @@ export function RegisterForm() {
                   {errors.password && <p className='text-[.6em] text-red-400'>{errors.password.message}</p>}
                 </div>
 
-                <div className="grid">
+                <div className="grid gap-1">
                   <div className="flex items-center">
                     <Label htmlFor="confirm">Confirm Password</Label>
                   </div>
@@ -189,7 +189,7 @@ export function RegisterForm() {
                   {errors.confirm && <p className='text-[.6em] text-red-400'>{errors.confirm.message}</p>}
                 </div>
 
-                <div className="grid">
+                <div className="grid gap-1">
                   <div className="flex items-center">
                     <Label htmlFor="phonenumber">Phone no.</Label>
                   </div>
@@ -202,7 +202,7 @@ export function RegisterForm() {
                   {errors.phonenumber && <p className='text-[.6em] text-red-400'>{errors.phonenumber.message}</p>}
                 </div>
 
-                <div className="grid">
+                <div className="grid gap-1">
                   <Label htmlFor="referral">Referral</Label>
                   <Input
                     disabled={true}

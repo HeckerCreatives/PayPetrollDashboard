@@ -24,7 +24,7 @@ export default function Card( prop: Props) {
         ):(
 
             <div className=' flex flex-col  mt-2'>
-                <h2 className=' ~text-xl/2xl font-semibold'>₱{prop.amount.toLocaleString()}</h2>
+                <h2 className=' ~text-lg/xl font-semibold'>₱{prop.amount.toLocaleString()}</h2>
                 <p className=' text-xs text-zinc-700'>${(prop.amount / rate).toLocaleString()}</p>
             </div>
 

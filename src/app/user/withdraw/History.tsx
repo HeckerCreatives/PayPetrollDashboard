@@ -62,8 +62,7 @@ export default function Withdrawhistory() {
             if (axios.isAxiosError(error)) {
               const axiosError = error as AxiosError<{ message: string, data: string }>;
               if (axiosError.response && axiosError.response.status === 401) {
-                toast.error(`${axiosError.response.data.data}`)
-                router.push('/')  
+                
                 }    
               } 
           }
@@ -78,8 +77,10 @@ export default function Withdrawhistory() {
     const statusColor = (data: string) => {
       if(data === 'In review'){
         return 'text-blue-500'
-      } else {
+      } else  if(data === 'done'){
         return 'text-green-500'
+      } else {
+        return 'text-red-500'
       }
     }
 

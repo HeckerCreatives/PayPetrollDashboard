@@ -121,32 +121,27 @@ export default function Playerlayout({
     }
   }
 
-  // useEffect(() => {
-  //   const logout = async () => {
-  //     try {
-  //       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
-  //         {
-  //           withCredentials: true,
-  //           headers: {
-  //             'Content-Type': 'application/json'
-  //           }
-  //         }
-  //       )
-  
-  //     } catch (error) {
-  
-  //       if (axios.isAxiosError(error)) {
-  //         const axiosError = error as AxiosError<{ message: string, data: string }>
-  //         if (axiosError.response && axiosError.response.status === 401) {
-  //           toast.error(`${axiosError.response.data.data}`)
-  //           router.push('/')
-  //         }
-  
-  //       }
-  //     }
-  //   }
-  //   logout()
-  // },[])
+  useEffect(() => {
+    const getList = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/getuserdetails`,{
+        withCredentials:true
+        })
+
+
+      } catch (error) {
+
+        if (axios.isAxiosError(error)) {
+          const axiosError = error as AxiosError<{ message: string, data: string }>;
+          if (axiosError.response && axiosError.response.status === 401) {
+            toast.error(`${axiosError.response.data.data}`)
+            router.push('/')
+            }    
+          } 
+      }
+    }
+    getList()
+},[])
 
     
   return (

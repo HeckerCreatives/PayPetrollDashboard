@@ -37,7 +37,6 @@ const items = [
   { id: 8, content: '8', img:'/assets/Fish2.png' },
   { id: 9, content: '9', img:'/assets/Dog3.png' },
   { id: 10, content: '10', img:'/assets/Bird3.png' },
-  { id: 11, content: '10', img:'/assets/cat3.png' },
 ];
 
 interface List {
@@ -61,6 +60,8 @@ export default function Invites() {
   const [list, setList] = useState<List[]>([])
   const {rate, setRate, clearRate} = rateStore()
   const [search, setSearch] = useState('')
+
+  
 
   
 
@@ -103,8 +104,7 @@ export default function Invites() {
       if (axios.isAxiosError(error)) {
         const axiosError = error as AxiosError<{ message: string; data: string }>;
         if (axiosError.response && axiosError.response.status === 401) {
-          toast.error(`${axiosError.response.data.data}`);
-          router.push('/');
+          
         }
       }
     }
@@ -114,7 +114,6 @@ export default function Invites() {
     setCurrentPage(page)
   }
 
-  console.log(current)
 
 
 
@@ -136,7 +135,7 @@ export default function Invites() {
         >
           <CarouselContent>
             {items.map((item, index) => (
-              <CarouselItem key={item.id} className="basis-1/5 cursor-pointer">
+              <CarouselItem onClick={() => api && api.scrollTo(index)} key={item.id} className="basis-1/5 cursor-pointer">
                 <div className="p-1">
                   <div
                     className={' md:h-[250px] h-auto flex items-center justify-center py-4'}

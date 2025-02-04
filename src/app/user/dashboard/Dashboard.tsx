@@ -48,8 +48,7 @@ export default function Dashboard() {
             if (axios.isAxiosError(error)) {
               const axiosError = error as AxiosError<{ message: string, data: string }>;
               if (axiosError.response && axiosError.response.status === 401) {
-                toast.error(`${axiosError.response.data.data}`)
-                router.push('/')  
+                
                 }    
               } 
           }
@@ -69,8 +68,7 @@ export default function Dashboard() {
             if (axios.isAxiosError(error)) {
               const axiosError = error as AxiosError<{ message: string, data: string }>;
               if (axiosError.response && axiosError.response.status === 401) {
-                toast.error(`${axiosError.response.data.data}`)
-                router.push('/')  
+               
                 }    
               } 
           }
@@ -90,8 +88,7 @@ export default function Dashboard() {
           if (axios.isAxiosError(error)) {
             const axiosError = error as AxiosError<{ message: string, data: string }>;
             if (axiosError.response && axiosError.response.status === 401) {
-              toast.error(`${axiosError.response.data.data}`)
-              router.push('/')  
+             
               }    
             } 
         }
@@ -112,8 +109,7 @@ export default function Dashboard() {
         if (axios.isAxiosError(error)) {
           const axiosError = error as AxiosError<{ message: string, data: string }>;
           if (axiosError.response && axiosError.response.status === 401) {
-            toast.error(`${axiosError.response.data.data}`)
-            router.push('/')  
+           
             }    
           } 
       }
@@ -134,8 +130,7 @@ export default function Dashboard() {
         if (axios.isAxiosError(error)) {
           const axiosError = error as AxiosError<{ message: string, data: string }>;
           if (axiosError.response && axiosError.response.status === 401) {
-            toast.error(`${axiosError.response.data.data}`)
-            router.push('/')  
+           
             }    
           } 
       }
@@ -192,7 +187,7 @@ export default function Dashboard() {
 
                     <p className=' text-zinc-500 w-[30%]'>Invites your your friends.</p>
                    
-                    <img src="/assets/dog1.png" width={400} height={400} className=' ~w-48/64 absolute bottom-0 right-0' />
+                    <img src="/assets/Dog1.png" width={400} height={400} className=' ~w-48/64 absolute bottom-0 right-0' />
                 </div>
 
                 <div className='relative w-full h-full flex flex-col justify-between p-6 text-xs'>

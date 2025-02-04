@@ -80,8 +80,7 @@ export default function Settings() {
             if (axios.isAxiosError(error)) {
               const axiosError = error as AxiosError<{ message: string, data: string }>;
               if (axiosError.response && axiosError.response.status === 401) {
-                toast.error(`${axiosError.response.data.data}`)
-                router.push('/')  
+                
                 }    
               } 
           }
@@ -102,8 +101,7 @@ export default function Settings() {
             if (axios.isAxiosError(error)) {
             const axiosError = error as AxiosError<{ message: string, data: string }>;
             if (axiosError.response && axiosError.response.status === 401) {
-                toast.error(`${axiosError.response.data.data}`)
-                router.push('/')  
+               
                 }    
             } 
         }
@@ -239,7 +237,7 @@ export default function Settings() {
         <h2 className=' text-xl font-bold mt-8 text-white'>Settings</h2>
 
         <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[400px_1fr_1fr] gap-4'>
-            <div className=' flex flex-col items-center w-full h-[400px] bg-white rounded-lg shadow-sm py-12'>
+            <div className=' flex flex-col items-center w-full h-[320px] bg-white rounded-lg shadow-sm py-12'>
 
                 <div className=' relative w-44 aspect-square rounded-full bg-gray-100 flex items-center justify-center'>
 
@@ -274,7 +272,7 @@ export default function Settings() {
 
                 <div className=' flex flex-col items-center justify-center gap-2 mt-4'>
                     <p className=' text-xl font-semibold'>{account?.username}</p>
-                    <p onClick={copyReferral} className=' cursor-pointer text-sm mt-4 text-zinc-700 bg-light px-4 py-2 rounded-full flex items-center gap-2'><Copy size={15}/>Referral: {encryptUid(referral).slice(0,3)}...{encryptUid(referral).slice(4,8)} </p>
+                    {/* <p onClick={copyReferral} className=' cursor-pointer text-sm mt-4 text-zinc-700 bg-light px-4 py-2 rounded-full flex items-center gap-2'><Copy size={15}/>Referral: {encryptUid(referral).slice(0,3)}...{encryptUid(referral).slice(4,8)} </p> */}
 
                 </div>
 

@@ -83,7 +83,7 @@ export default function Payouthistory() {
     const [search, setSearch] = useState('')
     const { refresh, setRefresh} = refreshStore()
     const [tab, setTab] = useState('gamebalance')
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('done')
     const [open, setOpen] = useState(false)
 
 
@@ -104,8 +104,7 @@ export default function Payouthistory() {
             if (axios.isAxiosError(error)) {
               const axiosError = error as AxiosError<{ message: string; data: string }>;
               if (axiosError.response && axiosError.response.status === 401) {
-                toast.error(`${axiosError.response.data.data}`);
-                router.push("/");
+                
               }
             }
           } finally {
@@ -132,8 +131,7 @@ export default function Payouthistory() {
             if (axios.isAxiosError(error)) {
               const axiosError = error as AxiosError<{ message: string; data: string }>;
               if (axiosError.response && axiosError.response.status === 401) {
-                toast.error(`${axiosError.response.data.data}`);
-                router.push("/");
+                
               }
             }
           } finally {

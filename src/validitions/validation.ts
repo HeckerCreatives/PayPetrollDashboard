@@ -56,11 +56,14 @@ export const conversionRate = z.object({
 })
 
 export const complanSchema = z.object({
-    profit: z.number().min(1, 'Profit must be at least 1'),
-    duration: z.number().min(1, 'Enter a duration'),
-    min: z.number().min(1, 'Enter a min amount'),
-    max: z.number().min(1, 'Enter a max amount'),
-})
+    profit: z.number().min(1, 'Enter a profit value'),
+        duration: z.number().min(1, 'Enter a duration value'),
+        max: z.number().min(1, 'Enter a maximum value'),
+        min: z.number().min(1, 'Enter a minimum value'),
+    }).refine((data) => data.min <= data.max, {
+        message: 'Minimum value cannot be greater than maximum value',
+        path: ['min'], // Specify the path where the error will show
+    });
 
 
 export const createAdmin = z.object({
@@ -81,6 +84,7 @@ export const createAdmin = z.object({
                 message: "Link must start with 'https://'", 
             }),
     });
+
     
 
       
