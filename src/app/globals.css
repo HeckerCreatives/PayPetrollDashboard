@@ -228,3 +228,8 @@ body {
   max-height: 20rem;
 }
 
+
+.highlight{
+  @apply text-green-500 text-sm
+}
+

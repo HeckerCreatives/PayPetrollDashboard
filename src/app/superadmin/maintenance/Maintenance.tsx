@@ -50,6 +50,29 @@ export default function Maintenance() {
     },[ refresh])
 
     useEffect(() => {
+        setLoading(true)
+        const getData = async () => {
+          try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reset/resetleaderboard`,{
+            withCredentials:true
+            })
+
+            setLoading(false)
+            
+          } catch (error) {
+            setLoading(false)
+            if (axios.isAxiosError(error)) {
+              const axiosError = error as AxiosError<{ message: string, data: string }>;
+              if (axiosError.response && axiosError.response.status === 401) {
+                
+                }    
+              } 
+          }
+        }
+        getData()
+    },[ refresh])
+
+    useEffect(() => {
         setChecked1(event?.value == '0' ? false : true)
         setChecked3(buyonetakeone?.value == '0' ? false : true)
     },[list])
@@ -107,12 +130,62 @@ export default function Maintenance() {
         }
     };
 
+    const resetleaderboard = async () => {
+        setRefresh('true');
+        setLoading(true);
+        try {
+            const request = axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reset/resetleaderboard`,{
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'Application/json'
+                }
+            });
+
+            const response = await toast.promise(request, {
+                loading: `Reseting leaderboard...`,
+                success: `Leaderboard successfully reset. `,
+                error: `Error while reseting leaderboard.`,
+            });
+            if (response.data.message === 'success') {
+                setRefresh('false');
+                setLoading(false);
+            }
+        } catch (error) {
+            setRefresh('true');
+            setLoading(false);
+
+            if (axios.isAxiosError(error)) {
+                const axiosError = error as AxiosError<{ message: string, data: string }>;
+                if (axiosError.response && axiosError.response.status === 401) {
+                    toast.error(`${axiosError.response.data.data}`);
+                    router.push('/');
+                }
+
+                if (axiosError.response && axiosError.response.status === 400) {
+                    toast.error(`${axiosError.response.data.data}`);
+                }
+
+                if (axiosError.response && axiosError.response.status === 402) {
+                    toast.error(`${axiosError.response.data.data}`);
+                }
+
+                if (axiosError.response && axiosError.response.status === 403) {
+                    toast.error(`${axiosError.response.data.data}`);
+                }
+
+                if (axiosError.response && axiosError.response.status === 404) {
+                    toast.error(`${axiosError.response.data.data}`);
+                }
+            }
+        }
+    };
+
   return (
     <div className="w-full flex flex-col gap-4 font-light">
         <h2 className=' text-xl font-bold mt-8 text-white'>Maintenance</h2>
 
         <div className=' flex flex-wrap items-center gap-4'>
-            <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[250px]'>
+            <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
                 <h2 className=' text-lg font-semibold'>Events ({!checked1 ? 'off' : 'on'})</h2>
                 <Switch checked={checked1} 
                 onCheckedChange={(newChecked) => {
@@ -123,7 +196,7 @@ export default function Maintenance() {
             </div>
 
 
-            <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[250px]'>
+            <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
                 <h2 className=' text-lg font-semibold'>Buy one take one({!checked3 ? 'off' : 'on'})</h2>
                 <Switch checked={checked3} 
                  onCheckedChange={(newChecked) => {
@@ -133,6 +206,40 @@ export default function Maintenance() {
                 />
                 
             </div>
+
+            <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
+                <h2 className=' text-lg font-semibold'>Leaderboard</h2>
+                
+                <button onClick={resetleaderboard} className=' primary-btn text-xs'>
+                    {loading === true && (
+                        <span className='loader'></span>
+                    )}
+                    Reset</button>
+                
+            </div>
+
+            {/* <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
+                <h2 className=' text-lg font-semibold'>Leaderboard Event({!checked3 ? 'off' : 'on'})</h2>
+                <Switch checked={checked3} 
+                 onCheckedChange={(newChecked) => {
+                    setChecked3(newChecked); 
+                    updateMaintenance('b1t1', newChecked); 
+                }}
+                />
+                
+            </div>
+
+
+            <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
+                <h2 className=' text-lg font-semibold'>Leaderboard History({!checked3 ? 'off' : 'on'})</h2>
+                <Switch checked={checked3} 
+                 onCheckedChange={(newChecked) => {
+                    setChecked3(newChecked); 
+                    updateMaintenance('b1t1', newChecked); 
+                }}
+                />
+                
+            </div> */}
 
         </div>
     </div>

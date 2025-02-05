@@ -67,39 +67,50 @@ export default function LongChart() {
   )
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
+    
     const getList = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${dynamicRoute()}?charttype=${type}`, {
-          withCredentials: true
-        })
-
-        // Transform the API response data
-        const transformedData = Object.entries(response.data.data).map(([time, value]) => ({
-          timeframe: time, // Use the time directly
-          amount: value as number,
-        }))
-
-        setdata(transformedData) // Set the transformed data
-        setLoading(false)
-
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}${dynamicRoute()}?charttype=${type}`,
+          { withCredentials: true }
+        );
+  
+        // Convert time to PHT if type is "daily"
+        const transformedData = Object.entries(response.data.data).map(([time, value]) => {
+          let formattedTime = time; // Default: Use time as is
+  
+          if (type === "daily") {
+            // Convert UTC time to PHT (UTC+8)
+            const [hour, minute] = time.split(":").map(Number);
+            const phtHour = (hour + 8) % 24; // Wrap around 24-hour format
+            formattedTime = `${phtHour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
+          }
+  
+          return {
+            timeframe: formattedTime,
+            amount: value as number,
+          };
+        });
+  
+        setdata(transformedData);
+        setLoading(false);
+  
       } catch (error) {
-        setLoading(false)
-
+        setLoading(false);
         if (axios.isAxiosError(error)) {
-          const axiosError = error as AxiosError<{ message: string, data: string }>
+          const axiosError = error as AxiosError<{ message: string; data: string }>;
           if (axiosError.response && axiosError.response.status === 401) {
-            toast.error(`${axiosError.response.data.data}`)
-            router.push('/')
+            toast.error(`${axiosError.response.data.data}`);
+            router.push("/");
           }
         }
       }
-    }
-    getList()
-  }, [type, graph])
-
-  console.log(dynamicRoute)
-
+    };
+  
+    getList();
+  }, [type, graph]);
+  
 
   return (
 
