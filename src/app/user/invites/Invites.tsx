@@ -86,7 +86,7 @@ export default function Invites() {
     }, 500); 
 
     return () => clearTimeout(debounceTimer);
-  }, [currentpage, search]); 
+  }, [currentpage, search, current]); 
 
   const fetchData = async () => {
     setLoading(true);
