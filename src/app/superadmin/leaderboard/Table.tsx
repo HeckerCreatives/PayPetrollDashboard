@@ -219,7 +219,7 @@ export default function Leaderboard() {
                 )}
             <TableHeader>
                 <TableRow>
-                <TableHead className="">Date</TableHead>
+                {/* <TableHead className="">Date</TableHead> */}
                 <TableHead className="">Rank</TableHead>
                 <TableHead>Score</TableHead>
                 <TableHead>Username</TableHead>
@@ -228,7 +228,7 @@ export default function Leaderboard() {
             <TableBody>
                 {list.map((item, index) => (
                     <TableRow key={index}>
-                    <TableCell className="">{new Date(item.date).toLocaleString()}</TableCell>
+                    {/* <TableCell className="">{new Date(item.date).toLocaleString()}</TableCell> */}
                     <TableCell>{item.rank}</TableCell>
 
                     <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount as any / rate).toLocaleString()}</span></TableCell>
