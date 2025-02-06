@@ -169,7 +169,7 @@ export default function Leaderboard() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Rank</TableHead>
-                <TableHead>Amount</TableHead>
+                <TableHead>Score</TableHead>
                 <TableHead>Username</TableHead>
                 </TableRow>
             </TableHeader>
@@ -221,7 +221,7 @@ export default function Leaderboard() {
                 <TableRow>
                 <TableHead className="">Date</TableHead>
                 <TableHead className="">Rank</TableHead>
-                <TableHead>Amount</TableHead>
+                <TableHead>Score</TableHead>
                 <TableHead>Username</TableHead>
                 </TableRow>
             </TableHeader>
