@@ -178,7 +178,7 @@ export default function Leaderboard() {
                     <TableRow key={index}>
                     <TableCell>{item.rank}</TableCell>
 
-                    <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount as any / rate).toLocaleString()}</span></TableCell>
+                    <TableCell className=' flex flex-col'>{item.amount.toLocaleString()}</TableCell>
 
                     <TableCell>{item.username}</TableCell>
                    
@@ -231,7 +231,7 @@ export default function Leaderboard() {
                     {/* <TableCell className="">{new Date(item.date).toLocaleString()}</TableCell> */}
                     <TableCell>{item.rank}</TableCell>
 
-                    <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount as any / rate).toLocaleString()}</span></TableCell>
+                    <TableCell className=' flex flex-col'>{item.amount.toLocaleString()}</TableCell>
 
                     <TableCell>{item.username}</TableCell>
                    
