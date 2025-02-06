@@ -15,6 +15,13 @@ import loadingtableStore from '@/zustand/tableloading'
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 interface List {
     username: string
@@ -39,6 +46,8 @@ export default function Leaderboard() {
     const {rate, setRate, clearRate} = rateStore()
     const {refresh, setRefresh} = refreshStore()
     const [search, setSearch] = useState('')
+    const [dates, setDates] = useState<string[]>([])
+    const [date, setDate] = useState('')
 
     const [open, setOpen] = useState(false)
 
@@ -48,7 +57,7 @@ export default function Leaderboard() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/leaderboard/getleaderboardhistory?page&limit`,
+              `${process.env.NEXT_PUBLIC_API_URL}/leaderboard/getleaderboardhistory?date=${date}`,
               {
                 withCredentials: true,
               }
@@ -71,7 +80,7 @@ export default function Leaderboard() {
       
        
         return () => clearTimeout(delayDebounceFn);
-      }, [currentpage, refresh, search, router]); 
+      }, [currentpage, refresh, search, router, date]); 
 
       useEffect(() => {
         setLoading(true);
@@ -103,6 +112,38 @@ export default function Leaderboard() {
        
         return () => clearTimeout(delayDebounceFn);
       }, [currentpage, refresh, search, router]); 
+
+
+      useEffect(() => {
+        setLoading(true);
+      
+        const delayDebounceFn = setTimeout(async () => {
+          try {
+            const response = await axios.get(
+              `${process.env.NEXT_PUBLIC_API_URL}/leaderboard/getleaderboardhistorydates`,
+              {
+                withCredentials: true,
+              }
+            );
+
+           setDates(response.data.data)
+           setDate(response.data.data[0])
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+      
+            if (axios.isAxiosError(error)) {
+              const axiosError = error as AxiosError<{ message: string; data: string }>;
+              if (axiosError.response && axiosError.response.status === 401) {
+               
+              }
+            }
+          }
+        }, 500); 
+      
+       
+        return () => clearTimeout(delayDebounceFn);
+      }, []); 
 
 
 
@@ -147,9 +188,24 @@ export default function Leaderboard() {
             </TableBody>
             </Table>
 
-            <div className=' w-full flex items-start'>
-              <p className=' mt-8 text-lg text-start'>History</p>
+            <div className=' w-full flex flex-col gap-4 items-start mt-6'>
+              <p className=' text-lg text-start'>History</p>
+
+              <Select value={date} onValueChange={setDate}>
+              <SelectTrigger className="w-[150px]">
+                <SelectValue placeholder="Timeframe" />
+              </SelectTrigger>
+              <SelectContent className=" text-xs">
+                {dates.map((item, index) => (
+                <SelectItem key={index} value={item}>{item}</SelectItem>
+
+                ))}
+                
+              </SelectContent>
+            </Select>
             </div>
+
+            
 
 
                 <Table className=' mt-4'>
