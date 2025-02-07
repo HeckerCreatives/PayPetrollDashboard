@@ -125,6 +125,9 @@ export default function OwnPetcard(prop: Props) {
             
         }
     }
+
+    
+   
     
 
   return (

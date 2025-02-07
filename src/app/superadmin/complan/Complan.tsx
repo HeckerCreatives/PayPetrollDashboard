@@ -36,7 +36,8 @@ interface Pets {
     min: number,
     max: number,
     duration: number,
-    profit: number
+    profit: number,
+    b1t1: string
 }
 
 
@@ -112,7 +113,7 @@ export default function Complan() {
               
                 
                      {findPets?.trainers.map((item, index) => (
-                            <Complancard key={index} name={item.name} id={item.id} animal={item.animal} rank={item.rank} min={item.min} max={item.max} duration={item.duration} profit={item.profit}/>
+                            <Complancard key={index} name={item.name} id={item.id} animal={item.animal} rank={item.rank} min={item.min} max={item.max} duration={item.duration} profit={item.profit * 100} b1t1={item.b1t1}/>
                         ))}
                
 

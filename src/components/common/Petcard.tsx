@@ -29,7 +29,7 @@ type Props = {
     max: number,
     duration: number,
     profit: number,
-    b1t1: string
+    b1t1: string,
 }
 
 export default function Petcard(prop: Props) {
@@ -125,7 +125,52 @@ export default function Petcard(prop: Props) {
         }
     }
 
-    console.log(bgImage)
+    const canBuy = async () => {
+        try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/trainer/getusertrainer?type=${prop.rank}`,{
+        withCredentials:true
+        })
+    
+        setLoading(false)
+        if(response.data.message === 'success'){
+            buyPet()
+        }
+                
+        } catch (error) {
+        setLoading(false)
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError<{ message: string, data: string }>;
+            if (axiosError.response && axiosError.response.status === 401) {
+                toast.error(`${axiosError.response.data.data}`)
+                router.push('/')
+
+            }
+
+            if (axiosError.response && axiosError.response.status === 400) {
+                toast.error(`${axiosError.response.data.data}`)     
+                    
+            }
+
+            if (axiosError.response && axiosError.response.status === 402) {
+                toast.error(`${axiosError.response.data.data}`)          
+                        
+            }
+
+            if (axiosError.response && axiosError.response.status === 403) {
+                toast.error(`${axiosError.response.data.data}`)              
+                
+            }
+
+            if (axiosError.response && axiosError.response.status === 404) {
+                toast.error(`${axiosError.response.data.data}`)             
+            }
+    } 
+
+        }
+    }
+        
+
+
 
   return (
     <div className=' group w-full h-auto '>
@@ -148,6 +193,14 @@ export default function Petcard(prop: Props) {
                             <img src={img?.img} alt='store' width={200} height={200}  className=' group-hover:scale-110 transition-all duration-300'/>
 
                             <p className=' absolute top-2 right-2 rounded-full bg-light text-white text-[.6rem] font-medium px-3 py-1'>{prop.animal}</p>
+
+                            {prop.b1t1 === '1' && (
+                            <p className=' absolute bottom-2 right-2 rounded-full bg-red-600 text-white text-[.5rem] font-medium px-3 py-1'>Buy one take one</p>
+
+                            )}
+
+
+                           
 
                         </div>
 
@@ -187,7 +240,7 @@ export default function Petcard(prop: Props) {
                                             <label htmlFor="" className=' label'>Enter amount</label>
                                             <Input placeholder='Amount' min={prop.min} max={prop.max} value={val[0]} onChange={(e) => setVal([Number(e.target.value)])}/>
 
-                                            <button onClick={buyPet} disabled={loading} className=' primary-btn px-6 w-fit mt-4 flex items-center justify-center gap-2'>
+                                            <button onClick={canBuy} disabled={loading} className=' primary-btn px-6 w-fit mt-4 flex items-center justify-center gap-2'>
                                                 {loading === true && (
                                                 <span className="loader"></span>
                                                 )}

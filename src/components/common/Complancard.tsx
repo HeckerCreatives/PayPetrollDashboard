@@ -10,6 +10,7 @@ import refreshStore from '@/zustand/refresh'
 import { useForm } from 'react-hook-form'
 import { complanSchema, SaveComplan } from '@/validitions/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Switch } from '../ui/switch'
 
 type Props = {
     id: string
@@ -19,7 +20,8 @@ type Props = {
     min: number,
     max: number,
     duration: number,
-    profit: number
+    profit: number,
+    b1t1: string
 }
 
 export default function Complancard(prop: Props) {
@@ -28,6 +30,8 @@ export default function Complancard(prop: Props) {
     const { loading, setLoading, clearLoading } = loadingStore()
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
+    const [checked, setChecked] = useState(false)
+    
 
     // Form handler
     const {
@@ -35,6 +39,7 @@ export default function Complancard(prop: Props) {
         handleSubmit,
         setValue,
         reset,
+        watch,
         trigger,
         formState: { errors },
     } = useForm<SaveComplan>({
@@ -43,7 +48,8 @@ export default function Complancard(prop: Props) {
              duration: prop.duration,
              profit: prop.profit,
              min: prop.min,
-             max: prop.max
+             max: prop.max,
+             b1t1: prop.b1t1 === '0' ? false : true,
         })
     });
 
@@ -65,7 +71,8 @@ export default function Complancard(prop: Props) {
                 profit: data.profit / 100,
                 duration: data.duration,
                 min: data.min,
-                max: data.max
+                max: data.max,
+                b1t1: data.b1t1 ? '1' : '0'
             }, {
                 withCredentials: true,
                 headers: {
@@ -129,6 +136,18 @@ export default function Complancard(prop: Props) {
         }
     }
 
+    console.log(errors)
+
+    useEffect(() => {
+        reset({
+            duration: prop.duration,
+            profit: prop.profit,
+            min: prop.min,
+            max: prop.max,
+            b1t1: prop.b1t1 === '0' ? false : true,
+        })
+    },[prop])
+
 
   return (
     <div className=' group w-full h-auto bg-white rounded-md overflow-hidden'>
@@ -146,7 +165,16 @@ export default function Complancard(prop: Props) {
                         </div>
 
                        <form onSubmit={handleSubmit(onsubmit)} action="" className=' p-4'>
+                        
+                        <div className=' w-full flex justify-between'>
+                            <p className=' text-sm font-medium'>Buy one take one</p>
+                            <Switch 
+                            checked={watch("b1t1")} 
+                            onCheckedChange={(value) => setValue("b1t1", value)} 
+    />
+                        </div>
                         <p className=' text-lg font-medium'>{prop.name}</p>
+
                         <p className=' text-xs '>{prop.rank}</p>
 
                         <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Profit (%)</label>

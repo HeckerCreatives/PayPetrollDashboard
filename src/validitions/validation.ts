@@ -56,8 +56,9 @@ export const conversionRate = z.object({
 })
 
 export const complanSchema = z.object({
-    profit: z.number().min(1, 'Enter a profit value'),
+    profit: z.number().min(0, 'Enter a profit value'),
         duration: z.number().min(1, 'Enter a duration value'),
+        b1t1: z.boolean(),
         max: z.number().min(1, 'Enter a maximum value'),
         min: z.number().min(1, 'Enter a minimum value'),
     }).refine((data) => data.min <= data.max, {

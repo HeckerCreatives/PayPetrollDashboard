@@ -35,6 +35,7 @@ interface Pets {
     max: number,
     duration: number,
     profit: number
+    b1t1: string
 }
 
 
@@ -118,7 +119,7 @@ export default function Store() {
                 ) : (
                     <>
                      {findPets?.trainers.map((item, index) => (
-                            <Petcard key={index} name={item.name} id={item.id} animal={item.animal} rank={item.rank} min={item.min} max={item.max} duration={item.duration} profit={item.profit} b1t1={''}/>
+                            <Petcard key={index} name={item.name} id={item.id} animal={item.animal} rank={item.rank} min={item.min} max={item.max} duration={item.duration} profit={item.profit} b1t1={item.b1t1}/>
                         ))}
                     </>
                 )}
