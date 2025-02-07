@@ -5,8 +5,8 @@ export const user = [
     {name: 'Dashboard', icon: <Grid2X2 size={15}/>, 
     path:'/user/dashboard', subpath:[]},
 
-    {name: 'Invites', icon: <Cable size={15}/>, 
-    path:'/user/invites', subpath:[]},
+    {name: 'Sponsor', icon: <Cable size={15}/>, 
+    path:'/user/sponsor', subpath:[]},
 
     {name: 'Withdraw', icon: <CreditCard size={15}/>, 
     path:'/user/withdraw', subpath:[]},

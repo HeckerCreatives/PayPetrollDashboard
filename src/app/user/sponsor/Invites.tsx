@@ -121,7 +121,7 @@ export default function Invites() {
   return (
     <div className="w-full flex flex-col gap-8">
 
-        <h2 className=' text-xl font-bold mt-8 text-white'>Invites</h2>
+        <h2 className=' text-xl font-bold mt-8 text-white'>Sponsor</h2>
 
       <div className="w-full  h-auto bg-white shadow-sm flex items-center justify-center gap-4 overflow-hidden">
         <Carousel

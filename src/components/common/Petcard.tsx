@@ -28,7 +28,8 @@ type Props = {
     min: number,
     max: number,
     duration: number,
-    profit: number
+    profit: number,
+    b1t1: string
 }
 
 export default function Petcard(prop: Props) {
