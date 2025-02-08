@@ -33,7 +33,7 @@ type Props = {
 }
 
 export default function Withdrawform( prop: Props) {
-    const [payment, setPayment] = useState()
+    const [payment, setPayment] = useState('')
     const { loading, setLoading, clearLoading } = loadingStore()
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
@@ -134,9 +134,13 @@ export default function Withdrawform( prop: Props) {
         <Controller
           name="paymentMethod"
           control={control}
+          defaultValue='gcash'
           render={({ field }) => (
             <RadioGroup
-              onValueChange={field.onChange}
+              onValueChange={(value) => {
+                field.onChange(value);
+                setPayment(value);
+              }}
               defaultValue={field.value}
               className="flex items-center mt-2"
             >
@@ -169,30 +173,63 @@ export default function Withdrawform( prop: Props) {
         <label htmlFor="type" className=' label mt-2'>Amount</label>
 
         {prop.wallet === 'Commission Wallet Ballance' ? (
-          <Select onValueChange={(value) => setValue('amount',  Number(value))}>
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select amount" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="500">₱500</SelectItem>
-            <SelectItem value="1000">₱1,000</SelectItem>
-            <SelectItem value="2000">₱2,000</SelectItem>
-            <SelectItem value="3000">₱3,000</SelectItem>
-            <SelectItem value="5000">₱5,000</SelectItem>
-            <SelectItem value="10000">₱10,000</SelectItem>
-            <SelectItem value="15000">₱15,000</SelectItem>
-            <SelectItem value="20000">₱20,000</SelectItem>
-            <SelectItem value="30000">₱30,000</SelectItem>
-            <SelectItem value="50000">₱50,000</SelectItem>
-            <SelectItem value="70000">₱70,000</SelectItem>
-            <SelectItem value="100000">₱100,000</SelectItem>
-            <SelectItem value="150000">₱150,000</SelectItem>
-            <SelectItem value="200000">₱200,000</SelectItem>
-            <SelectItem value="300000">₱300,000</SelectItem>
-            <SelectItem value="500000">₱500,000</SelectItem>
-          </SelectContent>
-        </Select>
+
+          <>
+          {payment === 'gcash' ? (
+             <Select onValueChange={(value) => setValue('amount',  Number(value))}>
+             <SelectTrigger className="w-full">
+               <SelectValue placeholder="Select amount" />
+             </SelectTrigger>
+             <SelectContent>
+               <SelectItem value="500">₱500</SelectItem>
+               <SelectItem value="600">₱600</SelectItem>
+               <SelectItem value="700">₱700</SelectItem>
+               <SelectItem value="800">₱800</SelectItem>
+               <SelectItem value="900">₱900</SelectItem>
+               <SelectItem value="1000">₱1,000</SelectItem>
+               <SelectItem value="2000">₱2,000</SelectItem>
+               <SelectItem value="3000">₱3,000</SelectItem>
+               <SelectItem value="4000">₱4,000</SelectItem>
+               <SelectItem value="1000">₱5,000</SelectItem>
+              
+             </SelectContent>
+           </Select>
+          ) : (
+            <Select onValueChange={(value) => setValue('amount',  Number(value))}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select amount" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="500">₱500</SelectItem>
+                <SelectItem value="1000">₱1,000</SelectItem>
+                <SelectItem value="2000">₱2,000</SelectItem>
+                <SelectItem value="3000">₱3,000</SelectItem>
+                <SelectItem value="5000">₱5,000</SelectItem>
+                <SelectItem value="10000">₱10,000</SelectItem>
+                <SelectItem value="15000">₱15,000</SelectItem>
+                <SelectItem value="20000">₱20,000</SelectItem>
+                <SelectItem value="30000">₱30,000</SelectItem>
+                <SelectItem value="50000">₱50,000</SelectItem>
+                <SelectItem value="70000">₱70,000</SelectItem>
+                <SelectItem value="100000">₱100,000</SelectItem>
+                <SelectItem value="150000">₱150,000</SelectItem>
+                <SelectItem value="200000">₱200,000</SelectItem>
+                <SelectItem value="300000">₱300,000</SelectItem>
+                <SelectItem value="500000">₱500,000</SelectItem>
+              </SelectContent>
+            </Select>
+          )}
+         
+
+        
+          </>
+
+          
+         
+          
         ):(
+
+          
         <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
 
         )}
