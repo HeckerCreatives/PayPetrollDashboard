@@ -67,7 +67,8 @@ export default function UserLayout({
             
             <div className=' absolute w-full h-screen bg-white z-0 border-r-[1px] shadow-sm border'></div>
              <div className=' relative z-10 w-full flex items-center justify-center gap-2 p-8'>
-               <img src="/logo.png" alt="" width={150} />
+             <img src="/Title_Icon.png" alt="" width={70} />
+
             </div>
             <div className=" relative z-10 flex-1 mt-4 overflow-y-auto">
               <nav className=" flex flex-col text-sm px-4">

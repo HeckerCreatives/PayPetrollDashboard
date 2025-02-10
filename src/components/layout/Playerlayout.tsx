@@ -151,7 +151,8 @@ export default function Playerlayout({
         <nav className=' px-4 w-full max-w-[1520px] h-[90px] md:h-[100px] flex items-center justify-between bg-white relative'>
             <div>
                 <h2 className=' text-lg font-bold'>
-                  <img src="/logo.png" alt="" width={80} />
+                <img src="/Title_Icon.png" alt="" width={70} />
+
                 </h2>
             </div>
 
