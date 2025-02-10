@@ -57,7 +57,7 @@ export default function Home() {
         <a href="#" className="flex items-center gap-2 self-center font-medium">
           {/* <img src="/logo.png" width={200} height={200} /> */}
           <p className=" text-2xl font-semibold">
-            <img src="/logo.png" alt="" width={100} className=" ~w-28/32" />
+            <img src="/Title_Icon.png" alt="" width={80} className=" ~w-28/32" />
           </p>
         </a>
         <LoginForm />
