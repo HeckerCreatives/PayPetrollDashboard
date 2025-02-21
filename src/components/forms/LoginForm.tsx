@@ -27,10 +27,25 @@ export function LoginForm({
   const [showPassword, setShowPassword] = useState(false) // State to toggle password visibility
   const { loading, setLoading, clearLoading } = loadingStore()
 
+  const [ip, setIp] = useState('');
+
+  useEffect(() => {
+    const fetchIP = async () => {
+      try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        setIp(data.ip);
+      } catch (error) {
+      }
+    };
+
+    fetchIP();
+  }, []);
+
   const login = async () => {
     setLoading(true)
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/login?username=${username}&password=${password}`,
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/login?username=${username}&password=${password}&ipAddress=${ip}`,
         {
           withCredentials: true,
           headers: {

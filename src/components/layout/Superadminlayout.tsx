@@ -134,7 +134,7 @@ export default function Superadminlayout({
 
             <div className=' hidden  lg:flex items-center bg-gray-100 rounded-full shadow-sm'>
                 {superadmin.map((item, index) => (
-                    <a key={index} href={item.path} className={` flex items-center gap-1 px-4 py-3 text-[.7rem] rounded-full font-medium ${path.includes(item.path) ? 'bg-[#75C09F] text-white' : 'text-black'}`}>{item.icon}{item.name}</a>
+                    <a key={index} href={item.path} className={` flex items-center gap-1 px-3 py-2 text-[.7rem] rounded-full font-medium ${path.includes(item.path) ? 'bg-[#75C09F] text-white' : 'text-black'}`}>{item.icon}{item.name}</a>
                 ))}
 
             </div>
