@@ -86,7 +86,7 @@ export const createAdmin = z.object({
             }),
     });
 
-    export const masterkey = z.object({
+export const masterkey = z.object({
         key: z.string().min(1, 'Secret key is empty'),
     })
 

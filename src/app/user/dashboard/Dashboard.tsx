@@ -29,6 +29,33 @@ export default function Dashboard() {
     const [unclaimed, setUnclaimed] = useState(0)
     const [status, setStatus] = useState(false)
     const [event, setEvent] = useState('On')
+
+       //all wallets
+       useEffect(() => {
+        setLoading(true)
+        const getWallets = async () => {
+          try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/getuserdashboard`,{
+            withCredentials:true
+            })
+  
+           
+            setLoading(false)
+            console.log(response.data)
+          
+          } catch (error) {
+            setLoading(false)
+            if (axios.isAxiosError(error)) {
+              const axiosError = error as AxiosError<{ message: string, data: string }>;
+              if (axiosError.response && axiosError.response.status === 401) {
+                
+                }    
+              } 
+          }
+        }
+        getWallets()
+    },[])
+  
     
 
 

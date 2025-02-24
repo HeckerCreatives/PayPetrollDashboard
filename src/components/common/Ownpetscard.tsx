@@ -152,7 +152,7 @@ export default function OwnPetcard(prop: Props) {
                 {/* <p className=' text-xs text-black mt-2 flex items-center gap-1' ><Clock size={12} className=' mb-1'/>Ends in:</p> */}
 
                 <p className=' mt-2'></p>
-                <Countdown
+                {/* <Countdown
                     className=' mt-4'
                     date={Date.now() + (prop.remainingtime * 1000)} 
                     renderer={({ days, hours, minutes, seconds }) => (
@@ -160,7 +160,7 @@ export default function OwnPetcard(prop: Props) {
                         Ends in: {days} days : {hours} hours : {minutes} minutes : {seconds}
                     </span>
                     )}
-                />
+                /> */}
 
                     <Dialog open={dialog} onOpenChange={setDialog}>
                     <DialogTrigger className=' primary-btn mt-4 w-[150px]'>Claim</DialogTrigger>
