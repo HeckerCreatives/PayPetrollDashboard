@@ -85,7 +85,7 @@ export default function Masterkeyhistory() {
                 )}
             <TableHeader>
                 <TableRow>
-                <TableHead className="">Date</TableHead>
+                <TableHead className="">Ip Address</TableHead>
                 <TableHead>Username</TableHead>
                 </TableRow>
             </TableHeader>
