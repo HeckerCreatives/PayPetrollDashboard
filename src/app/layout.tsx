@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "XtraPay Dashboard",
+  title: "Xtra Pay Dashboard",
   description: "PayPetroll Dashboard",
 };
 
