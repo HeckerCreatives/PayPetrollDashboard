@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Dialog,
     DialogContent,
@@ -113,6 +113,12 @@ export default function Withdrawform( prop: Props) {
         }
       };
 
+      useEffect(() => {
+        reset({
+          amount: 0
+        })
+      },[payment])
+
 
       console.log(prop)
       
@@ -191,7 +197,7 @@ export default function Withdrawform( prop: Props) {
                <SelectItem value="2000">₱2,000</SelectItem>
                <SelectItem value="3000">₱3,000</SelectItem>
                <SelectItem value="4000">₱4,000</SelectItem>
-               <SelectItem value="1000">₱5,000</SelectItem>
+               <SelectItem value="5000">₱5,000</SelectItem>
               
              </SelectContent>
            </Select>
