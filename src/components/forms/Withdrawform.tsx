@@ -33,7 +33,7 @@ type Props = {
 }
 
 export default function Withdrawform( prop: Props) {
-    const [payment, setPayment] = useState('')
+    const [payment, setPayment] = useState('gcash')
     const { loading, setLoading, clearLoading } = loadingStore()
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
@@ -44,6 +44,7 @@ export default function Withdrawform( prop: Props) {
 
     const { register,control,reset, handleSubmit,setValue, formState: { errors } } = useForm<PaymentForm>({
         resolver: zodResolver(paymentFormSchema),
+       
       });
     
       const onSubmit = async (data: PaymentForm) => {
