@@ -24,6 +24,17 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import Countdown from 'react-countdown';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import refreshStore from '@/zustand/refresh';
+import { Box, Trash2 } from 'lucide-react';
+
   
 
 interface List {
@@ -49,9 +60,12 @@ export default function Inventory() {
   const [list, setList] = useState<List[]>([])
   const {rate, setRate, clearRate} = rateStore()
   const [search, setSearch] = useState('')
-
+  const [open, setOpen] = useState(false)
   const params = useSearchParams()
-    const id = params.get('id')
+  const id = params.get('id')
+
+  const { refresh, setRefresh} = refreshStore()
+
 
   
 
@@ -96,6 +110,61 @@ export default function Inventory() {
     setCurrentPage(page)
   }
 
+  const grantPet = async ( petid: string) => {
+    setRefresh('true');
+    setLoading(true);
+    try {
+        const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/maxplayerinventorysuperadmin`, {
+          playerid: id,
+          petid: petid
+        }, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'Application/json'
+            }
+        });
+
+        const response = await toast.promise(request, {
+            loading: `Granting pet maturity...`,
+            success: `Successfully granted `,
+            error: `Error while granting pet maturity.`,
+        });
+        if (response.data.message === 'success') {
+            setRefresh('false');
+            setOpen(false)
+            setLoading(false);
+            // window.location.reload()
+        }
+    } catch (error) {
+        setRefresh('true');
+        setLoading(false);
+
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError<{ message: string, data: string }>;
+            if (axiosError.response && axiosError.response.status === 401) {
+                toast.error(`${axiosError.response.data.data}`);
+                router.push('/');
+            }
+
+            if (axiosError.response && axiosError.response.status === 400) {
+                toast.error(`${axiosError.response.data.data}`);
+            }
+
+            if (axiosError.response && axiosError.response.status === 402) {
+                toast.error(`${axiosError.response.data.data}`);
+            }
+
+            if (axiosError.response && axiosError.response.status === 403) {
+                toast.error(`${axiosError.response.data.data}`);
+            }
+
+            if (axiosError.response && axiosError.response.status === 404) {
+                toast.error(`${axiosError.response.data.data}`);
+            }
+        }
+    }
+};
+
 
 
 
@@ -138,6 +207,7 @@ export default function Inventory() {
                 <TableHead>Rank</TableHead>
                 <TableHead className="">TotalAccumulated</TableHead>
                 <TableHead className="">Duration</TableHead>
+                <TableHead className="">Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -152,6 +222,8 @@ export default function Inventory() {
                   </div>
                 </TableCell>
 
+
+
                 <TableCell className=' '>
                    <Countdown
                          className=' mt-4'
@@ -163,6 +235,28 @@ export default function Inventory() {
                         )}
                     />
                 </TableCell>
+
+                <TableCell>
+                <Dialog open={open} onOpenChange={setOpen}>
+                      <DialogTrigger className=' text-[.7rem] bg-green-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Box size={15}/>Grant</DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Are you absolutely sure?</DialogTitle>
+                          <DialogDescription>
+                            This action cannot be undone. This action will grant user pet maturity.
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        <div className=' w-full flex items-end justify-end'>
+                          <button disabled={loading} onClick={() => grantPet(item.trainer)} className=' px-4 py-2 text-xs bg-green-500 text-white rounded-md'>Continue</button>
+
+                        </div>
+                      </DialogContent>
+                </Dialog>
+                </TableCell>
+
+
+               
                 
                 </TableRow>
               ))}

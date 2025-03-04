@@ -1,7 +1,7 @@
 'use client'
 import { Download, Facebook, Instagram, Play, Send, Twitter, Youtube } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
-import { FaDiscord } from "react-icons/fa";
+import { FaDiscord, FaTiktok } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegram } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
@@ -93,6 +93,8 @@ const icon = (data: string) => {
     return  <Instagram size={25}/>
   }else if(data === 'telegram'){
     return  <FaTelegram  size={25}/>
+  } else if(data === 'tiktok'){
+    return  <FaTiktok  size={25}/>
   } else {
     return  <Youtube size={25}/>
 

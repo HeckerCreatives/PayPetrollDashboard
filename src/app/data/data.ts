@@ -26,7 +26,7 @@ export const faqs= [
   },
   {
     question: "How can I play Xtra Pay?",
-    answer: "1. Visit the Official Website: Go to www.xtrapay.com using your preferred web browser.\n2. Find a Registration Link: Navigate to the social media links provided on the website to find a valid registration link.\n3. Register Your Account: Use the registration link to sign up by filling in the required details.\n4. Request a Pay-in: After registering, go to your account dashboard and request a Pay-in to fund your account.\n5. Purchase a Pet: Once funded, browse the in-game store and purchase a pet.\n6. Start Playing: Click the Play Now button to begin the game."
+    answer: "1. Visit the Official Website: Go to  https://xp-play.vip using your preferred web browser.\n2. Find a Registration Link: Navigate to the social media links provided on the website to find a valid registration link.\n3. Register Your Account: Use the registration link to sign up by filling in the required details.\n4. Request a Pay-in: After registering, go to your account dashboard and request a Pay-in to fund your account.\n5. Purchase a Pet: Once funded, browse the in-game store and purchase a pet.\n6. Start Playing: Click the Play Now button to begin the game."
   },
   {
     question: "How can I earn money in Xtra Pay?",
@@ -34,7 +34,7 @@ export const faqs= [
   },
   {
     question: "How can I withdraw my earnings?",
-    answer: "Players must have at least 500 Php or 10 USD in their Game Wallet to withdraw. Withdrawals are available every Monday from 12 PM to 11:59 PM and are processed the following Monday from 12 AM to 11:59 AM."
+    answer: "Visit https://xp-play.vip, navigate to the social media links, connect with a Team Leader to receive a registration link, and complete the sign-up process."
   },
   {
     question: "How do I create an account?",
@@ -46,14 +46,14 @@ export const faqs= [
   },
   {
     question: "Can I have multiple accounts?",
-    answer: "Yes, but each account must be registered with a unique Gmail address. This allows players to experiment with different strategies while following the game’s guidelines."
+    answer: "Yes, but each account must be registered with a unique Gmail address. This allows players to experiment with different strategies while adhering to the game’s guidelines."
   },
   {
     question: "Can I report a bug or technical problem?",
-    answer: "Yes, players can report issues through Xtra Pay’s official social media accounts. Providing screenshots and detailed descriptions helps the support team resolve problems efficiently."
+    answer: "Yes, players can report issues through Xtra Pay’s official social media accounts. Providing screenshots and detailed descriptions will help the support team resolve problems efficiently"
   },
   {
     question: "How can I invite friends to play Xtra Pay?",
-    answer: "Players can invite friends by sharing their unique referral link, which becomes available after their first purchase."
+    answer: "Players can invite friends by sharing their unique referral link, which becomes available after their first purchase"
   }
 ];

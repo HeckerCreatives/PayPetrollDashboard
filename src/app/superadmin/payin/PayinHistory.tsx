@@ -17,6 +17,16 @@ import loadingtableStore from '@/zustand/tableloading'
 import rateStore from '@/zustand/rate'
 import refreshStore from '@/zustand/refresh'
 import { Input } from '@/components/ui/input'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Trash2 } from 'lucide-react'
+
 
 interface List {
     id: string
@@ -41,6 +51,7 @@ export default function Payinhistory() {
     const {rate, setRate, clearRate} = rateStore()
     const [search, setSearch] = useState('')
     const { refresh, setRefresh} = refreshStore()
+    const [open, setOpen] = useState(false)
 
 
 
@@ -75,6 +86,61 @@ export default function Payinhistory() {
         setCurrentPage(page)
     }
 
+    const deletePayin = async (userid: string, transactionid: string) => {
+      setRefresh('true');
+      setLoading(true);
+      try {
+          const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payin/deletepayinplayersuperadminn`, {
+            userid: userid,
+            transactionid: transactionid
+          }, {
+              withCredentials: true,
+              headers: {
+                  'Content-Type': 'Application/json'
+              }
+          });
+
+          const response = await toast.promise(request, {
+              loading: `Deleting payin...`,
+              success: `Successfully deleted `,
+              error: `Error while deleting payin.`,
+          });
+          if (response.data.message === 'success') {
+              setRefresh('false');
+              setOpen(false)
+              setLoading(false);
+              window.location.reload()
+          }
+      } catch (error) {
+          setRefresh('true');
+          setLoading(false);
+
+          if (axios.isAxiosError(error)) {
+              const axiosError = error as AxiosError<{ message: string, data: string }>;
+              if (axiosError.response && axiosError.response.status === 401) {
+                  toast.error(`${axiosError.response.data.data}`);
+                  router.push('/');
+              }
+
+              if (axiosError.response && axiosError.response.status === 400) {
+                  toast.error(`${axiosError.response.data.data}`);
+              }
+
+              if (axiosError.response && axiosError.response.status === 402) {
+                  toast.error(`${axiosError.response.data.data}`);
+              }
+
+              if (axiosError.response && axiosError.response.status === 403) {
+                  toast.error(`${axiosError.response.data.data}`);
+              }
+
+              if (axiosError.response && axiosError.response.status === 404) {
+                  toast.error(`${axiosError.response.data.data}`);
+              }
+          }
+      }
+  };
+
    
 
 
@@ -99,6 +165,7 @@ export default function Payinhistory() {
                 <TableHead className="">Date</TableHead>
                 <TableHead>Amount</TableHead>
                 <TableHead>Username</TableHead>
+                <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -108,9 +175,25 @@ export default function Payinhistory() {
                     <TableCell className=' flex flex-col'>₱{item.value.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.value as any / rate).toLocaleString()}</span></TableCell>
 
                     <TableCell>{item.username}</TableCell>
-                    {/* <TableCell>{item.firstname}</TableCell>
-                    <TableCell>{item.lastname}</TableCell> */}
-                   
+                    <TableCell>
+                    <Dialog >
+                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Trash2 size={15}/>Delete</DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Are you absolutely sure?</DialogTitle>
+                          <DialogDescription>
+                            This action cannot be undone. This will permanently delete payin history and amount that sent.
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        <div className=' w-full flex items-end justify-end'>
+                          <button disabled={loading} onClick={() => deletePayin(item.userid, item.id)} className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
+
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                    </TableCell>
+
                     </TableRow>
                 ))}
                 
