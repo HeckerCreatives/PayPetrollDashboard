@@ -26,7 +26,7 @@ export const faqs= [
   },
   {
     question: "How can I play Xtra Pay?",
-    answer: "1. Visit the Official Website: Go to  https://xp-play.vip using your preferred web browser.\n2. Find a Registration Link: Navigate to the social media links provided on the website to find a valid registration link.\n3. Register Your Account: Use the registration link to sign up by filling in the required details.\n4. Request a Pay-in: After registering, go to your account dashboard and request a Pay-in to fund your account.\n5. Purchase a Pet: Once funded, browse the in-game store and purchase a pet.\n6. Start Playing: Click the Play Now button to begin the game."
+    answer: "1. Visit the Official Website: Go to  https://xp-play.vip using your preferred web browser.\n\n2. Find a Registration Link: Navigate to the social media links provided on the website to find a valid registration link.\n\n3. Register Your Account: Use the registration link to sign up by filling in the required details.\n\n4. Request a Pay-in: After registering, go to your account dashboard and request a Pay-in to fund your account.\n\n5. Purchase a Pet: Once funded, browse the in-game store and purchase a pet.\n\n6. Start Playing: Click the Play Now button to begin the game."
   },
   {
     question: "How can I earn money in Xtra Pay?",
