@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/dialog"
 import refreshStore from '@/zustand/refresh';
 import { Box, Trash2 } from 'lucide-react';
+import GrantForm from '@/components/forms/Grant';
 
   
 
@@ -206,7 +207,7 @@ export default function Inventory() {
                 <TableHead className="">Pet Name</TableHead>
                 <TableHead>Rank</TableHead>
                 <TableHead className="">TotalAccumulated</TableHead>
-                <TableHead className="">Duration</TableHead>
+                {/* <TableHead className="">Duration</TableHead> */}
                 <TableHead className="">Action</TableHead>
                 </TableRow>
             </TableHeader>
@@ -224,7 +225,7 @@ export default function Inventory() {
 
 
 
-                <TableCell className=' '>
+                {/* <TableCell className=' '>
                    <Countdown
                          className=' mt-4'
                         date={Date.now() + (item.remainingtime * 1000)} 
@@ -234,25 +235,10 @@ export default function Inventory() {
                         </span>
                         )}
                     />
-                </TableCell>
+                </TableCell> */}
 
                 <TableCell>
-                <Dialog open={open} onOpenChange={setOpen}>
-                      <DialogTrigger className=' text-[.7rem] bg-green-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Box size={15}/>Grant</DialogTrigger>
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>Are you absolutely sure?</DialogTitle>
-                          <DialogDescription>
-                            This action cannot be undone. This action will grant user pet maturity.
-                          </DialogDescription>
-                        </DialogHeader>
-
-                        <div className=' w-full flex items-end justify-end'>
-                          <button disabled={loading} onClick={() => grantPet(item.trainer)} className=' px-4 py-2 text-xs bg-green-500 text-white rounded-md'>Continue</button>
-
-                        </div>
-                      </DialogContent>
-                </Dialog>
+               <GrantForm userid={id || ''} petid={item.trainer}/>
                 </TableCell>
 
 
