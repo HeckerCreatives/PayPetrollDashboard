@@ -37,6 +37,8 @@ const items = [
   { id: 8, content: '8', img:'/assets/Fish2.png' },
   { id: 9, content: '9', img:'/assets/Dog3.png' },
   { id: 10, content: '10', img:'/assets/Bird3.png' },
+  { id: 11, content: '9', img:'/assets/Dog4.png' },
+  { id: 12, content: '10', img:'/assets/Bird4.png' },
 ];
 
 interface List {

@@ -89,12 +89,14 @@ export default function Conversionrate() {
     <div className=' w-full max-h-[295px] max-w-[300px] bg-white p-6 rounded-md'>
         <h2 className='text-lg font-semibold'>Conversion Rate</h2>
         <form onSubmit={handleSubmit(save)} className=' flex flex-col gap-2'>
-            <label htmlFor="" className=' text-sm text-zinc-500 mt-4'>Current Rate</label>
-            <Input value={rate} placeholder='Current rate' type='number' className=' bg-gray-100'/>
+            
 
             <label htmlFor="" className=' text-sm text-zinc-500 mt-2'>New Rate</label>
             <Input defaultValue={0} placeholder='New rate' type='number' className=' bg-gray-100' {...register('amount',{valueAsNumber: true})}/>
             {errors.amount && <p className='text-[.6em] text-red-500'>{errors.amount.message}</p>}
+
+            <label htmlFor="" className=' text-sm text-zinc-500 mt-4'>Current Rate</label>
+            <Input disabled value={rate} placeholder='Current rate' type='number' className=' bg-gray-100'/>
 
 
             <button disabled={loading} className=' primary-btn mt-2'>
