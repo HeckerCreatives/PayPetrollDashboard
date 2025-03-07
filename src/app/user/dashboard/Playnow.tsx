@@ -142,7 +142,7 @@ const copyGameid = () => {
 
               <div className=' flex items-center justify-end gap-2'>
                 <button onClick={() => setOpen(!open)} className=' px-4 py-2 bg-gray-200 rounded-md ~text-xs/sm'>Cancel</button>
-                <a href={`${process.env.NEXT_PUBLIC_GAME_LINK}?userid=${copyGameid}`} target='_blank' className=' px-4 w-fit text-sm text-white font-medium bg-dark py-2 rounded-lg'>Continue</a>
+                <a href={`${process.env.NEXT_PUBLIC_GAME_LINK}?userid=${gameid}`} target='_blank' className=' px-4 w-fit text-sm text-white font-medium bg-dark py-2 rounded-lg'>Continue</a>
 
               </div>
 
