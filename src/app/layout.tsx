@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Xtra Pay Dashboard",
-  description: "PayPetroll Dashboard",
+  description: "Xtra Pay Dashboard",
 };
 
 const slab = Inter({ subsets: ["latin"], weight: [   "300" , "400" , "500" , "700"  ] });
