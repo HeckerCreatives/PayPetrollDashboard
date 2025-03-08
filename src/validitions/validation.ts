@@ -1,7 +1,10 @@
 import {z} from 'zod';
 
 export const registeruser = z.object({
-    username: z.string().nonempty('Username is empty'),
+    username: z
+    .string()
+    .nonempty("Username is empty")
+    .regex(/^[a-zA-Z0-9]+$/, "Username must be alphanumeric"),
     phonenumber: z.string().max(11).nonempty('Phone is empty'),
     password: z.string().max(20).nonempty('Password is empty'),
     confirm: z.string().max(20).nonempty('Confirm your password').optional(),
