@@ -4,9 +4,9 @@ export const registeruser = z.object({
     username: z
     .string()
     .nonempty("Username is empty")
-    .regex(/^[a-zA-Z0-9]+$/, "Username must be alphanumeric"),
+    .regex(/^[a-z0-9]+$/, "Username must be lowercase alphanumeric"),
     phonenumber: z.string().max(11).nonempty('Phone is empty'),
-    password: z.string().max(20).nonempty('Password is empty'),
+    password: z.string().max(20).nonempty('Password is empty').regex(/^[a-z0-9]+$/, "Password must be lowercase alphanumeric"),
     confirm: z.string().max(20).nonempty('Confirm your password').optional(),
     // referral: z.string()
 })

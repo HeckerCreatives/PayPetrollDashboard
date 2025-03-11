@@ -117,7 +117,7 @@ export function LoginForm({
                 <div className="grid gap-2">
                   <Label htmlFor="email">Username</Label>
                   <Input
-                    value={username}
+                    value={username.toLocaleLowerCase()}
                     onChange={(e) => setUsername(e.target.value)}
                     id="username"
                     type="test"
@@ -139,7 +139,7 @@ export function LoginForm({
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"} 
-                      value={password}
+                      value={password.toLowerCase()}
                       onChange={(e) => setPassword(e.target.value)}
                       required
                     />
