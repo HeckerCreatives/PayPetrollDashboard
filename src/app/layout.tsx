@@ -4,16 +4,6 @@ import "./globals.css";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "Xtra Pay Dashboard",
   description: "Welcome to Xtra Pay Dashboard",
@@ -28,6 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+        <head>
+        <title>Xtra Pay Dashboard</title>
+        <meta name="description" content="Welcome to Xtra Pay Dashboard" />
+        <meta property="og:title" content="Xtra Pay Dashboard" />
+        <meta property="og:description" content="Welcome to Xtra Pay Dashboard" />
+        <meta property="og:type" content="website" />
+      </head>
       <body
         className={`${slab.className} antialiased bg-gray-100`}
       >
