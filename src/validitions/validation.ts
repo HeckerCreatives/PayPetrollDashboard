@@ -40,7 +40,7 @@ export const accountSchema = z.object({
 
 
 export const userchangepassword = z.object({
-    password: z.string().max(20).nonempty('New Password is empty'),
+    password: z.string().max(20).min(6,'New Password should atleast 6 characters.').regex(/^[a-z0-9]+$/, "New Password must be lowercase alphanumeric"),
     confirm: z.string().max(20).nonempty('Confirm your new password').optional(),
     // referral: z.string()
 })
