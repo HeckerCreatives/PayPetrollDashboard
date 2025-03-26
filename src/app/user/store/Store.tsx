@@ -98,10 +98,10 @@ export default function Store() {
             <div className=' flex flex-nowrap gap-4 h-[100px] w-full overflow-y-hidden overflow-x-auto'>
                 
                 <Trainercard img={'/assets/Trainer1.png'} name={'Novice'} pets={5} tab={''} rank={'Novice'} disable={false}/>
-                <Trainercard img={'/assets/Trainer2.png'} name={'Expert'} pets={5} tab={''} rank={'Expert'} disable={false}/>
-                <Trainercard img={'/assets/Trainer3.png'} name={'Ace '} pets={5} tab={''} rank={'Ace'} disable={false}/>
-                <Trainercard img={'/assets/Trainer4.png'} name={'Ace of Spade'} pets={5} tab={''} rank={''} disable={true}/>
-                <Trainercard img={'/assets/Trainer5.png'} name={'Ace of Heart'} pets={5} tab={''} rank={''} disable={true}/>
+                <Trainercard img={'/assets/Trainer2.png'} name={'Expert '} pets={5} tab={''} rank={'Expert'} disable={false}/>
+                <Trainercard img={'/assets/Trainer3.png'} name={'Elite Trainer'} pets={5} tab={''} rank={'Ace'} disable={false}/>
+                <Trainercard img={'/assets/Trainer4.png'} name={'Spade Trainer'} pets={5} tab={''} rank={''} disable={true}/>
+                <Trainercard img={'/assets/Trainer5.png'} name={'Heart Trainer'} pets={5} tab={''} rank={''} disable={true}/>
             </div>
 
             <h2 className=' text-sm font-medium mt-4 text-white'>Pets</h2>

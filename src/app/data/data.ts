@@ -42,7 +42,7 @@ export const faqs= [
   },
   {
     question: "What type of pets can I buy?",
-    answer: "Xtra Pay offers a variety of pets from different trainers, categorized into tiers such as Novice, Expert, Ace, Ace of Hearts, and Ace of Spade. Pets range from dogs and cats to fishes, hamsters, and birds."
+    answer: "Xtra Pay offers a variety of pets from different trainers, categorized into tiers such as Novice, Expert, Elite Trainer, Spade Trainer and Heart Trainer. Pets range from dogs and cats to fishes, hamsters, and birds."
   },
   {
     question: "Can I have multiple accounts?",
