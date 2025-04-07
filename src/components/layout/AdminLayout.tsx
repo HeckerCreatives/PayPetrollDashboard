@@ -157,7 +157,7 @@ export default function Adminlayout({
                       </div>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent >
-                      <DropdownMenuLabel className=' text-xs'>Superadmin</DropdownMenuLabel>
+                      <DropdownMenuLabel className=' text-xs'>Admin</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem className=' text-xs flex items-center gap-2'><button onClick={logout} className=' flex items-center gap-2'>Log out <LogIn size={12}/></button></DropdownMenuItem>
                   

@@ -86,6 +86,11 @@ export default function Payouthistory() {
     const [status, setStatus] = useState('done')
     const [open, setOpen] = useState(false)
 
+  const [selectedItem, setSelectedItem] = useState('');
+  const [amount, setAmount] = useState(0)
+  const [netamount, setNetAmount] = useState(0)
+  const [payoutid, setPayoutId] = useState('')
+
 
 
     useEffect(() => {
@@ -157,7 +162,7 @@ export default function Payouthistory() {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/payout/processpayout`,
         {
-          payoutid: id,
+          payoutid: payoutid,
           status: status
         },
         {
@@ -282,12 +287,24 @@ export default function Payouthistory() {
                     <TableCell>{item.status}</TableCell>
                     <TableCell>
                       <Dialog open={open} onOpenChange={setOpen}>
-                        <DialogTrigger className='text-[.6rem] bg-dark text-white px-2 py-1 rounded-sm font-medium flex items-center gap-1 justify-center'><RotateCcw size={12}/>Process</DialogTrigger>
+                      <DialogTrigger
+                        className='text-[.6rem] bg-dark text-white px-2 py-1 rounded-sm font-medium flex items-center gap-1 justify-center'
+                        onClick={() => {
+                          setSelectedItem(item.username);
+                          setAmount(item.grossamount)
+                          setNetAmount(item.netamount)
+                          setPayoutId(item.id)
+                          setOpen(true);
+                        }}
+                      >
+                        <RotateCcw size={12}/>Process
+                      </DialogTrigger>
+
                         <DialogContent>
                           <DialogHeader>
                             <DialogTitle>Process Payout</DialogTitle>
                             <DialogDescription>
-                              This action cannot be undone. Process payout <span className=' text-green-500'>{item.id}</span> from <span className=' text-green-500'>{item.username}</span>, gross amount of <span className=' text-green-500'>{item.grossamount.toLocaleString()} php </span> and net amount of  <span className=' text-green-500'>{item.netamount.toLocaleString()}php</span>
+                              This action cannot be undone. Process payout <span className=' text-green-500'>{item.id}</span> from <span className=' text-green-500'>{selectedItem}</span>, gross amount of <span className=' text-green-500'>{amount.toLocaleString()} php </span> and net amount of  <span className=' text-green-500'>{netamount.toLocaleString()}php</span>
                             </DialogDescription>
                           </DialogHeader>
                           <div className=' w-full flex flex-col gap-4'>
@@ -459,12 +476,23 @@ export default function Payouthistory() {
                    <TableCell>{item.status}</TableCell>
                    <TableCell>
                      <Dialog open={open} onOpenChange={setOpen}>
-                       <DialogTrigger className='text-[.6rem] bg-dark text-white px-2 py-1 rounded-sm font-medium flex items-center gap-1 justify-center'><RotateCcw size={12}/>Process</DialogTrigger>
+                     <DialogTrigger
+                        className='text-[.6rem] bg-dark text-white px-2 py-1 rounded-sm font-medium flex items-center gap-1 justify-center'
+                        onClick={() => {
+                          setSelectedItem(item.username);
+                          setAmount(item.grossamount)
+                          setNetAmount(item.netamount)
+                          setPayoutId(item.id)
+                          setOpen(true);
+                        }}
+                      >
+                        <RotateCcw size={12}/>Process
+                      </DialogTrigger>
                        <DialogContent>
                          <DialogHeader>
                            <DialogTitle>Process Payout</DialogTitle>
                            <DialogDescription>
-                             This action cannot be undone. Process payout <span className=' text-green-500'>{item.id}</span> from <span className=' text-green-500'>{item.username}</span>, gross amount of <span className=' text-green-500'>{item.grossamount.toLocaleString()} php </span> and net amount of  <span className=' text-green-500'>{item.netamount.toLocaleString()}php</span>
+                             This action cannot be undone. Process payout <span className=' text-green-500'>{item.id}</span> from <span className=' text-green-500'>{selectedItem}</span>, gross amount of <span className=' text-green-500'>{amount.toLocaleString()} php </span> and net amount of  <span className=' text-green-500'>{netamount.toLocaleString()}php</span>
                            </DialogDescription>
                          </DialogHeader>
                          <div className=' w-full flex flex-col gap-4'>
