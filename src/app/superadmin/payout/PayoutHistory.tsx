@@ -61,7 +61,7 @@ interface List {
   accountname: string
   grossamount: number
   withdrawalfee: number
-  netamount: number
+  netammount: number
   status: string
   type:string
   createdAt:string
@@ -275,7 +275,7 @@ export default function Payouthistory() {
                     </TableCell>
                     <TableCell className=' '>
                       <div className='flex flex-col'>
-                        ₱{item.netamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netamount / rate).toLocaleString()}</span>
+                        ₱{item.netammount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netammount / rate).toLocaleString()}</span>
                       </div>
                     </TableCell>
                     <TableCell className=' '>
@@ -292,7 +292,7 @@ export default function Payouthistory() {
                         onClick={() => {
                           setSelectedItem(item.username);
                           setAmount(item.grossamount)
-                          setNetAmount(item.netamount)
+                          setNetAmount(item.netammount)
                           setPayoutId(item.id)
                           setOpen(true);
                         }}
@@ -386,7 +386,7 @@ export default function Payouthistory() {
                     </TableCell>
                     <TableCell className=' '>
                       <div className='flex flex-col'>
-                        ₱{item.netamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netamount / rate).toLocaleString()}</span>
+                        ₱{item.netammount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netammount / rate).toLocaleString()}</span>
                       </div>
                     </TableCell>
                     <TableCell className=' '>
@@ -464,7 +464,7 @@ export default function Payouthistory() {
                    </TableCell>
                    <TableCell className=' '>
                      <div className='flex flex-col'>
-                       ₱{item.netamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netamount / rate).toLocaleString()}</span>
+                       ₱{item.netammount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netammount / rate).toLocaleString()}</span>
                      </div>
                    </TableCell>
                    <TableCell className=' '>
@@ -481,7 +481,7 @@ export default function Payouthistory() {
                         onClick={() => {
                           setSelectedItem(item.username);
                           setAmount(item.grossamount)
-                          setNetAmount(item.netamount)
+                          setNetAmount(item.netammount)
                           setPayoutId(item.id)
                           setOpen(true);
                         }}
@@ -573,7 +573,7 @@ export default function Payouthistory() {
                     </TableCell>
                     <TableCell className=' '>
                       <div className='flex flex-col'>
-                        ₱{item.netamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netamount / rate).toLocaleString()}</span>
+                        ₱{item.netammount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netammount / rate).toLocaleString()}</span>
                       </div>
                     </TableCell>
                     <TableCell className=' '>
