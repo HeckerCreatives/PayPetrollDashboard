@@ -143,7 +143,7 @@ export default function Withdrawform( prop: Props) {
         <Controller
           name="paymentMethod"
           control={control}
-          defaultValue='gcash'
+          defaultValue=''
           render={({ field }) => (
             <RadioGroup
               onValueChange={(value) => {
