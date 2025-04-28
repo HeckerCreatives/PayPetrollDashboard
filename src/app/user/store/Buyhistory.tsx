@@ -16,6 +16,7 @@ import Pagination from '@/components/common/Pagination'
 import loadingtableStore from '@/zustand/tableloading'
 import rateStore from '@/zustand/rate'
 import refreshStore from '@/zustand/refresh'
+import { petRanks } from '@/lib/petRank'
 
 interface List {
     trainername: string
@@ -95,7 +96,7 @@ export default function BuyHistory() {
 
                     <TableCell>{item.trainername}</TableCell>
                     <TableCell>{item.type}</TableCell>
-                    <TableCell>{item.rank}</TableCell>
+                    <TableCell>{petRanks(item.rank)}</TableCell>
                    
                     </TableRow>
                 ))}

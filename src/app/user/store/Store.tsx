@@ -109,7 +109,6 @@ export default function Store() {
                
 
                 {loading === true ? (
-
                     <>
                      {[0,1,2,3,4].map((item, index) => (
                         <Petloadingcard key={index} id={''} name={''} animal={''} rank={''} min={0} max={0} duration={0} profit={0}/>

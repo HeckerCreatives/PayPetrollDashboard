@@ -24,6 +24,7 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import Countdown from 'react-countdown';
+import { petRanks } from '@/lib/petRank';
   
 
 interface List {
@@ -145,7 +146,7 @@ export default function Inventory() {
               {list.map((item, index) => (
                 <TableRow key={item.trainer}>
                 <TableCell>{item.type}</TableCell>
-                <TableCell>{item.rank}</TableCell>
+                <TableCell>{petRanks(item.rank)}</TableCell>
 
                 <TableCell className=' '>
                   <div className='flex flex-col'>

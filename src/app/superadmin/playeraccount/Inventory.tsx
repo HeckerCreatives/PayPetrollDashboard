@@ -35,6 +35,7 @@ import {
 import refreshStore from '@/zustand/refresh';
 import { Box, Trash2 } from 'lucide-react';
 import GrantForm from '@/components/forms/Grant';
+import { petRanks } from '@/lib/petRank';
 
   
 
@@ -215,7 +216,7 @@ export default function Inventory() {
               {list.map((item, index) => (
                 <TableRow key={item.trainer}>
                 <TableCell>{item.type}</TableCell>
-                <TableCell>{item.rank}</TableCell>
+                <TableCell>{petRanks(item.rank)}</TableCell>
 
                 <TableCell className=' '>
                   <div className='flex flex-col'>
