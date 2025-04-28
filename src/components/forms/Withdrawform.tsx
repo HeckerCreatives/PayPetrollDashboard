@@ -73,6 +73,7 @@ export default function Withdrawform( prop: Props) {
                 setLoading(false)
                 setRefresh('false')
                 reset()
+                setPayment('')
 
 
             }
@@ -80,6 +81,7 @@ export default function Withdrawform( prop: Props) {
         } catch (error) {
             setLoading(false)
             setRefresh('false')
+            setPayment('')
 
              if (axios.isAxiosError(error)) {
                     const axiosError = error as AxiosError<{ message: string, data: string }>;
