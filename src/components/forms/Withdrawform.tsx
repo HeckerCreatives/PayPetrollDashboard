@@ -54,7 +54,7 @@ export default function Withdrawform( prop: Props) {
             const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payout/requestpayout`,{
                 type: prop.type,
                 payoutvalue: data.amount,
-                paymentmethod: data.paymentMethod,
+                paymentmethod: payment,
                 accountname: data.accountName,
                 accountnumber: data.accountNumber
             },{
@@ -141,7 +141,7 @@ export default function Withdrawform( prop: Props) {
         <Controller
           name="paymentMethod"
           control={control}
-          defaultValue=''
+          defaultValue='gcash'
           render={({ field }) => (
             <RadioGroup
               onValueChange={(value) => {
