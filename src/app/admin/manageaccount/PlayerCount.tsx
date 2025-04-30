@@ -55,7 +55,7 @@ export default function PlayerCount() {
 
         <div className={`flex items-center justify-center w-full max-w-[375px] h-auto  font-normal shadow-sm rounded-xl bg-purple-400`}>
             <div className=' w-full flex flex-col gap-2 text-sm p-4'>
-                <p className=' '>Total Users</p>
+                <p className=' '>Registered Users</p>
                 {loading === true ? (
                 <h2 className=' ~text-sm/lg font-semibold mt-2'>---</h2>
                 ):(
@@ -65,7 +65,7 @@ export default function PlayerCount() {
                     </div>
 
                 )}
-                <p className=' text-zinc-700 text-[.7rem]'>Total users</p>
+                <p className=' text-zinc-700 text-[.7rem]'>Total registered users</p>
 
             </div>
 
@@ -89,7 +89,7 @@ export default function PlayerCount() {
                     </div>
 
                 )}
-                <p className=' text-zinc-700 text-[.7rem]'>Total users</p>
+                <p className=' text-zinc-700 text-[.7rem]'>Total active users</p>
 
             </div>
 
@@ -113,7 +113,7 @@ export default function PlayerCount() {
                     </div>
 
                 )}
-                <p className=' text-zinc-700 text-[.7rem]'>Total users</p>
+                <p className=' text-zinc-700 text-[.7rem]'>Total banned users</p>
 
             </div>
 
