@@ -216,9 +216,9 @@ export default function PlayerAccount() {
 
             <div className=' w-full h-full grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-2'>
             
-                <Card name={'Wallet Balance'} amount={wallet[1]?.amount || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
-                <Card name={'Comission Balance'} amount={(wallet[0]?.amount || 0)} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
-                <Card name={'Game Balance'} amount={wallet[2]?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
+                <Card name={'Wallet Balance'} amount={wallet[1]?.amount || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={false}/>
+                <Card name={'Comission Balance'} amount={(wallet[0]?.amount || 0)} color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false}/>
+                <Card name={'Game Balance'} amount={wallet[2]?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'} editable={false}/>
 
 
             </div>

@@ -61,14 +61,14 @@ export default function page() {
   return (
     <Superadminlayout>
         <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 mt-12 gap-4'>
-          <Card name={'Total Sales'} amount={totalsales} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
-          <Card name={'Company Commission'} amount={wallets?.commission || 0} color={'bg-teal-400'} subcolor={'bg-teal-300'}/>
-          <Card name={'User Top Up'} amount={wallets?.payin || 0} color={'bg-emerald-400'} subcolor={'bg-emerald-300'}/>
-          <Card name={'Total Payout'} amount={wallets?.payout || 0} color={'bg-purple-400'} subcolor={'bg-purple-300'}/>
-          <Card name={'Payout Game'} amount={wallets?.payoutgame || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
-          <Card name={'Payout Commission'} amount={wallets?.payoutcommission || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
-          <Card name={'Total Company Profit'} amount={totalsales - (wallets?.payout || 0)} color={'bg-blue-400'} subcolor={'bg-blue-300'}/>
-          <Card name={'Game Profit'} amount={wallets?.products || 0} color={'bg-green-400'} subcolor={'bg-green-300'}/>
+          <Card name={'Total Sales'} amount={totalsales} color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={false}/>
+          <Card name={'Company Commission'} amount={wallets?.commission || 0} color={'bg-teal-400'} subcolor={'bg-teal-300'} editable={false}/>
+          <Card name={'User Top Up'} amount={wallets?.payin || 0} color={'bg-emerald-400'} subcolor={'bg-emerald-300'} editable={false}/>
+          <Card name={'Total Payout'} amount={wallets?.payout || 0} color={'bg-purple-400'} subcolor={'bg-purple-300'} editable={false}/>
+          <Card name={'Payout Game'} amount={wallets?.payoutgame || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'} editable={false}/>
+          <Card name={'Payout Commission'} amount={wallets?.payoutcommission || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'} editable={false}/>
+          <Card name={'Total Company Profit'} amount={totalsales - (wallets?.payout || 0)} color={'bg-blue-400'} subcolor={'bg-blue-300'} editable={false}/>
+          <Card name={'Game Profit'} amount={wallets?.products || 0} color={'bg-green-400'} subcolor={'bg-green-300'} editable={false}/>
 
           <div className={`flex items-center justify-center w-full ~w-[375px]/300px h-full  font-normal shadow-sm rounded-xl bg-rose-400`}>
             <div className=' w-full flex flex-col gap-2 text-sm p-4'>
