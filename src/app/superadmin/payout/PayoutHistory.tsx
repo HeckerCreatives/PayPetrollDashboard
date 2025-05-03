@@ -667,7 +667,7 @@ export default function Payouthistory() {
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
                     <TableCell>
                     <Dialog open={open3} onOpenChange={setOpen3}>
-                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Trash2 size={15}/>Delete</DialogTrigger>
+                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
                           <DialogTitle>Are you absolutely sure?</DialogTitle>

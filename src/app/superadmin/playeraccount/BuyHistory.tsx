@@ -12,8 +12,6 @@ import axios, { AxiosError } from 'axios'
 import toast from 'react-hot-toast'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Pagination from '@/components/common/Pagination'
-import loadingtableStore from '@/zustand/tableloading'
-import rateStore from '@/zustand/rate'
 import {
     Select,
     SelectContent,
@@ -21,6 +19,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+
 import {
     Dialog,
     DialogContent,
@@ -30,30 +29,25 @@ import {
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { Trash2 } from 'lucide-react'
+  
 
 interface List {
-    createdAt: string
-    amount: number
-    username: string
-    creaturename: string
+    bankname: string,
     type: string,
-    fromusername: string,
-    trainerrank: string,
-    trainername: string,
-    id: string
+    amount: number,
+    createdAt: string
 
 }
 
-export default function WalletHistory() {
+export default function BuyHistory() {
     const router = useRouter()
     const [list, setList] = useState<List[]>([])
     const [totalpage, setTotalPage] = useState(0)
     const [currentpage, setCurrentPage] = useState(0)
-    const {loading, setLoading, clearLoading} = loadingtableStore()
-    const {rate, setRate, clearRate} = rateStore()
+    const [loading, setLoading] = useState(false)
     const params = useSearchParams()
     const id = params.get('id')
-    const [type, setType] = useState('fiatbalance')
+    const [type, setType] = useState('buy')
  
 
 
@@ -61,12 +55,12 @@ export default function WalletHistory() {
         setLoading(true)
         const getList = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/getplayerwallethistoryforadmin?playerid=${id}&page=${currentpage}&limit=10&type=${type}`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getinventoryhistoryuseradmin?userid=${id}&page=${currentpage}&limit=10&type=${type}`,{
             withCredentials:true
             })
 
             setList(response.data.data.history)
-            setTotalPage(response.data.data.pages)
+            setTotalPage(response.data.data.totalpages)
             setLoading(false)
 
             
@@ -99,16 +93,15 @@ export default function WalletHistory() {
         }
     }
 
-
     const deletHistory = async (data: string) => {
         setLoading(true);
         try {
             const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/deleteplayerwallethistoryforadmin`, {
-              historyid: data
+                historyid: data
             }, {
                 withCredentials: true,
                 headers: {
-                    'Content-Type': 'Application/json'
+                    'Content-Type': 'application/json'
                 }
             });
     
@@ -149,22 +142,23 @@ export default function WalletHistory() {
             }
         }
     };
-    
 
 
   return (
-     <div className=' w-full flex flex-col gap-4 h-auto bg-white rounded-xl shadow-sm mt-4 p-6'>
-        <Select value={type} onValueChange={setType}>
-        <SelectTrigger className="w-[200px]">
-            <SelectValue placeholder="Select" />
-        </SelectTrigger>
-        <SelectContent>
-            <SelectItem value="fiatbalance">Wallet Balance History</SelectItem>
-            <SelectItem value="gamebalance">Game Balance History</SelectItem>
-            <SelectItem value="commissionbalance">Commission History</SelectItem>
-        </SelectContent>
-        </Select>
+     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm mt-4 p-6'>
 
+         <Select value={type} onValueChange={setType}>
+           <SelectTrigger className="w-[200px]">
+               <SelectValue placeholder="Select" />
+           </SelectTrigger>
+           <SelectContent>
+               <SelectItem value="buy"> Purchase History</SelectItem>
+               <SelectItem value="claim">Claim History</SelectItem>
+       
+               {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
+           </SelectContent>
+           </Select>
+    
         <p className=' text-sm font-medium'>{history(type)}</p>
             <Table>
                 {loading === true && (
@@ -179,20 +173,20 @@ export default function WalletHistory() {
                 <TableRow>
                 <TableHead className="">Date</TableHead>
                 <TableHead>Amount</TableHead>
-                <TableHead>From</TableHead>
-                <TableHead>Action</TableHead>
+                <TableHead>Plan</TableHead>
+                {/* <TableHead>Action</TableHead> */}
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {list.map((item, index) => (
                     <TableRow key={index}>
                     <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
-                    <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount / rate).toLocaleString()}</span></TableCell>
+                    <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()}</TableCell>
 
-                    <TableCell>{item.fromusername}</TableCell>
-                    <TableCell>
+                    <TableCell>{item.bankname}</TableCell>
+                    {/* <TableCell>
                     <Dialog >
-                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Trash2 size={15}/>Delete</DialogTrigger>
+                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
                           <DialogTitle>Are you absolutely sure?</DialogTitle>
@@ -203,13 +197,14 @@ export default function WalletHistory() {
 
                         <div className=' w-full flex items-end justify-end'>
                           <button disabled={loading} 
-                          onClick={() => deletHistory(item.id)} 
+                          onClick={() => deletHistory(item.)} 
                           className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
 
                         </div>
                       </DialogContent>
                     </Dialog>
-                    </TableCell>
+                    </TableCell> */}
+                   
                    
                     </TableRow>
                 ))}

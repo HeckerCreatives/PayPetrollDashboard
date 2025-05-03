@@ -22,6 +22,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Invites from './Invites'
 import Inventory from './Inventory'
 import WalletHistory from './WalletHistory'
+import BuyHistory from '@/app/superadmin/playeraccount/BuyHistory'
+import PayoutHistory from '@/app/superadmin/playeraccount/payoutHistory'
 
   
 
@@ -237,18 +239,28 @@ export default function PlayerAccount() {
             <TabsTrigger value="Invites">Invites</TabsTrigger>
             <TabsTrigger value="Inventory">Inventory</TabsTrigger>
             <TabsTrigger value="WalletHistory">Wallet History</TabsTrigger>
-        </TabsList>
-        <TabsContent value="Invites">
-            <Invites/>
-        </TabsContent>
-        <TabsContent value="Inventory">
-            <Inventory/>
-        </TabsContent>
-
-        <TabsContent value="WalletHistory">
-            <WalletHistory/>
-        </TabsContent>
-        </Tabs>
+         <TabsTrigger value="BuyHistory">Purchase History</TabsTrigger>
+                    <TabsTrigger value="payoutHistory">Payout History</TabsTrigger>
+                </TabsList>
+                <TabsContent value="Invites">
+                    <Invites/>
+                </TabsContent>
+                <TabsContent value="Inventory">
+                    <Inventory/>
+                </TabsContent>
+        
+                <TabsContent value="WalletHistory">
+                    <WalletHistory/>
+                </TabsContent>
+        
+                <TabsContent value="BuyHistory">
+                    <BuyHistory/>
+                </TabsContent>
+        
+                <TabsContent value="payoutHistory">
+                    <PayoutHistory/>
+                </TabsContent>
+                </Tabs>
 
 
 
