@@ -85,6 +85,8 @@ export default function Payouthistory() {
     const [tab, setTab] = useState('gamebalance')
     const [status, setStatus] = useState('done')
     const [open, setOpen] = useState(false)
+    const [open2, setOpen2] = useState(false)
+    const [open3, setOpen3] = useState(false)
 
   const [selectedItem, setSelectedItem] = useState('');
   const [amount, setAmount] = useState(0)
@@ -209,6 +211,64 @@ export default function Payouthistory() {
       }
     }
   };
+
+  const deletePayout = async (id: string) => {
+    setLoading(true);
+    setRefresh('true')
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/payout/deletepayout`,
+        {
+          payoutid: id,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      toast.success('Payout history sucessfully deleted .');
+      clearLoading();
+      setRefresh('false')
+      setOpen(false)
+      setOpen2(false)
+      setOpen3(false)
+
+    } catch (error) {
+      setLoading(false);
+      setRefresh('false')
+      setOpen(false)
+
+
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError<{ message: string; data: string }>;
+        if (axiosError.response && axiosError.response.status === 401) {
+          toast.error(`${axiosError.response.data.data}`);
+          router.push('/')
+        }
+
+        if (axiosError.response && axiosError.response.status === 400) {
+          toast.error(`${axiosError.response.data.data}`);
+        }
+
+        if (axiosError.response && axiosError.response.status === 402) {
+          toast.error(`${axiosError.response.data.data}`);
+        }
+
+        if (axiosError.response && axiosError.response.status === 403) {
+          toast.error(`${axiosError.response.data.data}`);
+        }
+
+        if (axiosError.response && axiosError.response.status === 404) {
+          toast.error(`${axiosError.response.data.data}`);
+        }
+      }
+    }
+  };
+
+
 
 
    
@@ -398,7 +458,7 @@ export default function Payouthistory() {
 
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
                     <TableCell>
-                    <Dialog >
+                    <Dialog open={open2} onOpenChange={setOpen2}>
                       <DialogTrigger className=' text-[.7rem] bg-red-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Trash2 size={15}/>Delete</DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
@@ -410,7 +470,7 @@ export default function Payouthistory() {
 
                         <div className=' w-full flex items-end justify-end'>
                           <button disabled={loading} 
-                        //   onClick={() => deletePayin(item.userid, item.id)} 
+                          onClick={() => deletePayout(item.id)} 
                           className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
 
                         </div>
@@ -606,7 +666,7 @@ export default function Payouthistory() {
 
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
                     <TableCell>
-                    <Dialog >
+                    <Dialog open={open3} onOpenChange={setOpen3}>
                       <DialogTrigger className=' text-[.7rem] bg-red-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Trash2 size={15}/>Delete</DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
@@ -618,7 +678,8 @@ export default function Payouthistory() {
 
                         <div className=' w-full flex items-end justify-end'>
                           <button disabled={loading} 
-                        //   onClick={() => deletePayin(item.userid, item.id)} 
+                            onClick={() => deletePayout(item.id)} 
+
                           className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
 
                         </div>
