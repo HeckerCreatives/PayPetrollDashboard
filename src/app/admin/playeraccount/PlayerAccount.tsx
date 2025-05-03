@@ -33,6 +33,8 @@ interface Wallet {
 interface User {
     username: string
     status: string
+    referral: string
+    referralid: string
 }
 
 export default function PlayerAccount() {
@@ -188,6 +190,11 @@ export default function PlayerAccount() {
 
                     <div className=' flex flex-col'>
                         <h2 className=' ~text-xl/2xl font-medium'>{data?.username} <span className={` text-sm ${data?.status === 'active' ? 'text-green-500' : 'text-red-500'}`}>({data?.status})</span></h2>
+                        {data?.referralid !== '' ? (
+                        <a target='_blank' href={`/superadmin/playeraccount/?id=${data?.referralid}`} className=' text-xs underline cursor-pointer'>Referral: {data?.referral}</a>
+                        ) : (
+                        <p className=' text-xs'>Referral: {data?.referral}</p>
+                        )}
                         <Dialog open={open} onOpenChange={(setOpen)}>
                         <DialogTrigger className={`${data?.status === 'active' ? 'danger-btn ' : 'primary-btn ' } w-[150px] mt-4`}>{data?.status === 'active' ? 'Ban' : 'Unban' }</DialogTrigger>
                         <DialogContent>
