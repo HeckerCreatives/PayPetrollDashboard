@@ -69,8 +69,7 @@ export default function Card( prop: Props) {
 
     useEffect(() => {
      setAmount(prop.amount)   
-    })
-
+    },[prop.amount])
 
   return (
     <div className={`flex items-center justify-center w-full ~w-[375px]/300px h-full  font-normal shadow-sm rounded-xl ${prop.color}`}>
