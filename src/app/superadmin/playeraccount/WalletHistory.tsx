@@ -197,7 +197,7 @@ export default function WalletHistory() {
                         <DialogHeader>
                           <DialogTitle>Are you absolutely sure?</DialogTitle>
                           <DialogDescription>
-                            This action cannot be undone. This will permanently delete history.
+                            This action cannot be undone. This will permanently delete the history.
                           </DialogDescription>
                         </DialogHeader>
 

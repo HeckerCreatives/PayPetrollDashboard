@@ -247,7 +247,9 @@ export default function PlayerAccount() {
             <Card name={'Unilevel Commissions'} amount={getWalletAmount('unilevelbalance')} type='unilevelbalance' color={'bg-purple-400'} subcolor={'bg-purple-300'} editable={true} />
            
             <Card name={'Game Wallet Balance'} amount={getWalletAmount('gamebalance')} type='gamebalance' color={'bg-yellow-400'} subcolor={'bg-yellow-300'} editable={true} />
-            <Card name={'Commission Wallet Balance'} amount={getWalletAmount('commissionbalance')} color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false} />
+            <Card name={'Commission Wallet Balance'} amount={
+                    getWalletAmount('directbalance') +
+                    getWalletAmount('unilevelbalance')} color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false} />
 
         
 
