@@ -145,7 +145,7 @@ export default function PayoutHistory() {
 
 
   return (
-     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm mt-4 p-6'>
+     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
 
          <Select value={type} onValueChange={setType}>
            <SelectTrigger className="w-[200px]">
@@ -155,13 +155,17 @@ export default function PayoutHistory() {
                <SelectItem value="unilevelbalance"> Unilevel History</SelectItem>
                <SelectItem value="directreferralbalance">Referral History</SelectItem>
                <SelectItem value="gamebalance">Game History</SelectItem>
+              
+               
        
                {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
            </SelectContent>
            </Select>
     
         <p className=' text-sm font-medium'>{history(type)}</p>
-            <Table>
+       
+
+<Table>
                 {loading === true && (
                     <TableCaption>
                         <span className=' loaderdark'></span>
@@ -217,6 +221,7 @@ export default function PayoutHistory() {
                     <Pagination currentPage={currentpage} total={totalpage} onPageChange={handlePageChange}/>
                 </div>
             )}
+           
         
     </div>
   )

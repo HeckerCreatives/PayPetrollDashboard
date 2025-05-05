@@ -32,7 +32,7 @@ import { Trash2 } from 'lucide-react'
   
 
 interface List {
-    bankname: string,
+    trainername: string,
     type: string,
     amount: number,
     createdAt: string
@@ -145,7 +145,7 @@ export default function BuyHistory() {
 
 
   return (
-     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm mt-4 p-6'>
+     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
 
          <Select value={type} onValueChange={setType}>
            <SelectTrigger className="w-[200px]">
@@ -159,7 +159,7 @@ export default function BuyHistory() {
            </SelectContent>
            </Select>
     
-        <p className=' text-sm font-medium'>{history(type)}</p>
+        {/* <p className=' text-sm font-medium'>{history(type)}</p> */}
             <Table>
                 {loading === true && (
                     <TableCaption>
@@ -173,7 +173,7 @@ export default function BuyHistory() {
                 <TableRow>
                 <TableHead className="">Date</TableHead>
                 <TableHead>Amount</TableHead>
-                <TableHead>Plan</TableHead>
+                <TableHead>Pet Name</TableHead>
                 {/* <TableHead>Action</TableHead> */}
                 </TableRow>
             </TableHeader>
@@ -183,7 +183,7 @@ export default function BuyHistory() {
                     <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
                     <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()}</TableCell>
 
-                    <TableCell>{item.bankname}</TableCell>
+                    <TableCell>{item.trainername}</TableCell>
                     {/* <TableCell>
                     <Dialog >
                       <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
