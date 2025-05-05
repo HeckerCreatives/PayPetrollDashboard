@@ -178,7 +178,7 @@ export default function Inventory() {
         <div className=' flex flex-wrap items-center gap-4 mb-6'>
             <Input type='text' placeholder='Search e.g user123' value={search} onChange={(e) => setSearch(e.target.value)} className=' w-[250px] bg-gray-100 '/>
 
-            <Select value={current} onValueChange={setCurrent} >
+            {/* <Select value={current} onValueChange={setCurrent} >
             <SelectTrigger className="w-[120px]">
                 <SelectValue placeholder="Select Level" />
             </SelectTrigger>
@@ -188,7 +188,7 @@ export default function Inventory() {
                 ))}
                 
             </SelectContent>
-            </Select>
+            </Select> */}
 
 
         </div>
