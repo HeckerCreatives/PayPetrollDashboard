@@ -240,7 +240,7 @@ export default function Dashboard() {
                 <Card name={'Wallet Balance'} amount={wallet?.fiatbalance || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={false}/>
                 <Card name={'Total Withdrawables'} amount={(wallet?.gamebalance || 0) + (wallet?.directbalance || 0) + (wallet?.unilevelbalance || 0)} color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false}/>
                 <Card name={'Game Total Earnings'} amount={stats?.game || 0} color={'bg-green-400'} subcolor={'bg-green-300'} editable={false}/>
-                <Card name={'Game Wallet Earnings'} amount={unclaimed} color={'bg-emerald-400'} subcolor={'bg-emerald-300'} editable={false}/>
+                <Card name={'Game Wallet Balance'} amount={wallet?.gamebalance || 0} color={'bg-emerald-400'} subcolor={'bg-emerald-300'} editable={false}/>
 
             </div>
 
