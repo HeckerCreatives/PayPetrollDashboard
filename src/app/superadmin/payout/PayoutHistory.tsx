@@ -429,7 +429,6 @@ export default function Payouthistory() {
 
                   <TableHead>Withdrawal fee</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -457,28 +456,6 @@ export default function Payouthistory() {
                     </TableCell>
 
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
-                    <TableCell>
-                    <Dialog open={open2} onOpenChange={setOpen2}>
-                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Trash2 size={15}/>Delete</DialogTrigger>
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>Are you absolutely sure?</DialogTitle>
-                          <DialogDescription>
-                            This action cannot be undone. This will permanently delete history.
-                          </DialogDescription>
-                        </DialogHeader>
-
-                        <div className=' w-full flex items-end justify-end'>
-                          <button disabled={loading} 
-                          onClick={() => deletePayout(item.id)} 
-                          className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
-
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                    </TableCell>
-
-                   
                    
                    
                     </TableRow>
@@ -637,7 +614,6 @@ export default function Payouthistory() {
                   <TableHead>Net amount</TableHead>
                   <TableHead>Withdrawal fee</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -665,27 +641,7 @@ export default function Payouthistory() {
                     </TableCell>
 
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
-                    <TableCell>
-                    <Dialog open={open3} onOpenChange={setOpen3}>
-                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>Are you absolutely sure?</DialogTitle>
-                          <DialogDescription>
-                            This action cannot be undone. This will permanently delete history.
-                          </DialogDescription>
-                        </DialogHeader>
-
-                        <div className=' w-full flex items-end justify-end'>
-                          <button disabled={loading} 
-                            onClick={() => deletePayout(item.id)} 
-
-                          className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
-
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                    </TableCell>
+                  
                    
                    
                     </TableRow>

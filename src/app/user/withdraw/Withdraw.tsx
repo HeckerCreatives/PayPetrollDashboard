@@ -12,10 +12,13 @@ import refreshStore from '@/zustand/refresh'
   
 
 interface Wallet {
-    gamebalance: 0,
-    fiatbalance: 0,
-    commissionbalance: 0
+    gamebalance: number,
+    fiatbalance: number,
+    commissionbalance: number
+    directbalance: number,
+    unilevelbalance: number,
 }
+      
 
 
 export default function Withdraw() {
@@ -62,11 +65,11 @@ export default function Withdraw() {
             <div className=' flex w-full h-auto bg-white shadow-sm rounded-xl p-6'>
                 <div className=' w-full'>
                     <div className=' flex flex-col'>
-                        <p className=' text-sm/lg font-medium'>Game Wallet Ballance</p>
+                        <p className=' text-sm/lg font-medium'>Game Wallet Balance</p>
                         <p className=' text-xs text-zinc-500 mt-8'>Total earnings</p>
                         <h2 className=' ~text-2xl/4xl font-medium '>₱{wallet?.gamebalance.toLocaleString()}</h2>
 
-                        <Withdrawform wallet={'Game Wallet Ballance'} type={'gamebalance'}/>
+                        <Withdrawform wallet={'Game Wallet Balance'} type={'gamebalance'}/>
                     </div>
 
                 </div>
@@ -79,11 +82,11 @@ export default function Withdraw() {
             <div className=' flex w-full h-auto bg-white shadow-sm rounded-xl p-6'>
                 <div className=' w-full'>
                     <div className=' flex flex-col'>
-                        <p className=' text-sm/lg font-medium'>Commission Wallet Ballance</p>
+                        <p className=' text-sm/lg font-medium'>Commission Wallet Balance</p>
                         <p className=' text-xs text-zinc-500 mt-8'>Total comissions</p>
-                        <h2 className=' ~text-2xl/4xl font-medium '>₱{wallet?.commissionbalance.toLocaleString()}</h2>
+                        <h2 className=' ~text-2xl/4xl font-medium '>₱{((wallet?.directbalance || 0) + (wallet?.unilevelbalance || 0)).toLocaleString()}</h2>
 
-                        <Withdrawform wallet={'Commission Wallet Ballance'} type={'commissionbalance'}/>
+                        <Withdrawform wallet={'Commission Wallet Balance'} type={'commissionbalance'}/>
                     </div>
 
                 </div>

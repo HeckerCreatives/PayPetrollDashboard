@@ -198,17 +198,17 @@ export default function WalletHistory() {
             <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
-            <SelectItem value="fiatbalance">Wallet Balance History</SelectItem>
-            <SelectItem value="gamebalance">Game Balance History</SelectItem>
-            <SelectItem value="commissionbalance">Commission History</SelectItem>
-            <SelectItem value="purchasehistory">Purchase History</SelectItem>
+            <SelectItem value="fiatbalance">Load Balance History</SelectItem>
+            <SelectItem value="gamebalance">Game Wallet Earning History</SelectItem>
+            <SelectItem value="commissionbalance">Commission History(Lvl 2-10)</SelectItem>
+            <SelectItem value="directreferralbalance">Referral History(Lvl 1)</SelectItem>
+            <SelectItem value="purchasehistory">Inventory History</SelectItem>
             <SelectItem value="payouthistory">Payout History</SelectItem>
         </SelectContent>
         </Select>
 
-         {(type === 'fiatbalance' || type === 'gamebalance' || type === 'commissionbalance') && (
+         {(type === 'fiatbalance' || type === 'gamebalance' || type === 'commissionbalance' || type === 'directreferralbalance') && (
                     <>
-                     <p className=' text-sm font-medium'>{history(type)}</p>
             <Table>
                 {loading === true && (
                     <TableCaption>
@@ -253,7 +253,7 @@ export default function WalletHistory() {
                       </DialogContent>
                     </Dialog>
 
-                
+{/*                 
                     <Dialog>
                     <DialogTrigger onClick={() => setAmount(item.amount)} className=' text-[.7rem] bg-blue-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Pen size={15}/>Edit</DialogTrigger>
                             <DialogContent>
@@ -288,7 +288,7 @@ export default function WalletHistory() {
 
                                 </div>
                             </DialogContent>
-                            </Dialog>
+                            </Dialog> */}
 
                     </TableCell>
                    
