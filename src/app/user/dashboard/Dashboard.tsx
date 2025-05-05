@@ -9,9 +9,12 @@ import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 interface Wallet {
-    gamebalance: 0,
-    fiatbalance: 0,
-    commissionbalance: 0
+    gamebalance: number,
+    fiatbalance: number,
+    commissionbalance: number
+    directbalance: number,
+    unilevelbalance: number,
+  
 }
 
 interface Statistics {
@@ -195,6 +198,8 @@ export default function Dashboard() {
       toast.success('Referral link copied')
     }
 
+ 
+
 
   return (
     <div className=' w-full h-fit flex flex-col gap-2 py-8 font-thin'>
@@ -233,22 +238,19 @@ export default function Dashboard() {
             <div className=' w-full h-full grid grid-cols-1 md:grid-cols-2 gap-2'>
             
                 <Card name={'Wallet Balance'} amount={wallet?.fiatbalance || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={false}/>
-                <Card name={'Total Withdrawables'} amount={(wallet?.gamebalance || 0) + (wallet?.commissionbalance || 0)} color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false}/>
+                <Card name={'Total Withdrawables'} amount={(wallet?.gamebalance || 0) + (wallet?.directbalance || 0) + (wallet?.unilevelbalance || 0)} color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false}/>
                 <Card name={'Game Total Earnings'} amount={stats?.game || 0} color={'bg-green-400'} subcolor={'bg-green-300'} editable={false}/>
                 <Card name={'Game Wallet Earnings'} amount={unclaimed} color={'bg-emerald-400'} subcolor={'bg-emerald-300'} editable={false}/>
-
-
-
 
             </div>
 
         </div>
 
         <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-          <Card name={'Referral Commissions'} amount={stats?.referral || 0} color={'bg-teal-400'} subcolor={'bg-teal-300'} editable={false}/>
-          <Card name={'Unilevel Commissions'} amount={stats?.unilevel || 0} color={'bg-cyan-400'} subcolor={'bg-cyan-300'} editable={false}/>
-          <Card name={'Commission Wallet Earnings'} amount={wallet?.commissionbalance || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'} editable={false}/>
-          <Card name={'Total Earnings'} amount={(stats?.referral || 0) + (stats?.unilevel || 0) + (stats?.game || 0)} color={'bg-indigo-400'} subcolor={'bg-indigo-300'} editable={false}/>
+          <Card name={'Referral Commissions'} amount={wallet?.directbalance || 0} color={'bg-teal-400'} subcolor={'bg-teal-300'} editable={false}/>
+          <Card name={'Unilevel Commissions'} amount={wallet?.unilevelbalance || 0} color={'bg-cyan-400'} subcolor={'bg-cyan-300'} editable={false}/>
+          <Card name={'Commission Wallet Earnings'} amount={(wallet?.directbalance || 0) + (wallet?.unilevelbalance || 0)} color={'bg-sky-400'} subcolor={'bg-sky-300'} editable={false}/>
+          <Card name={'Total Earnings'} amount={(wallet?.gamebalance || 0) + (wallet?.unilevelbalance || 0) + (wallet?.directbalance || 0)} color={'bg-indigo-400'} subcolor={'bg-indigo-300'} editable={false}/>
         </div>
 
     </div>
