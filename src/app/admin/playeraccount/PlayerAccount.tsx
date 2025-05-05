@@ -239,8 +239,8 @@ export default function PlayerAccount() {
             <TabsTrigger value="Invites">Invites</TabsTrigger>
             <TabsTrigger value="Inventory">Inventory</TabsTrigger>
             <TabsTrigger value="WalletHistory">Wallet History</TabsTrigger>
-         <TabsTrigger value="BuyHistory">Purchase History</TabsTrigger>
-                    <TabsTrigger value="payoutHistory">Payout History</TabsTrigger>
+         {/* <TabsTrigger value="BuyHistory">Purchase History</TabsTrigger>
+                    <TabsTrigger value="payoutHistory">Payout History</TabsTrigger> */}
                 </TabsList>
                 <TabsContent value="Invites">
                     <Invites/>
