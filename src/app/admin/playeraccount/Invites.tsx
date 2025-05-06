@@ -121,7 +121,7 @@ const id = params.get('id')
                 <SelectValue placeholder="Select Level" />
             </SelectTrigger>
             <SelectContent>
-                {Array.from({ length: 12 }).map((_, index) => (
+                {Array.from({ length: 10 }).map((_, index) => (
                     <SelectItem key={index} value={`${index}`}>Level {index + 1}</SelectItem>
                 ))}
                 

@@ -73,7 +73,6 @@ export default function Withdrawform( prop: Props) {
                 setLoading(false)
                 setRefresh('false')
                 reset()
-                window.location.reload()
 
 
             }
@@ -121,6 +120,7 @@ export default function Withdrawform( prop: Props) {
       },[payment])
 
 
+      console.log(prop)
       
   return (
     <Dialog>
@@ -179,7 +179,7 @@ export default function Withdrawform( prop: Props) {
 
         <label htmlFor="type" className=' label mt-2'>Amount</label>
 
-        {prop.wallet === 'Commission Wallet Balance' ? (
+        {prop.wallet === 'Commission Wallet Ballance' ? (
 
           <>
           {payment === 'gcash' ? (

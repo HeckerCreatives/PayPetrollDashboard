@@ -22,8 +22,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Invites from './Invites'
 import Inventory from './Inventory'
 import WalletHistory from './WalletHistory'
-import BuyHistory from './BuyHistory'
-import PayoutHistory from './payoutHistory'
 
   
 
@@ -35,8 +33,6 @@ interface Wallet {
 interface User {
     username: string
     status: string
-    referral: string
-    referralid: string
 }
 
 export default function PlayerAccount() {
@@ -178,11 +174,6 @@ export default function PlayerAccount() {
         }
     };
 
-    const getWalletAmount = (type: string) => {
-        return wallet.find(w => w.type === type)?.amount || 0;
-      };
-      
-
 
   return (
     <div className=' w-full h-fit flex flex-col gap-2 py-8 font-thin'>
@@ -194,11 +185,6 @@ export default function PlayerAccount() {
 
                     <div className=' flex flex-col'>
                         <h2 className=' ~text-xl/2xl font-medium'>{data?.username} <span className={` text-sm ${data?.status === 'active' ? 'text-green-500' : 'text-red-500'}`}>({data?.status})</span></h2>
-                        {data?.referralid !== '' ? (
-                        <a target='_blank' href={`/superadmin/playeraccount/?id=${data?.referralid}`} className=' text-xs underline cursor-pointer'>Referral: {data?.referral}</a>
-                        ) : (
-                        <p className=' text-xs'>Referral: {data?.referral}</p>
-                        )}
                         <Dialog open={open} onOpenChange={(setOpen)}>
                         <DialogTrigger className={`${data?.status === 'active' ? 'danger-btn ' : 'primary-btn ' } w-[150px] mt-4`}>{data?.status === 'active' ? 'Ban' : 'Unban' }</DialogTrigger>
                         <DialogContent>
@@ -227,43 +213,20 @@ export default function PlayerAccount() {
 
             <div className=' w-full h-full grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-2'>
             
-                <Card name={'Wallet Balance'} amount={getWalletAmount('fiatbalance')} type='fiatbalance' color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={true}/>
-                <Card name={'Total Withdrawables'} amount={
-                    getWalletAmount('gamebalance') +
-                    getWalletAmount('directbalance') +
-                    getWalletAmount('unilevelbalance')
-                    } color={'bg-blue-400'} subcolor={'bg-blue-300'} editable={false}/>
-                <Card name={'Total Earnings'} amount={
-                    getWalletAmount('gamebalance') +
-                    getWalletAmount('directbalance') +
-                    getWalletAmount('unilevelbalance')
-                    } color={'bg-cyan-400'} subcolor={'bg-cyan-300'} editable={false} />
+                <Card name={'Wallet Balance'} amount={wallet[1]?.amount || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
+                <Card name={'Comission Balance'} amount={(wallet[0]?.amount || 0)} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
+                <Card name={'Game Balance'} amount={wallet[2]?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
+
 
             </div>
 
         </div>
-
-        <div className=' w-full h-full grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-2'>
-
-            <Card name={'Referral Commissions'} amount={getWalletAmount('directbalance')} type='directbalance' color={'bg-green-400'} subcolor={'bg-green-300'} editable={true} />
-            <Card name={'Unilevel Commissions'} amount={getWalletAmount('unilevelbalance')} type='unilevelbalance' color={'bg-purple-400'} subcolor={'bg-purple-300'} editable={true} />
-           
-            <Card name={'Game Wallet Balance'} amount={getWalletAmount('gamebalance')} type='gamebalance' color={'bg-yellow-400'} subcolor={'bg-yellow-300'} editable={true} />
-            <Card name={'Commission Wallet Balance'} amount={
-                    getWalletAmount('directbalance') +
-                    getWalletAmount('unilevelbalance')} color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false} />
-
-        
-
-            </div>
 
         <Tabs defaultValue="Invites" className="w-full mt-8">
         <TabsList className=' bg-white'>
             <TabsTrigger value="Invites">Invites</TabsTrigger>
             <TabsTrigger value="Inventory">Inventory</TabsTrigger>
             <TabsTrigger value="WalletHistory">Wallet History</TabsTrigger>
-            {/* <TabsTrigger value="BuyHistory">Purchase History</TabsTrigger>
-            <TabsTrigger value="payoutHistory">Payout History</TabsTrigger> */}
         </TabsList>
         <TabsContent value="Invites">
             <Invites/>
@@ -274,14 +237,6 @@ export default function PlayerAccount() {
 
         <TabsContent value="WalletHistory">
             <WalletHistory/>
-        </TabsContent>
-
-        <TabsContent value="BuyHistory">
-            <BuyHistory/>
-        </TabsContent>
-
-        <TabsContent value="payoutHistory">
-            <PayoutHistory/>
         </TabsContent>
         </Tabs>
 

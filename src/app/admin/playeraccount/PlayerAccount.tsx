@@ -22,8 +22,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Invites from './Invites'
 import Inventory from './Inventory'
 import WalletHistory from './WalletHistory'
-import BuyHistory from '@/app/superadmin/playeraccount/BuyHistory'
-import PayoutHistory from '@/app/superadmin/playeraccount/payoutHistory'
 
   
 
@@ -35,8 +33,6 @@ interface Wallet {
 interface User {
     username: string
     status: string
-    referral: string
-    referralid: string
 }
 
 export default function PlayerAccount() {
@@ -192,11 +188,6 @@ export default function PlayerAccount() {
 
                     <div className=' flex flex-col'>
                         <h2 className=' ~text-xl/2xl font-medium'>{data?.username} <span className={` text-sm ${data?.status === 'active' ? 'text-green-500' : 'text-red-500'}`}>({data?.status})</span></h2>
-                        {data?.referralid !== '' ? (
-                        <a target='_blank' href={`/superadmin/playeraccount/?id=${data?.referralid}`} className=' text-xs underline cursor-pointer'>Referral: {data?.referral}</a>
-                        ) : (
-                        <p className=' text-xs'>Referral: {data?.referral}</p>
-                        )}
                         <Dialog open={open} onOpenChange={(setOpen)}>
                         <DialogTrigger className={`${data?.status === 'active' ? 'danger-btn ' : 'primary-btn ' } w-[150px] mt-4`}>{data?.status === 'active' ? 'Ban' : 'Unban' }</DialogTrigger>
                         <DialogContent>
@@ -225,9 +216,9 @@ export default function PlayerAccount() {
 
             <div className=' w-full h-full grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-2'>
             
-                <Card name={'Wallet Balance'} amount={wallet[1]?.amount || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={false}/>
-                <Card name={'Comission Balance'} amount={(wallet[0]?.amount || 0)} color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false}/>
-                <Card name={'Game Balance'} amount={wallet[2]?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'} editable={false}/>
+                <Card name={'Wallet Balance'} amount={wallet[1]?.amount || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
+                <Card name={'Comission Balance'} amount={(wallet[0]?.amount || 0)} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
+                <Card name={'Game Balance'} amount={wallet[2]?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
 
 
             </div>
@@ -239,28 +230,18 @@ export default function PlayerAccount() {
             <TabsTrigger value="Invites">Invites</TabsTrigger>
             <TabsTrigger value="Inventory">Inventory</TabsTrigger>
             <TabsTrigger value="WalletHistory">Wallet History</TabsTrigger>
-         {/* <TabsTrigger value="BuyHistory">Purchase History</TabsTrigger>
-                    <TabsTrigger value="payoutHistory">Payout History</TabsTrigger> */}
-                </TabsList>
-                <TabsContent value="Invites">
-                    <Invites/>
-                </TabsContent>
-                <TabsContent value="Inventory">
-                    <Inventory/>
-                </TabsContent>
-        
-                <TabsContent value="WalletHistory">
-                    <WalletHistory/>
-                </TabsContent>
-        
-                <TabsContent value="BuyHistory">
-                    <BuyHistory/>
-                </TabsContent>
-        
-                <TabsContent value="payoutHistory">
-                    <PayoutHistory/>
-                </TabsContent>
-                </Tabs>
+        </TabsList>
+        <TabsContent value="Invites">
+            <Invites/>
+        </TabsContent>
+        <TabsContent value="Inventory">
+            <Inventory/>
+        </TabsContent>
+
+        <TabsContent value="WalletHistory">
+            <WalletHistory/>
+        </TabsContent>
+        </Tabs>
 
 
 

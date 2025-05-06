@@ -26,7 +26,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { RotateCcw, Trash2 } from 'lucide-react'
+import { RotateCcw } from 'lucide-react'
 import {
   Select,
   SelectContent,
@@ -85,8 +85,6 @@ export default function Payouthistory() {
     const [tab, setTab] = useState('gamebalance')
     const [status, setStatus] = useState('done')
     const [open, setOpen] = useState(false)
-    const [open2, setOpen2] = useState(false)
-    const [open3, setOpen3] = useState(false)
 
   const [selectedItem, setSelectedItem] = useState('');
   const [amount, setAmount] = useState(0)
@@ -211,64 +209,6 @@ export default function Payouthistory() {
       }
     }
   };
-
-  const deletePayout = async (id: string) => {
-    setLoading(true);
-    setRefresh('true')
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/payout/deletepayout`,
-        {
-          payoutid: id,
-        },
-        {
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      toast.success('Payout history sucessfully deleted .');
-      clearLoading();
-      setRefresh('false')
-      setOpen(false)
-      setOpen2(false)
-      setOpen3(false)
-
-    } catch (error) {
-      setLoading(false);
-      setRefresh('false')
-      setOpen(false)
-
-
-      if (axios.isAxiosError(error)) {
-        const axiosError = error as AxiosError<{ message: string; data: string }>;
-        if (axiosError.response && axiosError.response.status === 401) {
-          toast.error(`${axiosError.response.data.data}`);
-          router.push('/')
-        }
-
-        if (axiosError.response && axiosError.response.status === 400) {
-          toast.error(`${axiosError.response.data.data}`);
-        }
-
-        if (axiosError.response && axiosError.response.status === 402) {
-          toast.error(`${axiosError.response.data.data}`);
-        }
-
-        if (axiosError.response && axiosError.response.status === 403) {
-          toast.error(`${axiosError.response.data.data}`);
-        }
-
-        if (axiosError.response && axiosError.response.status === 404) {
-          toast.error(`${axiosError.response.data.data}`);
-        }
-      }
-    }
-  };
-
-
 
 
    
@@ -456,6 +396,8 @@ export default function Payouthistory() {
                     </TableCell>
 
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
+
+                   
                    
                    
                     </TableRow>
@@ -641,7 +583,7 @@ export default function Payouthistory() {
                     </TableCell>
 
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
-                  
+                   
                    
                    
                     </TableRow>

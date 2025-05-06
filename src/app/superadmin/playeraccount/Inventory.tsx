@@ -112,11 +112,11 @@ export default function Inventory() {
     setCurrentPage(page)
   }
 
-  const deletPet = async ( petid: string) => {
+  const grantPet = async ( petid: string) => {
     setRefresh('true');
     setLoading(true);
     try {
-        const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/deleteplayerinventoryforadmin`, {
+        const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/maxplayerinventorysuperadmin`, {
           playerid: id,
           petid: petid
         }, {
@@ -127,15 +127,15 @@ export default function Inventory() {
         });
 
         const response = await toast.promise(request, {
-            loading: `Deleting pet...`,
-            success: `Successfully deleted `,
-            error: `Error while deleting pet.`,
+            loading: `Granting pet maturity...`,
+            success: `Successfully granted `,
+            error: `Error while granting pet maturity.`,
         });
         if (response.data.message === 'success') {
             setRefresh('false');
             setOpen(false)
             setLoading(false);
-            window.location.reload()
+            // window.location.reload()
         }
     } catch (error) {
         setRefresh('true');
@@ -178,7 +178,7 @@ export default function Inventory() {
         <div className=' flex flex-wrap items-center gap-4 mb-6'>
             <Input type='text' placeholder='Search e.g user123' value={search} onChange={(e) => setSearch(e.target.value)} className=' w-[250px] bg-gray-100 '/>
 
-            {/* <Select value={current} onValueChange={setCurrent} >
+            <Select value={current} onValueChange={setCurrent} >
             <SelectTrigger className="w-[120px]">
                 <SelectValue placeholder="Select Level" />
             </SelectTrigger>
@@ -188,7 +188,7 @@ export default function Inventory() {
                 ))}
                 
             </SelectContent>
-            </Select> */}
+            </Select>
 
 
         </div>
@@ -238,27 +238,8 @@ export default function Inventory() {
                     />
                 </TableCell> */}
 
-                <TableCell className=' flex items-center gap-2'>
+                <TableCell>
                <GrantForm userid={id || ''} petid={item.trainer}/>
-
-                                   <Dialog >
-                                     <DialogTrigger className=' text-[.7rem] bg-red-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Trash2 size={15}/>Delete</DialogTrigger>
-                                     <DialogContent>
-                                       <DialogHeader>
-                                         <DialogTitle>Are you absolutely sure?</DialogTitle>
-                                         <DialogDescription>
-                                           This action cannot be undone. This will permanently delete history.
-                                         </DialogDescription>
-                                       </DialogHeader>
-               
-                                       <div className=' w-full flex items-end justify-end'>
-                                         <button disabled={loading} 
-                                          onClick={() => deletPet( item.trainer)} 
-                                         className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
-               
-                                       </div>
-                                     </DialogContent>
-                                   </Dialog>
                 </TableCell>
 
 
