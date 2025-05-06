@@ -12,8 +12,6 @@ import axios, { AxiosError } from 'axios'
 import toast from 'react-hot-toast'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Pagination from '@/components/common/Pagination'
-import loadingtableStore from '@/zustand/tableloading'
-import rateStore from '@/zustand/rate'
 import {
     Select,
     SelectContent,
@@ -21,6 +19,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+
 import {
     Dialog,
     DialogContent,
@@ -29,39 +28,27 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
-import { Pen, Trash2 } from 'lucide-react'
-
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { handleApiError } from '@/lib/errorHandler'
-import BuyHistory from './BuyHistory'
-import PayoutHistory from './payoutHistory'
+import { Trash2 } from 'lucide-react'
+  
 
 interface List {
-    createdAt: string
-    amount: number
-    username: string
-    creaturename: string
-    type: string,
-    fromusername: string,
-    trainerrank: string,
     trainername: string,
+    type: string,
+    amount: number,
+    createdAt: string
     id: string
 
 }
 
-export default function WalletHistory() {
+export default function BuyHistory() {
     const router = useRouter()
     const [list, setList] = useState<List[]>([])
     const [totalpage, setTotalPage] = useState(0)
     const [currentpage, setCurrentPage] = useState(0)
-    const {loading, setLoading, clearLoading} = loadingtableStore()
-    const {rate, setRate, clearRate} = rateStore()
+    const [loading, setLoading] = useState(false)
     const params = useSearchParams()
     const id = params.get('id')
-    const [type, setType] = useState('fiatbalance')
-    const [amount, setAmount] = useState(0)
-    
+    const [type, setType] = useState('buy')
  
 
 
@@ -69,12 +56,12 @@ export default function WalletHistory() {
         setLoading(true)
         const getList = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/getplayerwallethistoryforadmin?playerid=${id}&page=${currentpage}&limit=10&type=${type}`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getinventoryhistoryuseradmin?userid=${id}&page=${currentpage}&limit=10&type=${type}`,{
             withCredentials:true
             })
 
             setList(response.data.data.history)
-            setTotalPage(response.data.data.pages)
+            setTotalPage(response.data.data.totalpages)
             setLoading(false)
 
             
@@ -107,16 +94,15 @@ export default function WalletHistory() {
         }
     }
 
-
     const deletHistory = async (data: string) => {
         setLoading(true);
         try {
-            const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/deleteplayerwallethistoryforadmin`, {
-              historyid: data
+            const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/deleteplayerinventoryhistorysuperadmin`, {
+                historyid: data
             }, {
                 withCredentials: true,
                 headers: {
-                    'Content-Type': 'Application/json'
+                    'Content-Type': 'application/json'
                 }
             });
     
@@ -158,58 +144,23 @@ export default function WalletHistory() {
         }
     };
 
-    const editHistory = async (data: string) => {
-        setLoading(true)
-    
-        try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/editplayerwallethistoryforadmin`,{
-                historyid: data,
-              amount: amount
-            },
-                {
-                    withCredentials: true
-                }
-            )
-    
-            if(response.data.message === 'success'){
-              toast.success('Success')
-              setLoading(false)
-              window.location.reload()
-           
-    
-            } 
-    
-            
-            
-        } catch (error) {
-          setLoading(false)
-    
-            handleApiError(error)
-            
-        }
-    
-    }
-    
-
 
   return (
-     <div className=' w-full flex flex-col gap-4 h-auto bg-white rounded-xl shadow-sm mt-4 p-6'>
-        <Select value={type} onValueChange={setType}>
-        <SelectTrigger className="w-[200px]">
-            <SelectValue placeholder="Select" />
-        </SelectTrigger>
-        <SelectContent>
-            <SelectItem value="fiatbalance">Wallet Balance History</SelectItem>
-            <SelectItem value="gamebalance">Game Balance History</SelectItem>
-            <SelectItem value="commissionbalance">Commission History</SelectItem>
-            <SelectItem value="purchasehistory">Purchase History</SelectItem>
-            <SelectItem value="payouthistory">Payout History</SelectItem>
-        </SelectContent>
-        </Select>
+     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
 
-         {(type === 'fiatbalance' || type === 'gamebalance' || type === 'commissionbalance') && (
-                    <>
-                     <p className=' text-sm font-medium'>{history(type)}</p>
+         <Select value={type} onValueChange={setType}>
+           <SelectTrigger className="w-[200px]">
+               <SelectValue placeholder="Select" />
+           </SelectTrigger>
+           <SelectContent>
+               <SelectItem value="buy"> Purchase History</SelectItem>
+               <SelectItem value="claim">Claim History</SelectItem>
+       
+               {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
+           </SelectContent>
+           </Select>
+    
+        {/* <p className=' text-sm font-medium'>{history(type)}</p> */}
             <Table>
                 {loading === true && (
                     <TableCaption>
@@ -223,16 +174,18 @@ export default function WalletHistory() {
                 <TableRow>
                 <TableHead className="">Date</TableHead>
                 <TableHead>Amount</TableHead>
-                <TableHead>From</TableHead>
+                <TableHead>Pet Name</TableHead>
+                {/* <TableHead>Action</TableHead> */}
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {list.map((item, index) => (
                     <TableRow key={index}>
                     <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
-                    <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount / rate).toLocaleString()}</span></TableCell>
+                    <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()}</TableCell>
 
-                    <TableCell>{item.fromusername}</TableCell>
+                    <TableCell>{item.trainername}</TableCell>
+                 
                    
                     </TableRow>
                 ))}
@@ -246,19 +199,6 @@ export default function WalletHistory() {
                 </div>
             )}
         
-                    </>
-        )}
-
-        {type === 'purchasehistory' && (
-            <BuyHistory/>
-        )}
-
-        {type === 'payouthistory' && (
-            <PayoutHistory/>
-        )}
-
-
-       
     </div>
   )
 }
