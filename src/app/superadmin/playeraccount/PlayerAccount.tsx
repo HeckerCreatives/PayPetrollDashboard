@@ -255,7 +255,7 @@ export default function PlayerAccount() {
 
             <div className=' w-full h-full grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-2'>
             
-                <Card name={'Wallet Balance'} amount={getWalletAmount('fiatbalance')} type='fiatbalance' color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={false}/>
+                <Card name={'Wallet Balance'} amount={getWalletAmount('fiatbalance')} type='fiatbalance' color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={true}/>
                 <Card name={'Total Withdrawables'} amount={
                     getWalletAmount('gamebalance') +
                     getWalletAmount('commissionbalance')

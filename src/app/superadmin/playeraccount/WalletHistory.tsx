@@ -60,6 +60,7 @@ export default function WalletHistory() {
     const id = params.get('id')
     const [type, setType] = useState('fiatbalance')
     const [amount, setAmount] = useState(0)
+    const [username, setUsername] = useState('')
     
  
 
@@ -196,6 +197,7 @@ export default function WalletHistory() {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/createplayerwallethistoryforadmin`,{
                 playerid: id,
               amount: amount,
+              user: username,
               type: type
             },
                 {
@@ -251,8 +253,18 @@ export default function WalletHistory() {
                                      </DialogDescription>
                                      </DialogHeader>
      
-                                     <div className=' w-full'>
-                                         <label htmlFor="">Amount</label>
+                                     <div className=' w-full flex flex-col gap-1'>
+
+                                      <label htmlFor="">Username</label>
+                                         <Input
+                                           type="text"
+                                           className="text-black mt-1"
+                                           value={username}
+                                           onChange={(e) => setUsername(e.target.value)}
+                                         />
+
+
+                                         <label htmlFor="" className='mt-2'>Amount</label>
                                          <Input
                                            type="text"
                                            className="text-black mt-1"
