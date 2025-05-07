@@ -112,9 +112,9 @@ export default function Complan() {
             <div className=' w-full h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 '>
               
                 
-                     {findPets?.trainers.map((item, index) => (
-                            <Complancard key={index} name={item.name} id={item.id} animal={item.animal} rank={item.rank} min={item.min} max={item.max} duration={item.duration} profit={item.profit * 100} b1t1={item.b1t1}/>
-                        ))}
+              {findPets?.trainers.map((item, index) => (
+                    <Complancard key={index} name={item.name} id={item.id} animal={item.animal} rank={item.rank} min={item.min} max={item.max} duration={item.duration} profit={item.profit * 100} b1t1={item.b1t1}/>
+              ))}
                
 
             </div>

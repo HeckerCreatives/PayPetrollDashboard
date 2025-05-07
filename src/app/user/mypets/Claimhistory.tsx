@@ -23,6 +23,7 @@ interface List {
     rank: string
     type: string
     createdAt: string
+    amount: number
 
 }
 
@@ -83,7 +84,8 @@ export default function ClaimHistory() {
                 <TableRow>
                 <TableHead className="">Date</TableHead>
                 <TableHead>Pet name</TableHead>
-                <TableHead>Type</TableHead>
+                <TableHead>Amount</TableHead>
+                {/* <TableHead>Type</TableHead> */}
                 <TableHead>Rank</TableHead>
                 </TableRow>
             </TableHeader>
@@ -92,7 +94,8 @@ export default function ClaimHistory() {
                     <TableRow key={index}>
                     <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
                     <TableCell>{item.trainername}</TableCell>
-                    <TableCell>{item.type}</TableCell>
+                    <TableCell>Php {item.amount.toLocaleString()}</TableCell>
+                    {/* <TableCell>{item.type}</TableCell> */}
                     <TableCell>{petRanks(item.rank)}</TableCell>
                     </TableRow>
                 ))}
