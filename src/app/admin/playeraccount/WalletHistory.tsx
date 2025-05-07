@@ -61,8 +61,6 @@ export default function WalletHistory() {
     const id = params.get('id')
     const [type, setType] = useState('fiatbalance')
     const [amount, setAmount] = useState(0)
-    
- 
 
 
     useEffect(() => {

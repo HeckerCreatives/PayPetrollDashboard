@@ -255,7 +255,7 @@ export default function PlayerAccount() {
 
             <div className=' w-full h-full grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-2'>
             
-                <Card name={'Wallet Balance'} amount={getWalletAmount('fiatbalance')} type='fiatbalance' color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={true}/>
+                <Card name={'Wallet Balance'} amount={getWalletAmount('fiatbalance')} type='fiatbalance' color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={false}/>
                 <Card name={'Total Withdrawables'} amount={
                     getWalletAmount('gamebalance') +
                     getWalletAmount('commissionbalance')
@@ -272,10 +272,10 @@ export default function PlayerAccount() {
 
         <div className=' w-full h-full grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 gap-2'>
 
-            <Card name={'Referral Commissions'} amount={(stats?.referral || 0)} type='directbalance' color={'bg-green-400'} subcolor={'bg-green-300'} editable={false} />
-            <Card name={'Unilevel Commissions'} amount={(stats?.unilevel || 0)} type='unilevelbalance' color={'bg-purple-400'} subcolor={'bg-purple-300'} editable={false} />
+            <Card name={'Referral Commissions Earnings'} amount={(stats?.referral || 0)} type='directbalance' color={'bg-green-400'} subcolor={'bg-green-300'} editable={false} />
+            <Card name={'Unilevel Commissions Earnings'} amount={(stats?.unilevel || 0)} type='unilevelbalance' color={'bg-purple-400'} subcolor={'bg-purple-300'} editable={false} />
            
-            <Card name={'Game Wallet Balance'} amount={getWalletAmount('gamebalance')} type='gamebalance' color={'bg-yellow-400'} subcolor={'bg-yellow-300'} editable={true} />
+            <Card name={'Game Wallet Balance'} amount={getWalletAmount('gamebalance')} type='gamebalance' color={'bg-yellow-400'} subcolor={'bg-yellow-300'} editable={false} />
             <Card name={'Commission Wallet Balance'} amount={
                     getWalletAmount('commissionbalance')
                 } color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false} />

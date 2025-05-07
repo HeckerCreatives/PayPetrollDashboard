@@ -247,9 +247,9 @@ export default function Dashboard() {
         </div>
 
         <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-          <Card name={'Referral Commissions'} amount={stats?.referral || 0} color={'bg-teal-400'} subcolor={'bg-teal-300'} editable={false}/>
-          <Card name={'Unilevel Commissions'} amount={stats?.unilevel || 0} color={'bg-cyan-400'} subcolor={'bg-cyan-300'} editable={false}/>
-          <Card name={'Commission Wallet Earnings'} amount={wallet?.commissionbalance || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'} editable={false}/>
+          <Card name={'Referral Commissions Earnings'} amount={stats?.referral || 0} color={'bg-teal-400'} subcolor={'bg-teal-300'} editable={false}/>
+          <Card name={'Unilevel Commissions Earnings'} amount={stats?.unilevel || 0} color={'bg-cyan-400'} subcolor={'bg-cyan-300'} editable={false}/>
+          <Card name={'Commission Wallet Balance'} amount={wallet?.commissionbalance || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'} editable={false}/>
           <Card name={'Total Earnings'} amount={(stats?.game || 0) + (stats?.unilevel || 0) + (stats?.referral || 0)} color={'bg-indigo-400'} subcolor={'bg-indigo-300'} editable={false}/>
         </div>
 

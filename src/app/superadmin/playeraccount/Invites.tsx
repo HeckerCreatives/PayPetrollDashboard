@@ -76,7 +76,7 @@ const id = params.get('id')
     }, 500); 
 
     return () => clearTimeout(debounceTimer);
-  }, [current, search]); 
+  }, [current, search, currentpage]); 
 
   const fetchData = async () => {
     setLoading(true);
