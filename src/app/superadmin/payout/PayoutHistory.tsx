@@ -278,6 +278,7 @@ export default function Payouthistory() {
 
    useEffect(() => {
         setLoading(true);
+    setRefresh('true')
     
         const delayDebounceFn = setTimeout(async () => {
           try {
@@ -286,7 +287,11 @@ export default function Payouthistory() {
               { withCredentials: true }
             );
             setPayoutRequest(response.data.data)
+    setRefresh('false')
+
           } catch (error) {
+    setRefresh('false')
+            
             if (axios.isAxiosError(error)) {
               const axiosError = error as AxiosError<{ message: string; data: string }>;
               if (axiosError.response && axiosError.response.status === 401) {
