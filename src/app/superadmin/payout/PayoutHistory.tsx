@@ -34,6 +34,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import Card from '@/components/common/Card'
 
 
 
@@ -69,6 +70,12 @@ interface List {
 }
 
 
+interface TotalPayout {
+  totalrequestcommission: number,
+  totalrequestgame: number
+}
+
+
 export default function Payouthistory() {
     const router = useRouter()
     const [list, setList] = useState<List[]>([])
@@ -92,6 +99,7 @@ export default function Payouthistory() {
   const [amount, setAmount] = useState(0)
   const [netamount, setNetAmount] = useState(0)
   const [payoutid, setPayoutId] = useState('')
+  const [payoutRequest, setPayoutRequest] = useState<TotalPayout>()
 
 
 
@@ -268,6 +276,31 @@ export default function Payouthistory() {
     }
   };
 
+   useEffect(() => {
+        setLoading(true);
+    
+        const delayDebounceFn = setTimeout(async () => {
+          try {
+            const response = await axios.get(
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/gettotalrequest`,
+              { withCredentials: true }
+            );
+            setPayoutRequest(response.data.data)
+          } catch (error) {
+            if (axios.isAxiosError(error)) {
+              const axiosError = error as AxiosError<{ message: string; data: string }>;
+              if (axiosError.response && axiosError.response.status === 401) {
+                
+              }
+            }
+          } finally {
+            setLoading(false);
+          }
+        }, 500); 
+    
+        return () => clearTimeout(delayDebounceFn); 
+      }, []);
+
 
 
 
@@ -278,6 +311,15 @@ export default function Payouthistory() {
 
     <div className=' flex flex-col gap-12 w-full'>
       <h2 className='text-xl font-bold mt-8 text-white '>Payout</h2>
+       <div className=' w-full flex items-center justify-center'>
+          <div className=' lg:w-[60%] w-full grid grid-cols-1 md:grid-cols-2 gap-4'>
+          <Card name={'Total Game Payout'} amount={payoutRequest?.totalrequestgame || 0} color={'bg-blue-400'} subcolor={'bg-blue-300'} editable={false} />
+          <Card name={'Total Commission Payout'} amount={payoutRequest?.totalrequestcommission || 0} color={'bg-green-400'} subcolor={'bg-green-300'} editable={false}/>
+
+        </div>
+       </div>
+
+      
 
 
       <Tabs defaultValue="gamebalance" className="w-full">

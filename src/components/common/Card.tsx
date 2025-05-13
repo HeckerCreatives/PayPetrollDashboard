@@ -25,6 +25,7 @@ type Props = {
     subcolor: string
     editable: boolean
     type?: string
+    subtext?: boolean
 }
 export default function Card( prop: Props) {
     const { loading, setLoading, clearLoading } = loadingStore()
@@ -135,7 +136,11 @@ export default function Card( prop: Props) {
            
 
         )}
+
+        {prop.subtext !== undefined && (
         <p className=' text-zinc-700 text-[.7rem]'>Total balance</p>
+
+        )}
 
     </div>
 

@@ -24,6 +24,7 @@ export default function Maintenance() {
 
     const event = list.find((item) => item.type === 'eventgame')
     const buyonetakeone = list.find((item) => item.type === 'b1t1')
+    const payout = list.find((item) => item.type === 'payout')
 
     useEffect(() => {
         setLoading(true)
@@ -74,6 +75,7 @@ export default function Maintenance() {
 
     useEffect(() => {
         setChecked1(event?.value == '0' ? false : true)
+        setChecked2(payout?.value == '0' ? false : true)
         setChecked3(buyonetakeone?.value == '0' ? false : true)
     },[list])
 
@@ -185,7 +187,17 @@ export default function Maintenance() {
         <h2 className=' text-xl font-bold mt-8 text-white'>Maintenance</h2>
 
         <div className=' flex flex-wrap items-center gap-4'>
-            <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
+             <div className=' h-[105px] flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
+                <h2 className=' text-lg font-semibold'>Payout ({!checked2 ? 'off' : 'on'})</h2>
+                <Switch checked={checked2} 
+                onCheckedChange={(newChecked) => {
+                    setChecked2(newChecked); 
+                    updateMaintenance('payout', newChecked); 
+                }}
+                />
+            </div>
+
+            <div className=' h-[105px] flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
                 <h2 className=' text-lg font-semibold'>Events ({!checked1 ? 'off' : 'on'})</h2>
                 <Switch checked={checked1} 
                 onCheckedChange={(newChecked) => {
@@ -196,7 +208,7 @@ export default function Maintenance() {
             </div>
 
 
-            <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
+            <div className=' h-[105px] flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
                 <h2 className=' text-lg font-semibold'>Buy one take one({!checked3 ? 'off' : 'on'})</h2>
                 <Switch checked={checked3} 
                  onCheckedChange={(newChecked) => {
@@ -207,7 +219,7 @@ export default function Maintenance() {
                 
             </div>
 
-            <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
+            <div className=' h-[105px] flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
                 <h2 className=' text-lg font-semibold'>Leaderboard</h2>
                 
                 <button onClick={resetleaderboard} className=' primary-btn text-xs'>
