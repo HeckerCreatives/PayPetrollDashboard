@@ -95,7 +95,12 @@ export default function Maintenance() {
 
             const response = await toast.promise(request, {
                 loading: `Updating ${data === 'eventgame' ? 'event game' : 'buy one take one'} maintenance...`,
-                success: `${data === 'eventgame' ? 'Event game' : 'Buy one take one'} successfully ${open ? 'on' : 'off'}. `,
+                success: `${data === 'eventgame' 
+                ? 'Event game' 
+                : data === 'payout' 
+                    ? 'Payout' 
+                    : 'Buy one take one'} successfully ${open ? 'on' : 'off'}.`,
+
                 error: `Error while updating ${data === 'eventgame' ? 'event game' : 'buy one take one'} maintenance.`,
             });
             if (response.data.message === 'success') {
