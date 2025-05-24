@@ -220,7 +220,7 @@ export default function Inventory() {
 
                 <TableCell className=' '>
                   <div className='flex flex-col'>
-                    ₱{item.totalaccumulated.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.totalaccumulated / rate).toLocaleString()}</span>
+                    ₱{item.totalaccumulated.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <span className=' text-[.6rem] text-zinc-500'>${(item.totalaccumulated / rate).toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                 </TableCell>
 

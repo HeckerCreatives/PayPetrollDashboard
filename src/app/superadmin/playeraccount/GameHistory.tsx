@@ -142,7 +142,7 @@ export default function GameHistory() {
 
   return (
         <div className=' w-full bg-white flex flex-col gap-6 p-4  min-w-[300px] rounded-md mt-12'>
-        <p>Game Claim History</p>
+        <p>Game Daily Claim History</p>
          <Table className=' w-full'>
                 {loading === true && (
                     <TableCaption>
