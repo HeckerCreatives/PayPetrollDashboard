@@ -1,4 +1,4 @@
-import { Activity, Banknote, BarChart, Cable, ChartColumnBig, ChartPie, Cog, CreditCard, Folder, Grid2X2, Info, Key, PawPrint, Play, Settings, ShoppingBag, Users, Wallet, Wrench } from "lucide-react";
+import { Activity, Banknote, BarChart, Cable, ChartColumnBig, ChartPie, Cog, CreditCard, Folder, Gamepad, Grid2X2, Info, Key, PawPrint, Play, Settings, ShoppingBag, Users, Wallet, Wrench } from "lucide-react";
 
 
 export const user = [
@@ -39,6 +39,8 @@ export const superadmin = [
     path:'/superadmin/payout', subpath:[]},
     {name: 'Complan', icon: <Folder size={15}/>, 
     path:'/superadmin/complan', subpath:[]},
+    // {name: 'Game', icon: <Gamepad size={15}/>, 
+    // path:'/superadmin/game', subpath:[]},
     {name: 'Sales', icon: <Banknote size={15}/>, 
     path:'/superadmin/sales', subpath:[]},
     {name: 'Top Commission', icon: <Users size={15}/>, 

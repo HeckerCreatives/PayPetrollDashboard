@@ -24,6 +24,7 @@ import Inventory from './Inventory'
 import WalletHistory from './WalletHistory'
 import BuyHistory from './BuyHistory'
 import PayoutHistory from './payoutHistory'
+import GameHistory from './GameHistory'
 
   
 
@@ -291,6 +292,7 @@ export default function PlayerAccount() {
             <TabsTrigger value="Invites">Invites</TabsTrigger>
             <TabsTrigger value="Inventory">Inventory</TabsTrigger>
             <TabsTrigger value="WalletHistory">Wallet History</TabsTrigger>
+            <TabsTrigger value="GameHistory">Game History</TabsTrigger>
             {/* <TabsTrigger value="BuyHistory">Purchase History</TabsTrigger>
             <TabsTrigger value="payoutHistory">Payout History</TabsTrigger> */}
         </TabsList>
@@ -311,6 +313,10 @@ export default function PlayerAccount() {
 
         <TabsContent value="payoutHistory">
             <PayoutHistory/>
+        </TabsContent>
+
+         <TabsContent value="GameHistory">
+            <GameHistory/>
         </TabsContent>
         </Tabs>
 

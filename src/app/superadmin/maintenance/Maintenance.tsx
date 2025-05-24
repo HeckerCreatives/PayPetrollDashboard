@@ -246,7 +246,6 @@ export default function Maintenance() {
                 
             </div>
 
-
             <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
                 <h2 className=' text-lg font-semibold'>Leaderboard History({!checked3 ? 'off' : 'on'})</h2>
                 <Switch checked={checked3} 
@@ -257,7 +256,6 @@ export default function Maintenance() {
                 />
                 
             </div> */}
-
         </div>
     </div>
   )
