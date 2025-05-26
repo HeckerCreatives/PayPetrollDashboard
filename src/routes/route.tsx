@@ -45,8 +45,8 @@ export const superadmin = [
     path:'/superadmin/sales', subpath:[]},
     {name: 'Top Commission', icon: <Users size={15}/>, 
     path:'/superadmin/topcommission', subpath:[]},
-    {name: 'Leaderboard', icon: <Users size={15}/>, 
-    path:'/superadmin/leaderboard', subpath:[]},
+    {name: 'Event', icon: <Users size={15}/>, 
+    path:'/superadmin/event', subpath:[]},
     
     {name: 'Maintenance', icon: <Wrench size={15}/>, 
     path:'/superadmin/maintenance', subpath:[]},

@@ -60,7 +60,7 @@ export default function page() {
 
   return (
     <Superadminlayout>
-        <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 mt-12 gap-4'>
+        <div className=' w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] mt-12 gap-4'>
           <Card name={'Total Sales'} amount={totalsales} color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={false}/>
           <Card name={'Company Commission'} amount={wallets?.commission || 0} color={'bg-teal-400'} subcolor={'bg-teal-300'} editable={false}/>
           <Card name={'User Top Up'} amount={wallets?.payin || 0} color={'bg-emerald-400'} subcolor={'bg-emerald-300'} editable={false}/>

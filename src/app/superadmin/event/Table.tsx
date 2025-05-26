@@ -22,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import Maintenance from './Maintenance'
 
 interface List {
     username: string
@@ -154,9 +155,15 @@ export default function Leaderboard() {
 
   return (
 
-      <div className=' w-full flex flex-col gap-6 items-center justify-center p-6 bg-white rounded-md'>
+    <div className=' w-full p-8 flex flex-col gap-4'>
+        <Maintenance/>
 
-        
+        <div className=' w-full flex flex-col gap-6 items-center justify-center p-6 bg-white rounded-md'>
+
+           <div className=' w-full flex items-center'>
+                  <h2 className=' text-xl font-bold text-black'>Leaderboard</h2>
+          
+                  </div>
               <Table>
                 {loading === true && (
                     <TableCaption>
@@ -241,12 +248,12 @@ export default function Leaderboard() {
             </TableBody>
             </Table>
 
-            {/* {list.length !== 0 && (
-                <div className=' w-full flex items-center justify-center mt-6'>
-                    <Pagination currentPage={currentpage} total={totalpage} onPageChange={handlePageChange}/>
-                </div>
-            )} */}
+          
       </div>
+    
+    </div>
+
+    
 
       
   )

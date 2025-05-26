@@ -71,10 +71,7 @@ export default function page() {
 
   return (
     <Superadminlayout>
-        <div className=' w-full flex items-center'>
-        <h2 className=' text-xl font-bold mt-8 text-white'>Leaderboard</h2>
-
-        </div>
+       
 
      <Leaderboard/>
       
