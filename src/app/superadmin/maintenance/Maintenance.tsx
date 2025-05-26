@@ -203,7 +203,7 @@ export default function Maintenance() {
                 />
             </div>
 
-            <div className=' h-[105px] flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
+            {/* <div className=' h-[105px] flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
                 <h2 className=' text-lg font-semibold'>Events ({!checked1 ? 'off' : 'on'})</h2>
                 <Switch checked={checked1} 
                 onCheckedChange={(newChecked) => {
@@ -211,7 +211,7 @@ export default function Maintenance() {
                     updateMaintenance('eventgame', newChecked); 
                 }}
                 />
-            </div>
+            </div> */}
 
 
             <div className=' h-[105px] flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
@@ -224,7 +224,7 @@ export default function Maintenance() {
                 />
                 
             </div>
-
+{/* 
             <div className=' h-[105px] flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
                 <h2 className=' text-lg font-semibold'>Leaderboard</h2>
                 
@@ -234,9 +234,9 @@ export default function Maintenance() {
                     )}
                     Reset</button>
                 
-            </div>
+            </div> */}
 
-              <div className=' h-[105px] flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
+              {/* <div className=' h-[105px] flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
                 <h2 className=' text-lg font-semibold'>Player Entry Limit</h2>
                 <div className=' flex items-center gap-2'>
                     <Input placeholder='Limit' type='number'/>
@@ -248,7 +248,7 @@ export default function Maintenance() {
                 </div>
                 
                 
-            </div>
+            </div> */}
 
             {/* <div className='flex flex-col gap-2 bg-white p-4 rounded-md w-full max-w-[280px]'>
                 <h2 className=' text-lg font-semibold'>Leaderboard Event({!checked3 ? 'off' : 'on'})</h2>

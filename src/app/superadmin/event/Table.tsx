@@ -158,7 +158,7 @@ export default function Leaderboard() {
     <div className=' w-full p-8 flex flex-col gap-4'>
         <Maintenance/>
 
-        <div className=' w-full flex flex-col gap-6 items-center justify-center p-6 bg-white rounded-md'>
+        <div className=' w-full flex flex-col gap-6 items-center justify-center lg:p-6 bg-white rounded-md'>
 
            <div className=' w-full flex items-center'>
                   <h2 className=' text-xl font-bold text-black'>Leaderboard</h2>
