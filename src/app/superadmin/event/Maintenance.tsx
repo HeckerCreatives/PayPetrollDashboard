@@ -43,6 +43,9 @@ export default function Maintenance() {
     const [entry, setEntry] = useState(0)
     const [lblimit, setLblimit] = useState(0)
 
+    const event = list.find((item) => item.type === 'eventgame')
+
+
     const [tierEntry, setTierEntry] = useState<TierEntry>({
         type: 'tierentry',
         value: [], // or a default selection like ['Expert']
@@ -114,11 +117,10 @@ export default function Maintenance() {
         getData()
     },[ refresh])
 
-    // useEffect(() => {
-    //     setChecked1(event?.value == '0' ? false : true)
-    //     setChecked2(payout?.value == '0' ? false : true)
-    //     setChecked3(buyonetakeone?.value == '0' ? false : true)
-    // },[list])
+     useEffect(() => {
+         setChecked1(event?.value == '0' ? false : true)
+        
+     },[list])
 
     const updateMaintenance = async (data: string, open: boolean) => {
         setRefresh('true');
@@ -706,7 +708,17 @@ export default function Maintenance() {
 
                     <div className=' w-full flex flex-col'>
                     <label htmlFor="" className=' text-[.7rem]'>Seconds</label>
-                    <Input placeholder="Seconds" type="number" min="0" max="59" value={seconds} onChange={(e) => setSeconds(e.target.valueAsNumber)} />
+                    <Input placeholder="Seconds" type="number" min="0" max="59" value={seconds}   
+                    onChange={(e) => {
+                        const val = e.target.valueAsNumber;
+                        if (val >= 0 && val <= 59) {
+                        setSeconds(val);
+                        } else if (val > 59) {
+                        setSeconds(59); 
+                        } else {
+                        setSeconds(0);
+                        }
+                    }} />
                     </div>
 
 
