@@ -94,28 +94,28 @@ export default function Maintenance() {
         getWallets()
     },[ refresh])
 
-    useEffect(() => {
-        setLoading(true)
-        const getData = async () => {
-          try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reset/resetleaderboard`,{
-            withCredentials:true
-            })
+    // useEffect(() => {
+    //     setLoading(true)
+    //     const getData = async () => {
+    //       try {
+    //         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reset/resetleaderboard`,{
+    //         withCredentials:true
+    //         })
 
-            setLoading(false)
+    //         setLoading(false)
             
-          } catch (error) {
-            setLoading(false)
-            if (axios.isAxiosError(error)) {
-              const axiosError = error as AxiosError<{ message: string, data: string }>;
-              if (axiosError.response && axiosError.response.status === 401) {
+    //       } catch (error) {
+    //         setLoading(false)
+    //         if (axios.isAxiosError(error)) {
+    //           const axiosError = error as AxiosError<{ message: string, data: string }>;
+    //           if (axiosError.response && axiosError.response.status === 401) {
                 
-                }    
-              } 
-          }
-        }
-        getData()
-    },[ refresh])
+    //             }    
+    //           } 
+    //       }
+    //     }
+    //     getData()
+    // },[ refresh])
 
      useEffect(() => {
          setChecked1(event?.value == '0' ? false : true)
@@ -625,7 +625,6 @@ export default function Maintenance() {
     //     setEntry(entrylimit?.value as number)
     // },[])
 
-    console.log(ingame)
 
 
   return (
