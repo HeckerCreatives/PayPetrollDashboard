@@ -128,7 +128,7 @@ export default function Leaderboard() {
             );
 
            setDates(response.data.data)
-           setDate(response.data.data[0])
+          //  setDate(response.data.data[0])
             setLoading(false);
           } catch (error) {
             setLoading(false);
