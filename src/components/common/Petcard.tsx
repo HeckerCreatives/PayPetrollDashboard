@@ -39,6 +39,7 @@ export default function Petcard(prop: Props) {
     const { loading, setLoading, clearLoading } = loadingStore()
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
+    const [open, setOpen] = useState(false)
 
 
     useEffect(() => {
@@ -126,6 +127,7 @@ export default function Petcard(prop: Props) {
     }
 
     const canBuy = async () => {
+        setLoading(true)
         try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/trainer/getusertrainer?type=${prop.rank}`,{
         withCredentials:true
@@ -134,10 +136,13 @@ export default function Petcard(prop: Props) {
         setLoading(false)
         if(response.data.message === 'success'){
             buyPet()
+            setLoading(false)
+            setOpen(false)
         }
                 
         } catch (error) {
         setLoading(false)
+        setOpen(false)
         if (axios.isAxiosError(error)) {
             const axiosError = error as AxiosError<{ message: string, data: string }>;
             if (axiosError.response && axiosError.response.status === 401) {
@@ -208,7 +213,7 @@ export default function Petcard(prop: Props) {
                             <p className=' font-medium text-white'>{prop.min.toLocaleString()} <span className=' text-[.6rem] md:text-xs font-normal'>php</span></p>
 
 
-                            <Sheet key={'bottom'}>
+                            <Sheet open={open} onOpenChange={setOpen} key={'bottom'}>
                             <SheetTrigger className=' primary-btn px-4 font-medium'>
                                 Buy now
                             </SheetTrigger>
