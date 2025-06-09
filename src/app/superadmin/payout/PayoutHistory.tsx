@@ -26,7 +26,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { RefreshCw, RotateCcw, Trash2 } from 'lucide-react'
+import { RefreshCw, RotateCcw, Search, Trash2 } from 'lucide-react'
 import {
   Select,
   SelectContent,
@@ -362,15 +362,31 @@ export default function Payouthistory() {
                 <SelectValue placeholder="Select Filter" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="username">Username</SelectItem>
-                <SelectItem value="paymentmethod">Payment Method</SelectItem>
-                <SelectItem value="accountname">Account Name</SelectItem>
-                <SelectItem value="accountnumber">Account No.</SelectItem>
-                <SelectItem value="netamount">Net Amount</SelectItem>
+                 <SelectItem value="username">Username</SelectItem>
+                  <SelectItem value="paymentmethod">Payment Method</SelectItem>
+
+                  <SelectItem value="accountnumber">Account No.</SelectItem>
+                  <SelectItem value="accountname">Account Name</SelectItem>
+                  <SelectItem value="netamount">Net Amount</SelectItem>
               </SelectContent>
             </Select>
 
+            {filter !== 'paymentmethod' ? (
             <Input disabled={filter === ''} value={searchpayout} onChange={(e) => setSearchpayout(e.target.value)} placeholder={`Search ${filter}`} className=' w-fit'/>
+
+            ) : (
+              <Select value={searchpayout} onValueChange={setSearchpayout}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select method" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="gcash">GCash</SelectItem>
+                    <SelectItem value="gotyme">Gotyme</SelectItem>
+                  
+                </SelectContent>
+              </Select>
+            )}
+
 
             <Button onClick={() => {setFilter(''), setSearchpayout('')}}><RefreshCw size={15}/></Button>
 
@@ -498,15 +514,33 @@ export default function Payouthistory() {
                 <SelectValue placeholder="Select Filter" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="username">Username</SelectItem>
+                 <SelectItem value="username">Username</SelectItem>
                 <SelectItem value="paymentmethod">Payment Method</SelectItem>
-                <SelectItem value="accountname">Account Name</SelectItem>
+
                 <SelectItem value="accountnumber">Account No.</SelectItem>
+                <SelectItem value="accountname">Account Name</SelectItem>
+                
                 <SelectItem value="netamount">Net Amount</SelectItem>
               </SelectContent>
             </Select>
 
+            {filterhistory !== 'paymentmethod' ? (
             <Input disabled={filterhistory === ''} value={searchpayouthistory} onChange={(e) => setSearchpayouthistory(e.target.value)} placeholder={`Search ${filterhistory}`} className=' w-fit'/>
+
+
+            ) : (
+              <Select value={searchpayouthistory} onValueChange={setSearchpayouthistory}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select method" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="gcash">GCash</SelectItem>
+                    <SelectItem value="gotyme">Gotyme</SelectItem>
+                  
+                </SelectContent>
+              </Select>
+            )}
+
 
             <Button onClick={() => {setFilterhistory(''), setSearchpayouthistory('')}}><RefreshCw size={15}/></Button>
 
@@ -593,13 +627,30 @@ export default function Payouthistory() {
               <SelectContent>
                 <SelectItem value="username">Username</SelectItem>
                 <SelectItem value="paymentmethod">Payment Method</SelectItem>
-                <SelectItem value="accountname">Account Name</SelectItem>
+
                 <SelectItem value="accountnumber">Account No.</SelectItem>
+                <SelectItem value="accountname">Account Name</SelectItem>
+                
                 <SelectItem value="netamount">Net Amount</SelectItem>
               </SelectContent>
             </Select>
 
+             {filter !== 'paymentmethod' ? (
             <Input disabled={filter === ''} value={searchpayout} onChange={(e) => setSearchpayout(e.target.value)} placeholder={`Search ${filter}`} className=' w-fit'/>
+
+            ) : (
+              <Select value={searchpayout} onValueChange={setSearchpayout}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select method" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="gcash">GCash</SelectItem>
+                    <SelectItem value="gotyme">Gotyme</SelectItem>
+                  
+                </SelectContent>
+              </Select>
+            )}
+
 
             <Button onClick={() => {setFilter(''), setSearchpayout('')}}><RefreshCw size={15}/></Button>
 
@@ -727,15 +778,33 @@ export default function Payouthistory() {
                 <SelectValue placeholder="Select Filter" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="username">Username</SelectItem>
+                 <SelectItem value="username">Username</SelectItem>
                 <SelectItem value="paymentmethod">Payment Method</SelectItem>
-                <SelectItem value="accountname">Account Name</SelectItem>
+
                 <SelectItem value="accountnumber">Account No.</SelectItem>
+                <SelectItem value="accountname">Account Name</SelectItem>
+                
                 <SelectItem value="netamount">Net Amount</SelectItem>
               </SelectContent>
             </Select>
 
+            {filterhistory !== 'paymentmethod' ? (
             <Input disabled={filterhistory === ''} value={searchpayouthistory} onChange={(e) => setSearchpayouthistory(e.target.value)} placeholder={`Search ${filterhistory}`} className=' w-fit'/>
+
+
+            ) : (
+              <Select value={searchpayouthistory} onValueChange={setSearchpayouthistory}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select method" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="gcash">GCash</SelectItem>
+                    <SelectItem value="gotyme">Gotyme</SelectItem>
+                  
+                </SelectContent>
+              </Select>
+            )}
+
 
             <Button onClick={() => {setFilterhistory(''), setSearchpayouthistory('')}}><RefreshCw size={15}/></Button>
 
