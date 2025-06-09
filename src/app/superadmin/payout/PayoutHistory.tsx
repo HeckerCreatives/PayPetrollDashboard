@@ -26,7 +26,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { RotateCcw, Trash2 } from 'lucide-react'
+import { RefreshCw, RotateCcw, Trash2 } from 'lucide-react'
 import {
   Select,
   SelectContent,
@@ -35,6 +35,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import Card from '@/components/common/Card'
+import { Button } from '@/components/ui/button'
+
 
 
 
@@ -101,6 +103,12 @@ export default function Payouthistory() {
   const [payoutid, setPayoutId] = useState('')
   const [payoutRequest, setPayoutRequest] = useState<TotalPayout>()
 
+  const [filter, setFilter] = useState('')
+  const [searchpayout, setSearchpayout] = useState('')
+
+  const [filterhistory, setFilterhistory] = useState('')
+  const [searchpayouthistory, setSearchpayouthistory] = useState('')
+
 
 
     useEffect(() => {
@@ -109,7 +117,7 @@ export default function Payouthistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchtype=${filterhistory}&search=${searchpayouthistory}`,
               { withCredentials: true }
             );
     
@@ -128,7 +136,7 @@ export default function Payouthistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage2, refresh, tab]);
+      }, [currentpage2, refresh, tab, searchpayouthistory]);
 
       useEffect(() => {
         setLoading(true);
@@ -136,7 +144,7 @@ export default function Payouthistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayoutlist?page=${currentpage}&limit=10&type=${tab}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayoutlist?page=${currentpage}&limit=10&type=${tab}&searchtype=${filter}&search=${searchpayout}`,
               { withCredentials: true }
             );
     
@@ -155,7 +163,7 @@ export default function Payouthistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage, refresh, tab]);
+      }, [currentpage, refresh, tab, searchpayout]);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
@@ -306,6 +314,15 @@ export default function Payouthistory() {
         return () => clearTimeout(delayDebounceFn); 
       }, []);
 
+      useEffect(() => {
+        setSearchpayout('')
+      },[filter])
+
+
+         useEffect(() => {
+        setSearchpayouthistory('')
+      },[filterhistory])
+
 
 
 
@@ -339,6 +356,25 @@ export default function Payouthistory() {
 
         {/* <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/> */}
         </div>
+            <div className=' flex items-center gap-2 '>
+              <Select value={filter} onValueChange={setFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select Filter" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="username">Username</SelectItem>
+                <SelectItem value="paymentmethod">Payment Method</SelectItem>
+                <SelectItem value="accountname">Account Name</SelectItem>
+                <SelectItem value="accountnumber">Account No.</SelectItem>
+                <SelectItem value="netamount">Net Amount</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Input disabled={filter === ''} value={searchpayout} onChange={(e) => setSearchpayout(e.target.value)} placeholder={`Search ${filter}`} className=' w-fit'/>
+
+            <Button onClick={() => {setFilter(''), setSearchpayout('')}}><RefreshCw size={15}/></Button>
+
+          </div>
             <Table>
                 {loading === true && (
                     <TableCaption>
@@ -455,6 +491,26 @@ export default function Payouthistory() {
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Game Payout History</p>
         </div>
+
+         <div className=' flex items-center gap-2 '>
+              <Select value={filterhistory} onValueChange={setFilterhistory}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select Filter" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="username">Username</SelectItem>
+                <SelectItem value="paymentmethod">Payment Method</SelectItem>
+                <SelectItem value="accountname">Account Name</SelectItem>
+                <SelectItem value="accountnumber">Account No.</SelectItem>
+                <SelectItem value="netamount">Net Amount</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Input disabled={filterhistory === ''} value={searchpayouthistory} onChange={(e) => setSearchpayouthistory(e.target.value)} placeholder={`Search ${filterhistory}`} className=' w-fit'/>
+
+            <Button onClick={() => {setFilterhistory(''), setSearchpayouthistory('')}}><RefreshCw size={15}/></Button>
+
+          </div>
             <Table>
                 {loading === true && (
                     <TableCaption>
@@ -524,8 +580,31 @@ export default function Payouthistory() {
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Comission Payout List</p>
 
+        
+
         {/* <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/> */}
         </div>
+
+          <div className=' flex items-center gap-2 '>
+              <Select value={filter} onValueChange={setFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select Filter" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="username">Username</SelectItem>
+                <SelectItem value="paymentmethod">Payment Method</SelectItem>
+                <SelectItem value="accountname">Account Name</SelectItem>
+                <SelectItem value="accountnumber">Account No.</SelectItem>
+                <SelectItem value="netamount">Net Amount</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Input disabled={filter === ''} value={searchpayout} onChange={(e) => setSearchpayout(e.target.value)} placeholder={`Search ${filter}`} className=' w-fit'/>
+
+            <Button onClick={() => {setFilter(''), setSearchpayout('')}}><RefreshCw size={15}/></Button>
+
+          </div>
+
             <Table>
                 {loading === true && (
                     <TableCaption>
@@ -641,6 +720,27 @@ export default function Payouthistory() {
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>ComissionPayout History</p>
         </div>
+
+        <div className=' flex items-center gap-2 '>
+              <Select value={filterhistory} onValueChange={setFilterhistory}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select Filter" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="username">Username</SelectItem>
+                <SelectItem value="paymentmethod">Payment Method</SelectItem>
+                <SelectItem value="accountname">Account Name</SelectItem>
+                <SelectItem value="accountnumber">Account No.</SelectItem>
+                <SelectItem value="netamount">Net Amount</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Input disabled={filterhistory === ''} value={searchpayouthistory} onChange={(e) => setSearchpayouthistory(e.target.value)} placeholder={`Search ${filterhistory}`} className=' w-fit'/>
+
+            <Button onClick={() => {setFilterhistory(''), setSearchpayouthistory('')}}><RefreshCw size={15}/></Button>
+
+          </div>
+
             <Table>
                 {loading === true && (
                     <TableCaption>
