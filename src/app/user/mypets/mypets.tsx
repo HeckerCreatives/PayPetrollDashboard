@@ -22,6 +22,9 @@ import toast from 'react-hot-toast';
 import OwnPetcard from '@/components/common/Ownpetscard';
 import Pagination from '@/components/common/Pagination';
 import refreshStore from '@/zustand/refresh';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import OwnNftCard from '@/components/common/OwnNftCard';
+
 
 interface Store {
     trainers: Pets[]
@@ -41,13 +44,36 @@ interface Pets {
 }
 
 
+export interface NftItem {
+  nftid: string;
+  petname: string;
+  type: string; // e.g., "NFT"
+  rank: string; // e.g., "NFT"
+  buyprice: number;
+  profit: number;
+  duration: number;
+  earnings: number;
+  remainingtime: number;
+  purchasedate: string; // ISO date string
+  maturedate: string; // ISO date string
+}
+
+export interface NftData {
+  [key: string]: NftItem; // e.g., "0": NftItem, "1": NftItem, etc.
+}
+
+
+
 export default function Mypets() {
     const {tab, setTab, clearTab} = trainertabStore()
     const { loading, setLoading, clearLoading } = loadingStore()
     const router = useRouter()
     const [list, setList] = useState<Pets[]>([])
+    const [nft, setNft] = useState<NftItem[]>([])
     const [totalpage, setTotalPage] = useState(0)
     const [currentpage, setCurrentPage] = useState(0)
+    const [nfttotalpage, setNftTotalPage] = useState(0)
+    const [nftcurrentpage, setNftCurrentPage] = useState(0)
     const {refresh, setRefresh} = refreshStore()
 
 
@@ -76,14 +102,45 @@ export default function Mypets() {
         getWallets()
     },[tab, currentpage, refresh])
 
+    useEffect(() => {
+        setLoading(true)
+        const getData = async () => {
+          try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getnftinventory?page=${nftcurrentpage}&limit=6`,{
+            withCredentials:true
+            })
+
+            setLoading(false)
+            setNft(response.data.data.nft)
+            setNftTotalPage(response.data.data.totalPages)
+            
+          } catch (error) {
+            setLoading(false)
+            if (axios.isAxiosError(error)) {
+              const axiosError = error as AxiosError<{ message: string, data: string }>;
+              if (axiosError.response && axiosError.response.status === 401) {
+                 
+                }    
+              } 
+          }
+        }
+        getData()
+    },[ refresh, nftcurrentpage])
+
     const handlePageChange = (page: number) => {
       setCurrentPage(page)
     }
 
   return (
     <div className="w-full flex flex-col gap-4 font-light">
-    
-            <h2 className=' text-xl font-bold mt-8 text-white'>My Pets</h2>
+
+      <Tabs defaultValue="fiat" className="w-full mt-6">
+        <TabsList>
+          <TabsTrigger value="fiat">Fiat</TabsTrigger>
+          <TabsTrigger value="nft">NFT</TabsTrigger>
+        </TabsList>
+        <TabsContent value="fiat">
+           <h2 className=' text-xl font-bold mt-8 text-white'>My Pets</h2>
 
             <h2 className=' text-sm font-medium mt-4 text-white'>Trainers</h2>
             <div className=' w-full h-[100px] flex flex-nowrap gap-4 overflow-y-hidden overflow-x-auto'>
@@ -119,6 +176,37 @@ export default function Mypets() {
                   <Pagination currentPage={currentpage} total={totalpage} onPageChange={handlePageChange}/>
                 </div>
             )}
+
+        </TabsContent>
+        
+        <TabsContent value="nft">
+          <h2 className=' text-xl font-bold mt-8 text-white'>My NFT</h2>
+
+          
+
+            <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-fit mt-4'>
+                {Object.values(nft).map((item, index) => (
+                  <OwnNftCard id={item.nftid} type={item.type} totalaccumulated={item.earnings} remainingtime={item.remainingtime} name={item.petname}/>
+                ))}
+
+              
+            </div>
+
+            {Object.values(nft).length === 0 && (
+                  <div className=' w-full h-[200px] flex items-center justify-center'>
+                    <p className=' text-sm text-zinc-200'>No nft.</p>
+                  </div>
+                )}
+
+            {Object.values(nft).length !== 0 && (
+                <div className=' w-full flex items-center justify-center mt-6'>
+                  <Pagination currentPage={nftcurrentpage} total={nfttotalpage} onPageChange={handlePageChange}/>
+                </div>
+            )}
+        </TabsContent>
+      </Tabs>
+    
+           
     
            
         </div>

@@ -50,7 +50,6 @@ export function RegisterForm() {
           const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/getreferralusername?id=${decryptUid(referralDecrypt)}`, {
             withCredentials: true
           })
-          console.log(response.data)
           setReferral(response.data.data)
         }
       } catch (error) {

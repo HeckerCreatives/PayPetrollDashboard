@@ -167,7 +167,6 @@ export default function AdminTable() {
         setCurrentPage(page)
     }
 
-    console.log(selectedUsers)
 
 
   return (

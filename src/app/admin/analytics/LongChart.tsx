@@ -98,7 +98,6 @@ export default function LongChart() {
     getList()
   }, [type, graph])
 
-  console.log(dynamicRoute)
 
 
   return (

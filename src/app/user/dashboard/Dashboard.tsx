@@ -44,7 +44,6 @@ export default function Dashboard() {
   
            
             setLoading(false)
-            console.log(response.data)
           
           } catch (error) {
             setLoading(false)
@@ -176,7 +175,6 @@ export default function Dashboard() {
           withCredentials:true
           })
 
-          console.log(response.data)
           setReferral(response.data.data)
 
         

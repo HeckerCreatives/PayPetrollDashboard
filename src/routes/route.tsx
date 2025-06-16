@@ -1,4 +1,4 @@
-import { Activity, Banknote, BarChart, Cable, ChartColumnBig, ChartPie, Cog, CreditCard, Folder, Gamepad, Grid2X2, Info, Key, PawPrint, Play, Settings, ShoppingBag, Trophy, Users, Wallet, Wrench } from "lucide-react";
+import { Activity, Banknote, BarChart, Boxes, Cable, ChartColumnBig, ChartPie, Cog, CreditCard, Folder, Gamepad, Grid2X2, Info, Key, PawPrint, Play, Settings, ShoppingBag, Trophy, Users, Wallet, Wrench } from "lucide-react";
 
 
 export const user = [
@@ -14,7 +14,7 @@ export const user = [
     {name: 'Store', icon: <ShoppingBag size={15}/>, 
     path:'/user/store', subpath:[]},
 
-    {name: 'My Pets', icon: <PawPrint size={15}/>, 
+    {name: 'Inventory', icon: <Boxes size={15}/>, 
     path:'/user/mypets', subpath:[]},
 
     {name: 'Faq', icon: <Info size={15}/>, 

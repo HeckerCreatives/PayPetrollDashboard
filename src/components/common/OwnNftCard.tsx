@@ -36,23 +36,17 @@ import Countdown from 'react-countdown';
 type Props = {
     id: string
     type: string
-    creatureid: string
-    rank: string
-    qty: number,
     totalaccumulated: number,
-    dailyaccumulated: number,
-    limittotal: number,
-    limitdaily: number
     remainingtime: number
+    name: string
 }
 
-export default function OwnPetcard(prop: Props) {
+export default function OwnNftCard(prop: Props) {
     const [dialog, setDialog] = useState(false)
     const [isOpen, setIsopen] = useState('')
     const { loading, setLoading, clearLoading } = loadingStore()
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
-    const percentage = (prop.totalaccumulated / prop.limittotal) * 100
 
 
     const img = petimg.find((item) => item.id === prop.type)
@@ -63,8 +57,8 @@ export default function OwnPetcard(prop: Props) {
         setRefresh('true')
         try {
 
-                const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/claimtotalincome`,{
-                    trainerid: prop.id
+                const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/nftclaimtotalincome`,{
+                    nftid: prop.id
                 },{
                     withCredentials: true,
                     headers:{
@@ -125,6 +119,20 @@ export default function OwnPetcard(prop: Props) {
         }
     }
 
+      const bgImage = (data: string) => {
+        if(data === 'iron Puppy'){
+            return '/nft/ironpuppy.jpg'
+        }else if(data === 'Shiba Ihulk'){
+            return '/nft/shibahulk.jpg'
+        }else if(data === 'Captain Hachi'){
+            return '/nft/captainhachi.jpg'
+        }else if(data === 'Thor Inu'){
+            return '/nft/thorinu.jpg'
+        } else {
+            return '/nft/shibathanos.jpg'
+        }
+    }
+
     
    
     
@@ -135,23 +143,22 @@ export default function OwnPetcard(prop: Props) {
         <div className='  transition-all duration-300 w-full  bg-white shadow-sm flex items-center gap-4 relative p-6 rounded-lg'>
 
             <div className=' relative flex items-center justify-center'>
-                <CircularProgress value={isNaN(percentage) ? 0 : percentage} />
+                {/* <CircularProgress value={isNaN(percentage) ? 0 : percentage} /> */}
 
-                <div className=' absolute flex items-center justify-center'>
-                    <img src={img?.img} alt='store' width={90} height={90}  className=' group-hover:scale-110 transition-all duration-300'/>
+                <div className=' flex items-center justify-center'>
+                    <img src={bgImage(prop.name)} alt='store' width={120} height={120}  className=' group-hover:scale-110 transition-all duration-300'/>
                 </div>
             </div>
         
            
 
             <div className=' flex flex-col'>
-                <h2 className=' text-xl font-medium'>{prop.type} <span className=' text-xs text-zinc-500'>({prop.rank})</span></h2>
-                <h2 className=' ~text-xs/sm text-zinc-500 mt-1'>Total Earnings: Php <span className=' text-green-500 font-medium'>{prop?.limittotal?.toLocaleString()}</span></h2>
+                <p className=' ~text-sm/lg text-zinc-800 font-semibold'>{prop.name}</p>
                 <h2 className=' ~text-xs/sm text-zinc-500'>Total Accumulated: Php <span className=' text-green-500 font-medium'>{prop?.totalaccumulated?.toLocaleString()}</span></h2>
                 {/* <p className=' text-xs text-black mt-2 flex items-center gap-1' ><Clock size={12} className=' mb-1'/>Ends in:</p> */}
 
                 <p className=' mt-2'></p>
-                {/* <Countdown
+                <Countdown
                     className=' mt-4'
                     date={Date.now() + (prop.remainingtime * 1000)} 
                     renderer={({ days, hours, minutes, seconds }) => (
@@ -159,13 +166,13 @@ export default function OwnPetcard(prop: Props) {
                         Ends in: {days} days : {hours} hours : {minutes} minutes : {seconds}
                     </span>
                     )}
-                /> */}
+                />
 
                     <Dialog open={dialog} onOpenChange={setDialog}>
                     <DialogTrigger className=' primary-btn mt-4 w-[150px]'>Claim</DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
-                        <DialogTitle>Claim {prop.type} earnings</DialogTitle>
+                        <DialogTitle>Claim {prop.name} earnings</DialogTitle>
                         <DialogDescription>
                             Are you sure you want to claim {prop.type} earnings
                         </DialogDescription>
@@ -184,23 +191,14 @@ export default function OwnPetcard(prop: Props) {
                     </Dialog>
 
 
-                {!isNaN(prop.dailyaccumulated) && prop.dailyaccumulated !== 0 && (
-                <p className="text-xs text-green-600 mt-4">
-                    You earned {prop.dailyaccumulated} php today, keep grinding.
-                </p>
-                )}
+             
             </div>
 
-            {/* <p className=' absolute top-2 right-2 rounded-full bg-red-600  text-[.6rem] font-medium px-3 py-1'>{prop.animal}</p> */}
         </div>
 
        
 
-        {/* <div className=' w-full flex items-center justify-between text-sm py-2'>
-            <p className=' font-medium'>{prop.min.toLocaleString()} <span className=' text-[.6rem] md:text-xs font-normal text-zinc-500'>php</span></p>
-
-        </div> */}
-
+    
     </div>
   )
 }

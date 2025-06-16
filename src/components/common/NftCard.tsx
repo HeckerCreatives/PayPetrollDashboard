@@ -8,23 +8,21 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import refreshStore from '@/zustand/refresh'
 import { useForm } from 'react-hook-form'
-import { complanSchema, SaveComplan } from '@/validitions/validation'
+import { complanSchema, NftComplan, nftcomplanSchema, SaveComplan } from '@/validitions/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Switch } from '../ui/switch'
 
 type Props = {
     id: string
     name: string
-    animal: string
-    rank: string,
-    min: number,
-    max: number,
     duration: number,
     profit: number,
-    b1t1: string
+    stocks: number,
+    price: number
+    limit: number
 }
 
-export default function Complancard(prop: Props) {
+export default function NftComplanCard(prop: Props) {
     const [dialog, setDialog] = useState(false)
     const [isOpen, setIsopen] = useState('')
     const { loading, setLoading, clearLoading } = loadingStore()
@@ -42,37 +40,41 @@ export default function Complancard(prop: Props) {
         watch,
         trigger,
         formState: { errors },
-    } = useForm<SaveComplan>({
-        resolver: zodResolver(complanSchema),
+    } = useForm<NftComplan>({
+        resolver: zodResolver(nftcomplanSchema),
         defaultValues: ({
              duration: prop.duration,
              profit: prop.profit,
-             min: prop.min,
-             max: prop.max,
-             b1t1: prop.b1t1 === '0' ? false : true,
+             stocks: prop.stocks,
+             price: prop.price,
+             limit: prop.limit,
+         
         })
     });
 
     useEffect(() => {
         reset({
           duration: prop.duration,
-          profit: prop.profit * 100, // Convert profit to percentage
-          min: prop.min,
-          max: prop.max,
+          profit: prop.profit * 100,
+         
+             stocks: prop.stocks,
+             price: prop.price,
+               limit: prop.limit,
+        
         });
       }, [prop, reset]);
 
-    const onsubmit = async (data: SaveComplan) => {
+    const onsubmit = async (data: NftComplan) => {
         setRefresh('true');
         setLoading(true);
         try {
-            const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/trainer/edittrainer`, {
-                trainerid: prop.id,
+            const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/trainer/editnfttrainer`, {
+                nftid: prop.id,
                 profit: data.profit / 100,
                 duration: data.duration,
-                min: data.min,
-                max: data.max,
-                b1t1: data.b1t1 ? '1' : '0'
+                price: data.price,
+                stocks: data.stocks,
+             
             }, {
                 withCredentials: true,
                 headers: {
@@ -122,28 +124,30 @@ export default function Complancard(prop: Props) {
 
     const img = petimg.find((item) => item.id === prop.name)
 
-    const bgImage = (animal: string) => {
-        if(animal === 'Fish'){
-            return '/assets/BG4.png'
-        }else if(animal === 'Bird'){
-            return '/assets/BG5.png'
-        }else if(animal === 'Cat'){
-            return '/assets/BG3.png'
-        }else if(animal === 'Dog'){
-            return '/assets/BG1.png'
+     const bgImage = (data: string) => {
+        if(data === 'iron Puppy'){
+            return '/nft/ironpuppy.jpg'
+        }else if(data === 'Shiba Ihulk'){
+            return '/nft/shibahulk.jpg'
+        }else if(data === 'Captain Hachi'){
+            return '/nft/captainhachi.jpg'
+        }else if(data === 'Thor Inu'){
+            return '/nft/thorinu.jpg'
         } else {
-            return '/assets/BG2.png'
+            return '/nft/shibathanos.jpg'
         }
     }
 
 
     useEffect(() => {
         reset({
-            duration: prop.duration,
-            profit: prop.profit,
-            min: prop.min,
-            max: prop.max,
-            b1t1: prop.b1t1 === '0' ? false : true,
+         
+             duration: prop.duration,
+               profit: prop.profit * 100,
+             stocks: prop.stocks,
+             price: prop.price,
+               limit: prop.limit,
+         
         })
     },[prop])
 
@@ -153,28 +157,18 @@ export default function Complancard(prop: Props) {
 
                    
 
-                        <div className=' group-hover:bg-gray-200 transition-all duration-300 w-full aspect-video  shadow-sm flex items-center justify-center relative'
-                        style={{backgroundImage: `url(${bgImage(prop.animal)})`, backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'center'}}
+                        <div className=' group-hover:bg-gray-200 transition-all duration-300 w-full aspect-video  shadow-sm flex items-center justify-center relative bg-white p-4'
                         
                         >
-                            <img src={img?.img} alt='store' width={150} height={150}  className=' group-hover:scale-110 transition-all duration-300'/>
+                            <img src={bgImage(prop.name)} alt='store' width={200} height={150}  className=' group-hover:scale-110 transition-all duration-300'/>
 
-                            <p className=' absolute top-2 right-2 rounded-full bg-light text-white text-[.6rem] font-medium px-3 py-1'>{prop.animal}</p>
 
                         </div>
 
                        <form onSubmit={handleSubmit(onsubmit)} action="" className=' p-4'>
-                        
-                        <div className=' w-full flex justify-between'>
-                            <p className=' text-sm font-medium'>Buy one take one</p>
-                            <Switch 
-                            checked={watch("b1t1")} 
-                            onCheckedChange={(value) => setValue("b1t1", value)} 
-    />
-                        </div>
+                     
                         <p className=' text-lg font-medium'>{prop.name}</p>
 
-                        <p className=' text-xs '>{prop.rank}</p>
 
                         <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Profit (%)</label>
                         <Input type='number' className=' text-xs' {...register('profit', {valueAsNumber: true})}/>
@@ -185,15 +179,23 @@ export default function Complancard(prop: Props) {
                         <Input  type='number' className=' text-xs' {...register('duration', {valueAsNumber: true})}/>
                         {errors.duration && <p className='text-[.6em] text-red-500'>{errors.duration.message}</p>}
 
+                         <label htmlFor="" className=' text-xs text-zinc-500 mt-2' >Stocks</label>
+                        <Input  type='number' className=' text-xs' {...register('stocks', {valueAsNumber: true})}/>
+                        {errors.stocks && <p className='text-[.6em] text-red-500'>{errors.stocks.message}</p>}
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Mininum (php)</label>
-                        <Input  type='number' className=' text-xs' {...register('min', {valueAsNumber: true})}/>
-                        {errors.min && <p className='text-[.6em] text-red-500'>{errors.min.message}</p>}
+                         <label htmlFor="" className=' text-xs text-zinc-500 mt-2' >Price</label>
+                        <Input  type='number' className=' text-xs' {...register('price', {valueAsNumber: true})}/>
+                        {errors.price && <p className='text-[.6em] text-red-500'>{errors.price.message}</p>}
+
+                         <label htmlFor="" className=' text-xs text-zinc-500 mt-2' >Limit</label>
+                        <Input  type='number' className=' text-xs' {...register('limit', {valueAsNumber: true})}/>
+                        {errors.limit && <p className='text-[.6em] text-red-500'>{errors.limit.message}</p>}
 
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Maximum (php)</label>
-                        <Input  type='number' className=' text-xs' {...register('max', {valueAsNumber: true})}/>
-                        {errors.max && <p className='text-[.6em] text-red-500'>{errors.max.message}</p>}
+                       
+
+
+                     
 
 
                         <button className=' primary-btn w-full mt-4'>Save</button>

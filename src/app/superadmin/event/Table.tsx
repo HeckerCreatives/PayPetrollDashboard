@@ -153,7 +153,6 @@ export default function Leaderboard() {
         setCurrentPage(page)
     }
 
-    console.log(date)
 
 
   return (
