@@ -74,6 +74,7 @@ export default function NftComplanCard(prop: Props) {
                 duration: data.duration,
                 price: data.price,
                 stocks: data.stocks,
+                limit: data.limit
              
             }, {
                 withCredentials: true,
