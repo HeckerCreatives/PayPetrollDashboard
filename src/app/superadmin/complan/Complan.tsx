@@ -170,8 +170,7 @@ export default function Complan() {
          {/* <h2 className=' text-sm font-medium mt-4 text-white'>Trainers</h2> */}
             
 
-            <h2 className=' text-sm font-medium mt-4 text-white'>Pets</h2>
-            <div className=' w-full h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 '>
+            <div className=' w-full h-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-6'>
               
                 
               {nft.map((item, index) => (
