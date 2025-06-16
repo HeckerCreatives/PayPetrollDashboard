@@ -84,9 +84,9 @@ export default function BuyHistory() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Date</TableHead>
-                <TableHead>Pet name</TableHead>
+                <TableHead>Name</TableHead>
+                <TableHead>Buy</TableHead>
                 <TableHead>Type</TableHead>
-                <TableHead>Rank</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -96,7 +96,7 @@ export default function BuyHistory() {
 
                     <TableCell>{item.trainername}</TableCell>
                     <TableCell>{item.type}</TableCell>
-                    <TableCell>{petRanks(item.rank)}</TableCell>
+                    <TableCell>{item.rank}</TableCell>
                    
                     </TableRow>
                 ))}

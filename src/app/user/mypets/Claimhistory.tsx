@@ -83,10 +83,10 @@ export default function ClaimHistory() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Date</TableHead>
-                <TableHead>Pet name</TableHead>
+                <TableHead>Name</TableHead>
                 <TableHead>Amount</TableHead>
                 {/* <TableHead>Type</TableHead> */}
-                <TableHead>Rank</TableHead>
+                <TableHead>Type</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -96,7 +96,7 @@ export default function ClaimHistory() {
                     <TableCell>{item.trainername}</TableCell>
                     <TableCell>Php {item.amount.toLocaleString()}</TableCell>
                     {/* <TableCell>{item.type}</TableCell> */}
-                    <TableCell>{petRanks(item.rank)}</TableCell>
+                    <TableCell>{item.rank}</TableCell>
                     </TableRow>
                 ))}
                 

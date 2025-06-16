@@ -84,10 +84,10 @@ export default function DailyClaimHistory() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Date</TableHead>
-                <TableHead>Pet name</TableHead>
+                <TableHead>Name</TableHead>
                 <TableHead>Amount</TableHead>
                 {/* <TableHead>Type</TableHead> */}
-                <TableHead>Rank</TableHead>
+                <TableHead>Type</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
