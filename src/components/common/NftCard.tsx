@@ -125,7 +125,7 @@ export default function NftComplanCard(prop: Props) {
     const img = petimg.find((item) => item.id === prop.name)
 
      const bgImage = (data: string) => {
-        if(data === 'iron Puppy'){
+        if(data === 'IRON PUPPY'){
             return '/nft/ironpuppy.jpg'
         }else if(data === 'Shiba Ihulk'){
             return '/nft/shibahulk.jpg'

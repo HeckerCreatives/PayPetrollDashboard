@@ -105,7 +105,7 @@ export default function NftStoreCard(prop: Props) {
     }
 
     const bgImage = (data: string) => {
-        if(data === 'iron Puppy'){
+        if(data === 'IRON PUPPY'){
             return '/nft/ironpuppy.jpg'
         }else if(data === 'Shiba Ihulk'){
             return '/nft/shibahulk.jpg'
