@@ -282,6 +282,10 @@ export default function Inventory() {
     }
 };
 
+ const handleNftPageChange = (page: number) => {
+      setNftCurrentPage(page)
+    }
+
 
 
 
@@ -466,7 +470,7 @@ export default function Inventory() {
 
          {Object.values(nft).length !== 0 && (
             <div className=' w-full flex items-center justify-center mt-6'>
-                <Pagination currentPage={nftcurrentpage} total={nfttotalpage} onPageChange={handlePageChange}/>
+                <Pagination currentPage={nftcurrentpage} total={nfttotalpage} onPageChange={handleNftPageChange}/>
             </div>
         )}
         </TabsContent>

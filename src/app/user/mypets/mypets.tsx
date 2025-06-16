@@ -131,6 +131,10 @@ export default function Mypets() {
       setCurrentPage(page)
     }
 
+     const handleNftPageChange = (page: number) => {
+      setNftCurrentPage(page)
+    }
+
   return (
     <div className="w-full flex flex-col gap-4 font-light">
 
@@ -200,7 +204,7 @@ export default function Mypets() {
 
             {Object.values(nft).length !== 0 && (
                 <div className=' w-full flex items-center justify-center mt-6'>
-                  <Pagination currentPage={nftcurrentpage} total={nfttotalpage} onPageChange={handlePageChange}/>
+                  <Pagination currentPage={nftcurrentpage} total={nfttotalpage} onPageChange={handleNftPageChange}/>
                 </div>
             )}
         </TabsContent>
