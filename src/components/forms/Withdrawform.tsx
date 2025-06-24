@@ -183,25 +183,21 @@ export default function Withdrawform( prop: Props) {
 
           <>
           {payment === 'gcash' ? (
-          //    <Select onValueChange={(value) => setValue('amount',  Number(value))}>
-          //    <SelectTrigger className="w-full">
-          //      <SelectValue placeholder="Select amount" />
-          //    </SelectTrigger>
-          //    <SelectContent>
-          //      <SelectItem value="500">₱500</SelectItem>
-          //      <SelectItem value="600">₱600</SelectItem>
-          //      <SelectItem value="700">₱700</SelectItem>
-          //      <SelectItem value="800">₱800</SelectItem>
-          //      <SelectItem value="900">₱900</SelectItem>
-          //      <SelectItem value="1000">₱1,000</SelectItem>
-          //      <SelectItem value="2000">₱2,000</SelectItem>
-          //      <SelectItem value="3000">₱3,000</SelectItem>
-          //      <SelectItem value="4000">₱4,000</SelectItem>
-          //      <SelectItem value="5000">₱5,000</SelectItem>
-              
-          //    </SelectContent>
-          //  </Select>
-        <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
+              <Select onValueChange={(value) => setValue('amount',  Number(value))}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select amount" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="500">₱500</SelectItem>
+                <SelectItem value="1000">₱1,000</SelectItem>
+                <SelectItem value="2000">₱2,000</SelectItem>
+                <SelectItem value="3000">₱3,000</SelectItem>
+                <SelectItem value="4000">₱4,000</SelectItem>
+                <SelectItem value="5000">₱5,000</SelectItem>
+          
+              </SelectContent>
+            </Select>
+        // <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
 
           ) : (
             <Select onValueChange={(value) => setValue('amount',  Number(value))}>
