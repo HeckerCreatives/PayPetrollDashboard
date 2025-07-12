@@ -52,6 +52,7 @@ export interface NFT {
   rank: string;
   stocks: number;
   limit: number;
+  isActive: boolean
 }
 
 
@@ -129,6 +130,8 @@ export default function Store() {
         getWallets()
     },[refresh])
 
+    const filteredNft = nft.filter((item) => item.isActive === true)
+
 
 
 
@@ -191,7 +194,7 @@ export default function Store() {
                             
                     ) : (
                         <>
-                        {nft.map((item, index) => (
+                        {filteredNft.map((item, index) => (
                           <NftStoreCard id={item.id} name={item.name} duration={item.duration} profit={item.profit} price={item.price} stocks={item.stocks}/>
                             ))}
                         </>
@@ -200,6 +203,14 @@ export default function Store() {
                     
 
                 </div>
+
+                {filteredNft.length === 0 && (
+                  <div className=' w-full flex items-center justify-center py-16'>
+                   <p className=' text-xs text-zinc-200'>No NFTs available at the moment</p>
+                  </div>
+                )}
+
+                
             </TabsContent>
           </Tabs>
 

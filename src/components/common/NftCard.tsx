@@ -30,7 +30,7 @@ export default function NftComplanCard(prop: Props) {
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
     const [checked, setChecked] = useState(false)
-    
+
 
     // Form handler
     const {
