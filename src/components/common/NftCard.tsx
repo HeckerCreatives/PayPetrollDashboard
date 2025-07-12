@@ -18,8 +18,9 @@ type Props = {
     duration: number,
     profit: number,
     stocks: number,
-    price: number
-    limit: number
+    price: number,
+    limit: number,
+    isActive: boolean
 }
 
 export default function NftComplanCard(prop: Props) {
@@ -48,6 +49,7 @@ export default function NftComplanCard(prop: Props) {
              stocks: prop.stocks,
              price: prop.price,
              limit: prop.limit,
+             isActive: prop.isActive
          
         })
     });
@@ -60,8 +62,10 @@ export default function NftComplanCard(prop: Props) {
              stocks: prop.stocks,
              price: prop.price,
                limit: prop.limit,
+               isActive: prop.isActive
         
         });
+        setChecked(prop.isActive)
       }, [prop, reset]);
 
     const onsubmit = async (data: NftComplan) => {
@@ -74,7 +78,8 @@ export default function NftComplanCard(prop: Props) {
                 duration: data.duration,
                 price: data.price,
                 stocks: data.stocks,
-                limit: data.limit
+                limit: data.limit,
+                isActive: data.isActive
              
             }, {
                 withCredentials: true,
@@ -125,7 +130,7 @@ export default function NftComplanCard(prop: Props) {
 
     const img = petimg.find((item) => item.id === prop.name)
 
-     const bgImage = (data: string) => {
+    const bgImage = (data: string) => {
         if(data === 'IRON PUPPY'){
             return '/nft/ironpuppy.jpg'
         }else if(data === 'Shiba Ihulk'){
@@ -153,6 +158,7 @@ export default function NftComplanCard(prop: Props) {
     },[prop])
 
 
+
   return (
     <div className=' group w-full h-auto bg-white rounded-md overflow-hidden'>
 
@@ -167,6 +173,13 @@ export default function NftComplanCard(prop: Props) {
                         </div>
 
                        <form onSubmit={handleSubmit(onsubmit)} action="" className=' p-4'>
+                         <div className=' w-full flex justify-between'>
+                            <p className=' text-sm font-medium'>Available on Store</p>
+                            <Switch 
+                             checked={checked} 
+                            onCheckedChange={(value) => {setValue('isActive', value), setChecked(value)}} 
+                            />
+                        </div>
                      
                         <p className=' text-lg font-medium'>{prop.name}</p>
 
