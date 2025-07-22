@@ -24,6 +24,8 @@ import Pagination from '@/components/common/Pagination';
 import refreshStore from '@/zustand/refresh';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import OwnNftCard from '@/components/common/OwnNftCard';
+import ClaimHistory from './Claimhistory';
+import DailyClaimHistory from './GameDailyclaimHistory';
 
 
 interface Store {
@@ -181,6 +183,19 @@ export default function Mypets() {
                 </div>
             )}
 
+             <Tabs defaultValue="Claim" className="w-full mt-8">
+               <TabsList className=' bg-white'>
+                   <TabsTrigger value="Claim">Earning Claim History</TabsTrigger>
+                   <TabsTrigger value="Daily">Game Claim History</TabsTrigger>
+               </TabsList>
+               <TabsContent value="Claim">
+                   <ClaimHistory/>
+               </TabsContent>
+               <TabsContent value="Daily">
+                   <DailyClaimHistory/>
+               </TabsContent>
+               </Tabs>
+
         </TabsContent>
         
         <TabsContent value="nft">
@@ -207,6 +222,8 @@ export default function Mypets() {
                   <Pagination currentPage={nftcurrentpage} total={nfttotalpage} onPageChange={handleNftPageChange}/>
                 </div>
             )}
+
+               <ClaimHistory/>
         </TabsContent>
       </Tabs>
     

@@ -27,6 +27,8 @@ type Props = {
     profit: number,
     price: number,
     stocks: number,
+    purchasedCount: number,
+    limit: number
 }
 
 export default function NftStoreCard(prop: Props) {
@@ -37,6 +39,7 @@ export default function NftStoreCard(prop: Props) {
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
     const [open, setOpen] = useState(false)
+    const [quantity, setQuantity] = useState(1)
 
 
     const img = petimg.find((item) => item.id === prop.name)
@@ -48,6 +51,7 @@ export default function NftStoreCard(prop: Props) {
         try {
             const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/buynfttrainer`,{
                 nftid: prop.id,
+                quantity: quantity
             },{
                 withCredentials: true,
                 headers:{
@@ -105,7 +109,7 @@ export default function NftStoreCard(prop: Props) {
     }
 
     const bgImage = (data: string) => {
-        if(data === 'IRON PUPPY'){
+        if(data.toLowerCase() === 'iron puppy'){
             return '/nft/ironpuppy.jpg'
         }else if(data === 'Shiba Ihulk'){
             return '/nft/shibahulk.jpg'
@@ -187,11 +191,6 @@ export default function NftStoreCard(prop: Props) {
                         
                         >
                             <img src={bgImage(prop.name)} alt='store' width={200} height={200}  className=' group-hover:scale-110 transition-all duration-300'/>
-
-
-
-                           
-
                         </div>
 
                         <div className=' w-full flex items-center justify-between text-sm py-2'>
@@ -206,7 +205,7 @@ export default function NftStoreCard(prop: Props) {
                                 <div className=' w-full max-w-[1040px] h-full flex items-center justify-center gap-4'>
                                     <div className=' w-full h-full max-w-[1020px] flex md:flex-row flex-col gap-4'>
                                         <div className=' bg-gray-100 flex items-center justify-center h-full aspect-video lg:aspect-square'>
-                                            <img src={bgImage(prop.name)} alt='store' width={300} height={300}  className=' w-[200px] md:w-[300px] group-hover:scale-110 transition-all duration-300'/>
+                                            <img src={bgImage(prop.name)} alt='store'  className=' h-full group-hover:scale-110 transition-all duration-300'/>
                                         </div>
 
                                         <div className=' w-full lg:w-[40%] flex flex-col justify-end gap-2'>
@@ -215,15 +214,36 @@ export default function NftStoreCard(prop: Props) {
                                             <p className=' text-sm'>{prop.duration} days duration</p>
                                             <p className=' text-sm'>Price: {prop.price.toLocaleString()}php</p>
 
-                                            <p className='text-zinc-50 mt-4 bg-red-600 rounded-full w-fit px-3 py-1 text-xs '>Stocks left: {prop.stocks}</p>
+                                            <div className=' flex flex-col gap-1 w-full'>
+                                                <label className=' text-sm'>Quantity</label>
+                                                 <Input
+                                                    type='number'
+                                                    placeholder='Quantity'
+                                                    min={1}
+                                                    value={quantity}
+                                                    onChange={(e) => setQuantity(e.target.valueAsNumber)}
+                                                />
+                                            </div>
 
-                                      
-                                           
-                                            <button onClick={buyNft} disabled={loading} className=' primary-btn px-6 w-fit mt-4 flex items-center justify-center gap-2'>
+                                            <div className=' flex items-center gap-2 flex-wrap'>
+                                            <p className='text-zinc-50 mt-4 bg-red-600 rounded-full w-fit px-3 py-1 text-xs '>Stocks left: {prop.stocks}</p>
+                                            <p className='text-zinc-50 mt-4 bg-green-600 rounded-full w-fit px-3 py-1 text-xs '>Owned: {prop.purchasedCount} / {prop.limit}</p>
+                                            </div>
+
+                                            <div className=' flex items-center justify-between'>
+
+                                                <div className=' flex flex-col gap-1 text-sm'>
+                                                    <p>Total Amount:</p>
+                                                    <p className=' text-green-500'>Php {(prop.price * quantity).toLocaleString()}</p>
+
+                                                </div>
+
+                                                 <button onClick={buyNft} disabled={loading} className=' primary-btn px-6 w-fit mt-4 flex items-center justify-center gap-2'>
                                                 {loading === true && (
                                                 <span className="loader"></span>
                                                 )}
                                                 Buy now</button>
+                                            </div>
 
                                         </div>
                                     </div>

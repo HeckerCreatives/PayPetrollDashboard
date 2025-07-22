@@ -1,17 +1,5 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetDescription,
-    SheetFooter,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet"
-import { Input } from '@/components/ui/input';
-import { Slider } from "@/components/ui/slider"
 import Trainercard from '@/components/common/Trainercard';
 import trainertabStore from '@/zustand/trainertab';
 import Petcard from '@/components/common/Petcard';
@@ -23,6 +11,7 @@ import Petloadingcard from '@/components/common/Petcardloading';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import NftStoreCard from '@/components/common/NftStoreCard';
 import refreshStore from '@/zustand/refresh';
+
 
 
 interface Store {
@@ -53,22 +42,9 @@ export interface NFT {
   stocks: number;
   limit: number;
   isActive: boolean
+  purchasedCount: number
 }
 
-
-const items = [
-    { id: 1, content: '1', img:'/assets/Dog1.png' },
-    { id: 2, content: '2', img:'/assets/Bird1.png' },
-    { id: 3, content: '3', img:'/assets/Cat1.png' },
-    { id: 4, content: '4', img:'/assets/Fish1.png' },
-    { id: 5, content: '5', img:'/assets/Dog2.png' },
-    { id: 6, content: '6', img:'/assets/Bird2.png' },
-    { id: 7, content: '7', img:'/assets/Cat2.png' },
-    { id: 8, content: '8', img:'/assets/Fish2.png' },
-    { id: 9, content: '9', img:'/assets/Dog3.png' },
-    { id: 10, content: '10', img:'/assets/Bird3.png' },
-    { id: 11, content: '10', img:'/assets/cat3.png' },
-  ];
 
 export default function Store() {
     const {tab, setTab, clearTab} = trainertabStore()
@@ -195,7 +171,7 @@ export default function Store() {
                     ) : (
                         <>
                         {filteredNft.map((item, index) => (
-                          <NftStoreCard id={item.id} name={item.name} duration={item.duration} profit={item.profit} price={item.price} stocks={item.stocks}/>
+                          <NftStoreCard id={item.id} name={item.name} duration={item.duration} profit={item.profit} price={item.price} stocks={item.stocks} limit={item.limit}  purchasedCount={item.purchasedCount}/>
                             ))}
                         </>
                     )}

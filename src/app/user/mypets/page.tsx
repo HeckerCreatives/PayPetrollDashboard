@@ -14,18 +14,7 @@ export default function page() {
        <Mypets/>
        {/* <ClaimHistory/>
        <DailyClaimHistory/> */}
-       <Tabs defaultValue="Claim" className="w-full mt-8">
-               <TabsList className=' bg-white'>
-                   <TabsTrigger value="Claim">Earning Claim History</TabsTrigger>
-                   <TabsTrigger value="Daily">Game Claim History</TabsTrigger>
-               </TabsList>
-               <TabsContent value="Claim">
-                   <ClaimHistory/>
-               </TabsContent>
-               <TabsContent value="Daily">
-                   <DailyClaimHistory/>
-               </TabsContent>
-               </Tabs>
+      
     </Playerlayout>
   )
 }
