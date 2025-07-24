@@ -111,8 +111,8 @@ export default function NftStoreCard(prop: Props) {
     const bgImage = (data: string) => {
         if(data.toLowerCase() === 'iron puppy'){
             return '/nft/ironpuppy.jpg'
-        }else if(data === 'Shiba Ihulk'){
-            return '/nft/shibahulk.jpg'
+        }else if(data === 'Shiba Hulk'){
+            return '/nft/shibahulk.png'
         }else if(data === 'Captain Hachi'){
             return '/nft/captainhachi.jpg'
         }else if(data === 'Thor Inu'){
@@ -227,7 +227,7 @@ export default function NftStoreCard(prop: Props) {
 
                                             <div className=' flex items-center gap-2 flex-wrap'>
                                             <p className='text-zinc-50 mt-4 bg-red-600 rounded-full w-fit px-3 py-1 text-xs '>Stocks left: {prop.stocks}</p>
-                                            <p className='text-zinc-50 mt-4 bg-green-600 rounded-full w-fit px-3 py-1 text-xs '>Owned: {prop.purchasedCount} / {prop.limit}</p>
+                                            <p className='text-zinc-50 mt-4 bg-green-600 rounded-full w-fit px-3 py-1 text-xs '>Owned: {prop.purchasedCount}</p>
                                             </div>
 
                                             <div className=' flex items-center justify-between'>

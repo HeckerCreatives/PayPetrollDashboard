@@ -122,8 +122,8 @@ export default function OwnNftCard(prop: Props) {
    const bgImage = (data: string) => {
         if(data.toLowerCase() === 'iron puppy'){
             return '/nft/ironpuppy.jpg'
-        }else if(data === 'Shiba Ihulk'){
-            return '/nft/shibahulk.jpg'
+        }else if(data === 'Shiba Hulk'){
+            return '/nft/shibahulk.png'
         }else if(data === 'Captain Hachi'){
             return '/nft/captainhachi.jpg'
         }else if(data === 'Thor Inu'){

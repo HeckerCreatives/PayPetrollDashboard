@@ -53,6 +53,7 @@ export interface NFT {
   stocks: number;
   limit: number;
   isActive: boolean
+  timesbought: number
 }
 
 
@@ -175,7 +176,7 @@ export default function Complan() {
               
                 
               {nft.map((item, index) => (
-                <NftComplanCard key={item.id} id={item.id} name={item.name} duration={item.duration} profit={item.profit} stocks={item.stocks} price={item.price} limit={item.limit} isActive={item.isActive}/>
+                <NftComplanCard key={item.id} id={item.id} name={item.name} duration={item.duration} profit={item.profit} stocks={item.stocks} price={item.price} limit={item.limit} isActive={item.isActive} sold={item.timesbought}/>
               ))}
                
 

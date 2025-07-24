@@ -21,6 +21,7 @@ type Props = {
     price: number,
     limit: number,
     isActive: boolean
+    sold: number
 }
 
 export default function NftComplanCard(prop: Props) {
@@ -133,8 +134,8 @@ export default function NftComplanCard(prop: Props) {
     const bgImage = (data: string) => {
         if(data.toLowerCase() === 'iron puppy'){
             return '/nft/ironpuppy.jpg'
-        }else if(data === 'Shiba Ihulk'){
-            return '/nft/shibahulk.jpg'
+        }else if(data === 'Shiba Hulk'){
+            return '/nft/shibahulk.png'
         }else if(data === 'Captain Hachi'){
             return '/nft/captainhachi.jpg'
         }else if(data === 'Thor Inu'){
@@ -206,10 +207,7 @@ export default function NftComplanCard(prop: Props) {
                         {errors.limit && <p className='text-[.6em] text-red-500'>{errors.limit.message}</p>}
 
 
-                       
-
-
-                     
+                        <p className=' text-sm text-black mt-4'>Stocks Sold: {prop.sold.toLocaleString()}</p>
 
 
                         <button className=' primary-btn w-full mt-4'>Save</button>
