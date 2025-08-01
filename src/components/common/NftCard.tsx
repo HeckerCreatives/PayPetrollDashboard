@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form'
 import { complanSchema, NftComplan, nftcomplanSchema, SaveComplan } from '@/validitions/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Switch } from '../ui/switch'
+import { nftImage } from '@/helpers/assets'
 
 type Props = {
     id: string
@@ -131,19 +132,6 @@ export default function NftComplanCard(prop: Props) {
 
     const img = petimg.find((item) => item.id === prop.name)
 
-    const bgImage = (data: string) => {
-        if(data.toLowerCase() === 'iron puppy'){
-            return '/nft/ironpuppy.jpg'
-        }else if(data === 'Shiba Hulk'){
-            return '/nft/shibahulk.png'
-        }else if(data === 'Captain Hachi'){
-            return '/nft/captainhachi.jpg'
-        }else if(data === 'Thor Inu'){
-            return '/nft/thorinu.jpg'
-        } else {
-            return '/nft/shibathanos.jpg'
-        }
-    }
 
 
     useEffect(() => {
@@ -166,11 +154,8 @@ export default function NftComplanCard(prop: Props) {
                    
 
                         <div className=' group-hover:bg-gray-200 transition-all duration-300 w-full aspect-video  shadow-sm flex items-center justify-center relative bg-white p-4'
-                        
                         >
-                            <img src={bgImage(prop.name)} alt='store' width={200} height={150}  className=' group-hover:scale-110 transition-all duration-300'/>
-
-
+                            <img src={nftImage(prop.name)} alt='store' width={200} height={150}  className=' group-hover:scale-110 transition-all duration-300'/>
                         </div>
 
                        <form onSubmit={handleSubmit(onsubmit)} action="" className=' p-4'>

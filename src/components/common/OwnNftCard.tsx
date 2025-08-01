@@ -29,6 +29,7 @@ import {
   } from "@/components/ui/dialog"
 import { Clock } from 'lucide-react'
 import Countdown from 'react-countdown';
+import { nftImage } from '@/helpers/assets'
 
   
 
@@ -119,20 +120,6 @@ export default function OwnNftCard(prop: Props) {
         }
     }
 
-   const bgImage = (data: string) => {
-        if(data.toLowerCase() === 'iron puppy'){
-            return '/nft/ironpuppy.jpg'
-        }else if(data === 'Shiba Hulk'){
-            return '/nft/shibahulk.png'
-        }else if(data === 'Captain Hachi'){
-            return '/nft/captainhachi.jpg'
-        }else if(data === 'Thor Inu'){
-            return '/nft/thorinu.jpg'
-        } else {
-            return '/nft/shibathanos.jpg'
-        }
-    }
-
     
    
     
@@ -146,7 +133,7 @@ export default function OwnNftCard(prop: Props) {
                 {/* <CircularProgress value={isNaN(percentage) ? 0 : percentage} /> */}
 
                 <div className=' flex items-center justify-center'>
-                    <img src={bgImage(prop.name)} alt='store' width={120} height={120}  className=' group-hover:scale-110 transition-all duration-300'/>
+                    <img src={nftImage(prop.name)} alt='store' width={120} height={120}  className=' group-hover:scale-110 transition-all duration-300'/>
                 </div>
             </div>
         

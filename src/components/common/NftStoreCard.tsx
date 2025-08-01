@@ -19,6 +19,7 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import refreshStore from '@/zustand/refresh'
+import { nftImage } from '@/helpers/assets'
 
 type Props = {
     id: string
@@ -108,19 +109,6 @@ export default function NftStoreCard(prop: Props) {
         }
     }
 
-    const bgImage = (data: string) => {
-        if(data.toLowerCase() === 'iron puppy'){
-            return '/nft/ironpuppy.jpg'
-        }else if(data === 'Shiba Hulk'){
-            return '/nft/shibahulk.png'
-        }else if(data === 'Captain Hachi'){
-            return '/nft/captainhachi.jpg'
-        }else if(data === 'Thor Inu'){
-            return '/nft/thorinu.jpg'
-        } else {
-            return '/nft/shibathanos.jpg'
-        }
-    }
 
     // const canBuy = async () => {
     //     setLoading(true)
@@ -190,7 +178,7 @@ export default function NftStoreCard(prop: Props) {
                         <div className=' group-hover:bg-gray-200 transition-all duration-300 w-full aspect-square  shadow-sm flex items-center justify-center relative bg-white p-6'
                         
                         >
-                            <img src={bgImage(prop.name)} alt='store' width={200} height={200}  className=' group-hover:scale-110 transition-all duration-300'/>
+                            <img src={nftImage(prop.name)} alt='store' width={200} height={200}  className=' group-hover:scale-110 transition-all duration-300'/>
                         </div>
 
                         <div className=' w-full flex items-center justify-between text-sm py-2'>
@@ -205,7 +193,7 @@ export default function NftStoreCard(prop: Props) {
                                 <div className=' w-full max-w-[1040px] h-full flex items-center justify-center gap-4'>
                                     <div className=' w-full h-full max-w-[1020px] flex md:flex-row flex-col gap-4'>
                                         <div className=' bg-gray-100 flex items-center justify-center h-full aspect-video lg:aspect-square'>
-                                            <img src={bgImage(prop.name)} alt='store'  className=' h-full group-hover:scale-110 transition-all duration-300'/>
+                                            <img src={nftImage(prop.name)} alt='store'  className=' h-full group-hover:scale-110 transition-all duration-300'/>
                                         </div>
 
                                         <div className=' w-full lg:w-[40%] flex flex-col justify-end gap-2'>
