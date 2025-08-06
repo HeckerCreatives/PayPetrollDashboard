@@ -19,14 +19,14 @@ interface IngameEntry {
     value: number | string[];
 }
 
-type TierType = 'Free' | 'Novice' | 'Expert' | 'Elite';
+type TierType = 'Free' | 'Novice' | 'Expert' | 'Elite' | 'Ace of Spade' | 'Ace of Heart';
 
 type TierEntry = {
   type: 'tierentry';
   value: TierType[];
 };
 
-const TIER_OPTIONS: TierType[] = ['Free', 'Novice', 'Expert', 'Elite'];
+const TIER_OPTIONS: TierType[] = ['Free', 'Novice', 'Expert', 'Elite', 'Ace of Spade', 'Ace of Heart'];
 
 
 export default function Maintenance() {
