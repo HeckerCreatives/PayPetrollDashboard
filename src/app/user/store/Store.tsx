@@ -29,6 +29,8 @@ interface Pets {
     duration: number,
     profit: number
     b1t1: string
+  isActive: boolean
+
 }
 
 export interface NFT {
@@ -107,6 +109,7 @@ export default function Store() {
     },[refresh])
 
     const filteredNft = nft.filter((item) => item.isActive === true)
+    const filteredPets = findPets?.trainers.filter((item) => item.isActive === true)
 
 
 
@@ -128,12 +131,12 @@ export default function Store() {
                     <Trainercard img={'/assets/Trainer1.png'} name={'Novice'} pets={5} tab={''} rank={'Novice'} disable={false}/>
                     <Trainercard img={'/assets/Trainer2.png'} name={'Expert '} pets={5} tab={''} rank={'Expert'} disable={false}/>
                     <Trainercard img={'/assets/Trainer3.png'} name={'Elite Trainer'} pets={5} tab={''} rank={'Elite'} disable={false}/>
-                    <Trainercard img={'/assets/Trainer4.png'} name={'Spade Trainer'} pets={5} tab={''} rank={''} disable={true}/>
-                    <Trainercard img={'/assets/Trainer5.png'} name={'Heart Trainer'} pets={5} tab={''} rank={''} disable={true}/>
+                    <Trainercard img={'/assets/Trainer4.png'} name={'Spade Trainer'} pets={5} tab={''} rank={'Ace of Spade'} disable={false}/>
+                    <Trainercard img={'/assets/Trainer5.png'} name={'Heart Trainer'} pets={5} tab={''} rank={'Ace of Heart'} disable={false}/>
                 </div>
 
-                <h2 className=' text-sm font-medium mt-4 text-white'>Pets</h2>
-                <div className=' w-full h-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 '>
+                {/* <h2 className=' text-sm font-medium mt-4 text-white'>Pets</h2> */}
+                <div className=' w-full h-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-12 '>
                   
 
                     {loading === true ? (
@@ -145,15 +148,23 @@ export default function Store() {
                             
                     ) : (
                         <>
-                        {findPets?.trainers.map((item, index) => (
+                        {filteredPets?.map((item, index) => (
                                 <Petcard key={index} name={item.name} id={item.id} animal={item.animal} rank={item.rank} min={item.min} max={item.max} duration={item.duration} profit={item.profit} b1t1={item.b1t1}/>
                             ))}
                         </>
                     )}
 
+                   
+
                     
 
                 </div>
+
+                 {filteredPets?.length === 0 && (
+                      <div className=' flex items-center justify-center w-full py-16'>
+                        <p className=' text-zinc-300'>No pets available yet.</p>
+                      </div>
+                    )}
             </TabsContent>
             <TabsContent value="nft">
               

@@ -196,7 +196,6 @@ export default function Inventory() {
             setRefresh('false');
             setOpen(false)
             setLoading(false);
-            window.location.reload()
         }
     } catch (error) {
         setRefresh('true');
@@ -327,7 +326,7 @@ export default function Inventory() {
               {list.map((item, index) => (
                 <TableRow key={item.trainer}>
                 <TableCell>{item.type}</TableCell>
-                <TableCell>{petRanks(item.rank)}</TableCell>
+                <TableCell>{item.rank}</TableCell>
 
                 <TableCell className=' '>
                   <div className='flex flex-col'>

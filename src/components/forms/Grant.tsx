@@ -88,7 +88,7 @@ export default function GrantForm(data: Props) {
 
 
   return (
-    <Dialog >
+    <Dialog open={open} onOpenChange={setOpen}>
     <DialogTrigger className=' text-[.7rem] bg-green-500 text-white py-1 px-3 rounded-md flex items-center gap-1'><Box size={15}/>Grant</DialogTrigger>
     <DialogContent>
       <DialogHeader>

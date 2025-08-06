@@ -64,6 +64,8 @@ export const complanSchema = z.object({
         b1t1: z.boolean(),
         max: z.number().min(1, 'Enter a maximum value'),
         min: z.number().min(1, 'Enter a minimum value'),
+        isActive: z.boolean().optional()
+
     }).refine((data) => data.min <= data.max, {
         message: 'Minimum value cannot be greater than maximum value',
         path: ['min'], // Specify the path where the error will show

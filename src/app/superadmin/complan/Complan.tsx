@@ -39,7 +39,9 @@ interface Pets {
     max: number,
     duration: number,
     profit: number,
-    b1t1: string
+    b1t1: string,
+  isActive: boolean
+
 }
 
 export interface NFT {
@@ -153,8 +155,8 @@ export default function Complan() {
                 <Trainercard img={'/assets/Trainer1.png'} name={'Novice'} pets={5} tab={''} rank={'Novice'} disable={false}/>
                 <Trainercard img={'/assets/Trainer2.png'} name={'Expert'} pets={5} tab={''} rank={'Expert'} disable={false}/>
                 <Trainercard img={'/assets/Trainer3.png'} name={'Elite Trainer'} pets={5} tab={''} rank={'Elite'} disable={false}/>
-                <Trainercard img={'/assets/Trainer4.png'} name={'Spade Trainer'} pets={5} tab={''} rank={''} disable={true}/>
-                <Trainercard img={'/assets/Trainer5.png'} name={'Heart Trainer'} pets={5} tab={''} rank={''} disable={true}/>
+                <Trainercard img={'/assets/Trainer4.png'} name={'Spade Trainer'} pets={5} tab={''} rank={'Ace of Spade'} disable={false}/>
+                <Trainercard img={'/assets/Trainer5.png'} name={'Heart Trainer'} pets={5} tab={''} rank={'Ace of Heart'} disable={false}/>
             </div>
 
             <h2 className=' text-sm font-medium mt-4 text-white'>Pets</h2>
@@ -162,7 +164,7 @@ export default function Complan() {
               
                 
               {findPets?.trainers.map((item, index) => (
-                    <Complancard key={index} name={item.name} id={item.id} animal={item.animal} rank={item.rank} min={item.min} max={item.max} duration={item.duration} profit={item.profit * 100} b1t1={item.b1t1}/>
+                    <Complancard key={index} name={item.name} id={item.id} animal={item.animal} rank={item.rank} min={item.min} max={item.max} duration={item.duration} profit={item.profit * 100} b1t1={item.b1t1} isActive={item.isActive}/>
               ))}
                
 

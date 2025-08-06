@@ -21,7 +21,8 @@ type Props = {
     max: number,
     duration: number,
     profit: number,
-    b1t1: string
+    b1t1: string,
+    isActive: boolean
 }
 
 export default function Complancard(prop: Props) {
@@ -50,6 +51,7 @@ export default function Complancard(prop: Props) {
              min: prop.min,
              max: prop.max,
              b1t1: prop.b1t1 === '0' ? false : true,
+             isActive: prop.isActive
         })
     });
 
@@ -72,7 +74,8 @@ export default function Complancard(prop: Props) {
                 duration: data.duration,
                 min: data.min,
                 max: data.max,
-                b1t1: data.b1t1 ? '1' : '0'
+                b1t1: data.b1t1 ? '1' : '0',
+                isActive: data.isActive
             }, {
                 withCredentials: true,
                 headers: {
@@ -144,6 +147,7 @@ export default function Complancard(prop: Props) {
             min: prop.min,
             max: prop.max,
             b1t1: prop.b1t1 === '0' ? false : true,
+            isActive: prop.isActive
         })
     },[prop])
 
@@ -164,6 +168,14 @@ export default function Complancard(prop: Props) {
                         </div>
 
                        <form onSubmit={handleSubmit(onsubmit)} action="" className=' p-4'>
+
+                         <div className=' w-full flex justify-between mb-4'>
+                             <p className=' text-sm font-medium'>Available on Store</p>
+                             <Switch 
+                              checked={watch('isActive')} 
+                             onCheckedChange={(value) => {setValue('isActive', value), setChecked(value)}} 
+                             />
+                         </div>
                         
                         <div className=' w-full flex justify-between'>
                             <p className=' text-sm font-medium'>Buy one take one</p>

@@ -16,6 +16,18 @@ export const petimg = [
     { id: 'Rex', img:'/assets/Dog3.png' },
     { id: 'Tank', img:'/assets/Fish3.png' },
     { id: 'Sugar', img:'/assets/Ham3.png' },
+
+    { id: 'Jet', img:'/assets/Bird4.png' },
+    { id: 'Milo', img:'/assets/Cat4.png' },
+    { id: 'Zoey', img:'/assets/Dog4.png' },
+    { id: 'Blob', img:'/assets/Fish4.png' },
+    { id: 'Mochi', img:'/assets/Ham4.png' },
+
+    { id: 'Tango', img:'/assets/Bird5.png' },
+    { id: 'Leo', img:'/assets/Cat5.png' },
+    { id: 'Ace', img:'/assets/Dog5.png' },
+    { id: 'Jelly', img:'/assets/Fish5.png' },
+    { id: 'Spiky', img:'/assets/Ham5.png' },
     
 ];
 
