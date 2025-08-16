@@ -78,7 +78,7 @@ export default function GameHistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [refresh]);
+      }, [refresh, currentpage]);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
