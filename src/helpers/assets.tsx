@@ -19,5 +19,16 @@ export const nftImage = (data: string) => {
         return '/nft/doctor_puppy.png'
     }else if (data === 'Captain Inu') {
         return '/nft/captain_inu.png'
+    }else if (data === 'DOG POOL') {
+        return '/nft/dogpool.jpg'
+    }else if (data === 'Hachi Fury') {
+        return '/nft/hachifury.jpg'
+    }else if (data === 'Shibarine') {
+        return '/nft/shibarine.jpg'
+    }else if (data === 'Magnedog') {
+        return '/nft/magnedog.jpg'
+    }else if (data === 'Shibaclops') {
+        return '/nft/shibaclops.jpg'
     }
+    
 }

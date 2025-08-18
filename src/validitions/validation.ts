@@ -76,7 +76,7 @@ export const nftcomplanSchema = z.object({
     duration: z.number().min(1, 'Duartion is required'),
     stocks: z.number().min(0, 'Stocks is required'),
     price: z.number().min(1, 'Price is required.'),
-    limit: z.number().min(1, 'Limit is required.'),
+    limit: z.number().min(0, 'Limit is required.'),
     isActive: z.boolean().optional()
     })
 
