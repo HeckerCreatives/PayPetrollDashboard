@@ -130,10 +130,6 @@ export default function NftComplanCard(prop: Props) {
         }
     };
 
-    const img = petimg.find((item) => item.id === prop.name)
-
-
-
     useEffect(() => {
         reset({
          

@@ -29,6 +29,16 @@ export const nftImage = (data: string) => {
         return '/nft/magnedog.jpg'
     }else if (data === 'Shibaclops') {
         return '/nft/shibaclops.jpg'
+    }else if (data === 'ANT DOG') {
+        return '/nft/antdog.png'
+    }else if (data === 'LOCHI') {
+        return '/nft/lochi.png'
+    }else if (data === 'Hachi Eye') {
+        return '/nft/hachieye.png'
+    }else if (data === 'Droog') {
+        return '/nft/droog.png'
+    }else if (data === 'Dogmora') {
+        return '/nft/dogmora.png'
     }
     
 }

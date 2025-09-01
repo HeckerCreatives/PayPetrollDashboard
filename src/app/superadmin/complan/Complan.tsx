@@ -59,22 +59,6 @@ export interface NFT {
 }
 
 
-
-
-const items = [
-    { id: 1, content: '1', img:'/assets/Dog1.png' },
-    { id: 2, content: '2', img:'/assets/Bird1.png' },
-    { id: 3, content: '3', img:'/assets/Cat1.png' },
-    { id: 4, content: '4', img:'/assets/Fish1.png' },
-    { id: 5, content: '5', img:'/assets/Dog2.png' },
-    { id: 6, content: '6', img:'/assets/Bird2.png' },
-    { id: 7, content: '7', img:'/assets/Cat2.png' },
-    { id: 8, content: '8', img:'/assets/Fish2.png' },
-    { id: 9, content: '9', img:'/assets/Dog3.png' },
-    { id: 10, content: '10', img:'/assets/Bird3.png' },
-    { id: 11, content: '10', img:'/assets/cat3.png' },
-  ];
-
 export default function Complan() {
     const {tab, setTab, clearTab} = trainertabStore()
     const { loading, setLoading, clearLoading } = loadingStore()
