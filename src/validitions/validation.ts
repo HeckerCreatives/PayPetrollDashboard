@@ -21,7 +21,7 @@ export const paymentFormSchema = z.object({
     accountNumber: z.string().nonempty('Account number is required'),
 
     //.min(10, 'Account number must be at least 10 digits')
-    amount: z.number().min(500, 'Minimum withdraw is 500 php'),
+    amount: z.number().min(0, 'Enter an amount'),
  });
 
 

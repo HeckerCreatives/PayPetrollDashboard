@@ -198,7 +198,7 @@ export default function Withdrawform( prop: Props) {
         {prop.wallet === 'Commission Wallet Balance' ? (
 
           <>
-          {payment === 'gcash' ? (
+          {payment === 'gcash' && (
               <Select onValueChange={(value) => setValue('amount',  Number(value))}>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select amount" />
@@ -215,7 +215,7 @@ export default function Withdrawform( prop: Props) {
             </Select>
         // <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
 
-          ) : (
+          )}  {payment === 'gotyme' &&   (
             <Select onValueChange={(value) => setValue('amount',  Number(value))}>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select amount" />
@@ -240,9 +240,72 @@ export default function Withdrawform( prop: Props) {
               </SelectContent>
             </Select>
           )}
-         
 
-        
+          {payment === 'bdo' &&   (
+            <Select onValueChange={(value) => setValue('amount',  Number(value))}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select amount" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="5000">₱5,000</SelectItem>
+                <SelectItem value="10000">₱10,000</SelectItem>
+                <SelectItem value="15000">₱15,000</SelectItem>
+                <SelectItem value="20000">₱20,000</SelectItem>
+                <SelectItem value="30000">₱30,000</SelectItem>
+                <SelectItem value="50000">₱50,000</SelectItem>
+                {/* <SelectItem value="70000">₱70,000</SelectItem>
+                <SelectItem value="100000">₱100,000</SelectItem>
+                <SelectItem value="150000">₱150,000</SelectItem>
+                <SelectItem value="200000">₱200,000</SelectItem>
+                <SelectItem value="300000">₱300,000</SelectItem>
+                <SelectItem value="500000">₱500,000</SelectItem> */}
+              </SelectContent>
+            </Select>
+          )}
+
+           {payment === 'bpi' &&   (
+            <Select onValueChange={(value) => setValue('amount',  Number(value))}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select amount" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="5000">₱5,000</SelectItem>
+                <SelectItem value="10000">₱10,000</SelectItem>
+                <SelectItem value="15000">₱15,000</SelectItem>
+                <SelectItem value="20000">₱20,000</SelectItem>
+                <SelectItem value="30000">₱30,000</SelectItem>
+                <SelectItem value="50000">₱50,000</SelectItem>
+                {/* <SelectItem value="70000">₱70,000</SelectItem>
+                <SelectItem value="100000">₱100,000</SelectItem>
+                <SelectItem value="150000">₱150,000</SelectItem>
+                <SelectItem value="200000">₱200,000</SelectItem>
+                <SelectItem value="300000">₱300,000</SelectItem>
+                <SelectItem value="500000">₱500,000</SelectItem> */}
+              </SelectContent>
+            </Select>
+          )}
+
+          {payment === 'maya' &&   (
+            <Select onValueChange={(value) => setValue('amount',  Number(value))}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select amount" />
+              </SelectTrigger>
+              <SelectContent>
+                 <SelectItem value="500">₱500</SelectItem>
+                  <SelectItem value="1000">₱1,000</SelectItem>
+                  <SelectItem value="2000">₱2,000</SelectItem>
+                  <SelectItem value="3000">₱3,000</SelectItem>
+                  <SelectItem value="5000">₱5,000</SelectItem>
+              </SelectContent>
+            </Select>
+          )}
+
+
+          {/* {(payment !== 'gcash' || 'gotyme') && (
+             <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
+
+          )} */}
+
           </>
 
           
