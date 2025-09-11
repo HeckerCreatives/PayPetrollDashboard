@@ -49,7 +49,7 @@ export default function Complancard(prop: Props) {
              duration: prop.duration,
              profit: prop.profit,
              min: prop.min,
-             max: prop.max,
+            //  max: prop.max,
              b1t1: prop.b1t1 === '0' ? false : true,
              isActive: prop.isActive
         })
@@ -60,7 +60,7 @@ export default function Complancard(prop: Props) {
           duration: prop.duration,
           profit: prop.profit * 100, // Convert profit to percentage
           min: prop.min,
-          max: prop.max,
+        //   max: prop.max,
         });
       }, [prop, reset]);
 
@@ -73,7 +73,7 @@ export default function Complancard(prop: Props) {
                 profit: data.profit / 100,
                 duration: data.duration,
                 min: data.min,
-                max: data.max,
+                max: prop.max,
                 b1t1: data.b1t1 ? '1' : '0',
                 isActive: data.isActive
             }, {
@@ -145,7 +145,7 @@ export default function Complancard(prop: Props) {
             duration: prop.duration,
             profit: prop.profit,
             min: prop.min,
-            max: prop.max,
+            // max: prop.max,
             b1t1: prop.b1t1 === '0' ? false : true,
             isActive: prop.isActive
         })
@@ -203,9 +203,9 @@ export default function Complancard(prop: Props) {
                         {errors.min && <p className='text-[.6em] text-red-500'>{errors.min.message}</p>}
 
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Maximum (php)</label>
+                        {/* <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Maximum (php)</label>
                         <Input  type='number' className=' text-xs' {...register('max', {valueAsNumber: true})}/>
-                        {errors.max && <p className='text-[.6em] text-red-500'>{errors.max.message}</p>}
+                        {errors.max && <p className='text-[.6em] text-red-500'>{errors.max.message}</p>} */}
 
 
                         <button className=' primary-btn w-full mt-4'>Save</button>
