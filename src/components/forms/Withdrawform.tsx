@@ -153,13 +153,29 @@ export default function Withdrawform( prop: Props) {
             >
               <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem value="gcash" id="gcash" />
-                <img src="/gcash.png" width={30} alt="GCash logo" />
+                {/* <img src="/gcash.png" width={30} alt="GCash logo" /> */}
                 <Label htmlFor="gcash">GCash</Label>
               </div>
               <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem value="gotyme" id="gotyme" />
-                <img src="/gotyme.png" width={30} alt="GoTyme logo" />
+                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
                 <Label htmlFor="gotyme">GoTyme</Label>
+              </div>
+
+              <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
+                <RadioGroupItem value="bdo" id="bdo" />
+                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
+                <Label htmlFor="bdo">BDO</Label>
+              </div>
+               <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
+                <RadioGroupItem value="bpi" id="bpi" />
+                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
+                <Label htmlFor="bpi">BPI</Label>
+              </div>
+               <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
+                <RadioGroupItem value="maya" id="maya" />
+                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
+                <Label htmlFor="maya">Maya</Label>
               </div>
             </RadioGroup>
           )}
