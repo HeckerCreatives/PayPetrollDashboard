@@ -164,63 +164,70 @@ export default function Withdrawform( prop: Props) {
 
               <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem value="bdo" id="bdo" />
-                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
                 <Label htmlFor="bdo">BDO</Label>
               </div>
                <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem value="bpi" id="bpi" />
-                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
                 <Label htmlFor="bpi">BPI</Label>
               </div>
                <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem value="maya" id="maya" />
-                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
                 <Label htmlFor="maya">Maya</Label>
               </div>
 
-               <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
+               {/* <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem disabled value="eastwest" id="eastwest" />
-                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
                 <Label htmlFor="eastwest">Eastwest</Label>
                 <p className=' text-[.6rem] text-red-500'>(Coming soon!)</p>
               </div>
 
                <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem disabled value="securitybank" id="securitybank" />
-                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
                 <Label htmlFor="securitybank">Security Bank</Label>
                 <p className=' text-[.6rem] text-red-500'>(Coming soon!)</p>
               </div>
 
                <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem disabled value="metrobank" id="metrobank" />
-                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
                 <Label htmlFor="metrobank">Metro Bank</Label>
                 <p className=' text-[.6rem] text-red-500'>(Coming soon!)</p>
               </div>
 
                <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem disabled value="unionbank" id="unionbank" />
-                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
                 <Label htmlFor="unionbank">Unionbank</Label>
                 <p className=' text-[.6rem] text-red-500'>(Coming soon!)</p>
               </div>
                <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem disabled value="cimb" id="cimb" />
-                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
                 <Label htmlFor="cimb">CIMB</Label>
                 <p className=' text-[.6rem] text-red-500'>(Coming soon!)</p>
               </div>
 
                <div className="flex items-center space-x-2 bg-zinc-100 p-2 rounded-md">
                 <RadioGroupItem disabled value="komo" id="komo" />
-                {/* <img src="/gotyme.png" width={30} alt="GoTyme logo" /> */}
                 <Label htmlFor="komo">KOMO</Label>
                 <p className=' text-[.6rem] text-red-500'>(Coming soon!)</p>
-              </div>
+              </div> */}
             </RadioGroup>
           )}
         />
+
+        <label htmlFor="type" className=' label mt-2'>Payment Method <span className=' text-xs text-red-500'>(Coming Soon!)</span></label>
+        <Select >
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Payment Method (Coming Soon!)" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Eastwest">Eastwest</SelectItem>
+            <SelectItem value="Security Bank">Security Bank</SelectItem>
+            <SelectItem value="Metro Bank">Metro Bank</SelectItem>
+            <SelectItem value="Unionbank">Unionbank</SelectItem>
+            <SelectItem value="CIMB">CIMB</SelectItem>
+            <SelectItem value="KOMO">KOMO</SelectItem>
+      
+          </SelectContent>
+        </Select>
         {errors.paymentMethod && <span className="error">{errors.paymentMethod.message}</span>}
 
 
