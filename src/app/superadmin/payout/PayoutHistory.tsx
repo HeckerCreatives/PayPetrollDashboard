@@ -108,6 +108,7 @@ export default function Payouthistory() {
 
   const [filterhistory, setFilterhistory] = useState('')
   const [searchpayouthistory, setSearchpayouthistory] = useState('')
+  const [date, setDate] = useState('')
 
 
 
@@ -117,7 +118,7 @@ export default function Payouthistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchtype=${filterhistory}&search=${searchpayouthistory}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchtype=${filterhistory}&search=${searchpayouthistory}&date=${date}`,
               { withCredentials: true }
             );
     
@@ -136,7 +137,7 @@ export default function Payouthistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage2, refresh, tab, searchpayouthistory]);
+      }, [currentpage2, refresh, tab, searchpayouthistory, date]);
 
       useEffect(() => {
         setLoading(true);
@@ -144,7 +145,7 @@ export default function Payouthistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayoutlist?page=${currentpage}&limit=10&type=${tab}&searchtype=${filter}&search=${searchpayout}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayoutlist?page=${currentpage}&limit=10&type=${tab}&searchtype=${filter}&search=${searchpayout}&date=${date}`,
               { withCredentials: true }
             );
     
@@ -163,7 +164,7 @@ export default function Payouthistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage, refresh, tab, searchpayout]);
+      }, [currentpage, refresh, tab, searchpayout, date]);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
@@ -356,7 +357,7 @@ export default function Payouthistory() {
 
         {/* <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/> */}
         </div>
-            <div className=' flex items-center gap-2 '>
+            <div className=' flex items-center flex-wrap gap-2 '>
               <Select value={filter} onValueChange={setFilter}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select Filter" />
@@ -388,7 +389,10 @@ export default function Payouthistory() {
             )}
 
 
-            <Button onClick={() => {setFilter(''), setSearchpayout('')}}><RefreshCw size={15}/></Button>
+            <Input type='date' onChange={(e) => setDate(e.target.value)} className=' w-fit'/>
+
+
+            <Button onClick={() => {setFilter(''), setSearchpayout(''), setDate('')}}><RefreshCw size={15}/></Button>
 
           </div>
             <Table>
@@ -508,7 +512,7 @@ export default function Payouthistory() {
         <p className=' text-sm font-medium'>Game Payout History</p>
         </div>
 
-         <div className=' flex items-center gap-2 '>
+         <div className=' flex items-center flex-wrap gap-2 '>
               <Select value={filterhistory} onValueChange={setFilterhistory}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select Filter" />
@@ -542,7 +546,10 @@ export default function Payouthistory() {
             )}
 
 
-            <Button onClick={() => {setFilterhistory(''), setSearchpayouthistory('')}}><RefreshCw size={15}/></Button>
+             <Input type='date' onChange={(e) => setDate(e.target.value)} className=' w-fit'/>
+
+
+            <Button onClick={() => {setFilter(''), setSearchpayout(''), setDate('')}}><RefreshCw size={15}/></Button>
 
           </div>
             <Table>
@@ -619,7 +626,7 @@ export default function Payouthistory() {
         {/* <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/> */}
         </div>
 
-          <div className=' flex items-center gap-2 '>
+          <div className=' flex items-center flex-wrap gap-2 '>
               <Select value={filter} onValueChange={setFilter}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select Filter" />
@@ -651,8 +658,10 @@ export default function Payouthistory() {
               </Select>
             )}
 
+            <Input type='date' onChange={(e) => setDate(e.target.value)} className=' w-fit'/>
 
-            <Button onClick={() => {setFilter(''), setSearchpayout('')}}><RefreshCw size={15}/></Button>
+
+            <Button onClick={() => {setFilter(''), setSearchpayout(''), setDate('')}}><RefreshCw size={15}/></Button>
 
           </div>
 
@@ -772,7 +781,7 @@ export default function Payouthistory() {
         <p className=' text-sm font-medium'>ComissionPayout History</p>
         </div>
 
-        <div className=' flex items-center gap-2 '>
+        <div className=' flex items-center flex-wrap gap-2 '>
               <Select value={filterhistory} onValueChange={setFilterhistory}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select Filter" />
@@ -806,7 +815,10 @@ export default function Payouthistory() {
             )}
 
 
-            <Button onClick={() => {setFilterhistory(''), setSearchpayouthistory('')}}><RefreshCw size={15}/></Button>
+            <Input type='date' onChange={(e) => setDate(e.target.value)} className=' w-fit'/>
+
+
+            <Button onClick={() => {setFilter(''), setSearchpayout(''), setDate('')}}><RefreshCw size={15}/></Button>
 
           </div>
 
