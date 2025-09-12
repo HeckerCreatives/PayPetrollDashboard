@@ -109,6 +109,7 @@ export default function Payouthistory() {
   const [filterhistory, setFilterhistory] = useState('')
   const [searchpayouthistory, setSearchpayouthistory] = useState('')
   const [date, setDate] = useState('')
+  const [dateHistory, setDateHistory] = useState('')
 
 
 
@@ -118,7 +119,7 @@ export default function Payouthistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchtype=${filterhistory}&search=${searchpayouthistory}&date=${date}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchtype=${filterhistory}&search=${searchpayouthistory}&date=${dateHistory}`,
               { withCredentials: true }
             );
     
@@ -137,7 +138,7 @@ export default function Payouthistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage2, refresh, tab, searchpayouthistory, date]);
+      }, [currentpage2, refresh, tab, searchpayouthistory, dateHistory]);
 
       useEffect(() => {
         setLoading(true);
@@ -546,10 +547,10 @@ export default function Payouthistory() {
             )}
 
 
-             <Input type='date' onChange={(e) => setDate(e.target.value)} className=' w-fit'/>
+             <Input type='date' onChange={(e) => setDateHistory(e.target.value)} className=' w-fit'/>
 
 
-            <Button onClick={() => {setFilter(''), setSearchpayout(''), setDate('')}}><RefreshCw size={15}/></Button>
+            <Button onClick={() => {setFilter(''), setSearchpayout(''), setDateHistory('')}}><RefreshCw size={15}/></Button>
 
           </div>
             <Table>
@@ -815,10 +816,10 @@ export default function Payouthistory() {
             )}
 
 
-            <Input type='date' onChange={(e) => setDate(e.target.value)} className=' w-fit'/>
+            <Input type='date' onChange={(e) => setDateHistory(e.target.value)} className=' w-fit'/>
 
 
-            <Button onClick={() => {setFilter(''), setSearchpayout(''), setDate('')}}><RefreshCw size={15}/></Button>
+            <Button onClick={() => {setFilter(''), setSearchpayout(''), setDateHistory('')}}><RefreshCw size={15}/></Button>
 
           </div>
 
