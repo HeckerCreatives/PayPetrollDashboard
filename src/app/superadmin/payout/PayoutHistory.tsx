@@ -572,7 +572,7 @@ export default function Payouthistory() {
              <Input type='date' onChange={(e) => setDateHistory(e.target.value)} className=' w-fit'/>
 
 
-            <Button onClick={() => {setFilter(''), setSearchpayout(''), setDateHistory('')}}><RefreshCw size={15}/></Button>
+            <Button onClick={() => {setFilterhistory(''), setSearchpayouthistory(''), setDateHistory('')}}><RefreshCw size={15}/></Button>
 
           </div>
             <Table>
@@ -865,7 +865,7 @@ export default function Payouthistory() {
             <Input type='date' onChange={(e) => setDateHistory(e.target.value)} className=' w-fit'/>
 
 
-            <Button onClick={() => {setFilter(''), setSearchpayout(''), setDateHistory('')}}><RefreshCw size={15}/></Button>
+            <Button onClick={() => {setFilterhistory(''), setSearchpayouthistory(''), setDateHistory('')}}><RefreshCw size={15}/></Button>
 
           </div>
 
