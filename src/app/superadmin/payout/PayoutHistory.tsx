@@ -384,6 +384,17 @@ export default function Payouthistory() {
                 <SelectContent>
                   <SelectItem value="gcash">GCash</SelectItem>
                     <SelectItem value="gotyme">Gotyme</SelectItem>
+                    <SelectItem value="bdo">BDO</SelectItem>
+                    <SelectItem value="bpi">BPI</SelectItem>
+                    <SelectItem value="maya">Maya</SelectItem>
+
+                    
+                    <SelectItem value="eastwest">Eastwest</SelectItem>
+                    <SelectItem value="securitybank">Security Bank</SelectItem>
+                    <SelectItem value="metrobank">Metro Bank</SelectItem>
+                    <SelectItem value="unionbank">Unionbank</SelectItem>
+                    <SelectItem value="cimb">CIMB</SelectItem>
+                    <SelectItem value="komo">KOMO</SelectItem>
                   
                 </SelectContent>
               </Select>
@@ -541,6 +552,17 @@ export default function Payouthistory() {
                 <SelectContent>
                   <SelectItem value="gcash">GCash</SelectItem>
                     <SelectItem value="gotyme">Gotyme</SelectItem>
+                    <SelectItem value="bdo">BDO</SelectItem>
+                    <SelectItem value="bpi">BPI</SelectItem>
+                    <SelectItem value="maya">Maya</SelectItem>
+
+                    
+                    <SelectItem value="eastwest">Eastwest</SelectItem>
+                    <SelectItem value="securitybank">Security Bank</SelectItem>
+                    <SelectItem value="metrobank">Metro Bank</SelectItem>
+                    <SelectItem value="unionbank">Unionbank</SelectItem>
+                    <SelectItem value="cimb">CIMB</SelectItem>
+                    <SelectItem value="komo">KOMO</SelectItem>
                   
                 </SelectContent>
               </Select>
@@ -654,6 +676,17 @@ export default function Payouthistory() {
                 <SelectContent>
                   <SelectItem value="gcash">GCash</SelectItem>
                     <SelectItem value="gotyme">Gotyme</SelectItem>
+                    <SelectItem value="bdo">BDO</SelectItem>
+                    <SelectItem value="bpi">BPI</SelectItem>
+                    <SelectItem value="maya">Maya</SelectItem>
+
+                    
+                    <SelectItem value="eastwest">Eastwest</SelectItem>
+                    <SelectItem value="securitybank">Security Bank</SelectItem>
+                    <SelectItem value="metrobank">Metro Bank</SelectItem>
+                    <SelectItem value="unionbank">Unionbank</SelectItem>
+                    <SelectItem value="cimb">CIMB</SelectItem>
+                    <SelectItem value="komo">KOMO</SelectItem>
                   
                 </SelectContent>
               </Select>
@@ -808,8 +841,21 @@ export default function Payouthistory() {
                   <SelectValue placeholder="Select method" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="gcash">GCash</SelectItem>
+                  
+
+                    <SelectItem value="gcash">GCash</SelectItem>
                     <SelectItem value="gotyme">Gotyme</SelectItem>
+                    <SelectItem value="bdo">BDO</SelectItem>
+                    <SelectItem value="bpi">BPI</SelectItem>
+                    <SelectItem value="maya">Maya</SelectItem>
+
+                    
+                    <SelectItem value="eastwest">Eastwest</SelectItem>
+                    <SelectItem value="securitybank">Security Bank</SelectItem>
+                    <SelectItem value="metrobank">Metro Bank</SelectItem>
+                    <SelectItem value="unionbank">Unionbank</SelectItem>
+                    <SelectItem value="cimb">CIMB</SelectItem>
+                    <SelectItem value="komo">KOMO</SelectItem>
                   
                 </SelectContent>
               </Select>

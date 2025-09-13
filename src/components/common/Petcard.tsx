@@ -230,17 +230,17 @@ export default function Petcard(prop: Props) {
                                             <p className=' text-sm text-green-500'>Type: {prop.animal}</p>
                                             <p className=' text-sm mt-4'>{prop.profit * 100}% profit</p>
                                             <p className=' text-sm'>{prop.duration} days duration</p>
-                                            <p className=' text-sm'>Price: {prop.min.toLocaleString()}php - {prop.max.toLocaleString()}php</p>
+                                            <p className=' text-sm'>Min. Price: {prop.min.toLocaleString()} php</p>
 
-                                            <p className=' label mt-4'>Select</p>
+                                            {/* <p className=' label mt-4'>Select</p> */}
 
-                                            <Slider onValueChange={(i) => setVal(i)} value={val} defaultValue={val} min={prop.min} max={prop.max} step={1} />
+                                            {/* <Slider onValueChange={(i) => setVal(i)} value={val} defaultValue={val} min={prop.min} max={prop.max} step={1} />
 
                                             <div className=' flex items-center justify-between text-xs'>
                                                 <p>{prop.min.toLocaleString()} php</p>
                                                 <p>{prop.max.toLocaleString()} php</p>
 
-                                            </div>
+                                            </div> */}
 
                                             <label htmlFor="" className=' label'>Enter amount</label>
                                             <Input placeholder='Amount' min={prop.min} max={prop.max} value={val[0]} onChange={(e) => setVal([Number(e.target.value)])}/>
